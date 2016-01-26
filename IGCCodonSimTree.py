@@ -182,7 +182,8 @@ class TreeIGCCodonSimulator:
     def sim(self):
         self.sim_root()
         for edge in self.edge_list:
-            #print edge, self.edge_to_blen[edge]
+            
+            print edge, self.edge_to_blen[edge]
 
             # Now need to adapt branchsim
             # create an instance for each branch
@@ -197,19 +198,19 @@ class TreeIGCCodonSimulator:
             if edge in self.outgroup:
                 x_IGC[0] = 0.0
                         
-            branch_sim = OneBranchIGCCodonSimulator(blen = blen, num_exon = num_exon,
+            self.OneBranchSimulator = OneBranchIGCCodonSimulator(blen = blen, num_exon = num_exon,
                                                x_exon = x_exon, x_IGC = x_IGC,
                                                log_file = log_file, div_file = div_file, initial_seq = starting_seq)
             
             blen = self.edge_to_blen[edge] 
 
-            branch_sim.sim_one_branch(starting_seq, blen)
-            self.node_to_sequence[edge[1]] = branch_sim.convert_list_to_seq()
+            self.OneBranchSimulator.sim_one_branch(starting_seq, blen)
+            self.node_to_sequence[edge[1]] = self.OneBranchSimulator.convert_list_to_seq()
 
-            self.total_mut += branch_sim.point_mut_count
-            self.total_IGC += branch_sim.IGC_total_count
-            self.total_IGC_sites += branch_sim.IGC_contribution_count
-            self.total_IGC_changes += branch_sim.IGC_change_sites
+            self.total_mut += self.OneBranchSimulator.point_mut_count
+            self.total_IGC += self.OneBranchSimulator.IGC_total_count
+            self.total_IGC_sites += self.OneBranchSimulator.IGC_contribution_count
+            self.total_IGC_changes += self.OneBranchSimulator.IGC_change_sites
 
         self.output_seq()
         self.get_log()
@@ -275,10 +276,10 @@ if __name__ == '__main__':
     tau = 1.409408
 
     
-    IGC_geo  = 1.0
+    IGC_geo  = 3.0 / 3.0
     IGC_init = tau / IGC_geo 
     IGC_threshold = -0.1
-    x_IGC = [IGC_init, IGC_geo, IGC_threshold]  # These values vary for the simulation study
+    x_IGC = [IGC_init, 1.0 / IGC_geo, IGC_threshold]  # These values vary for the simulation study
 
     seq_file = './sim' + str(sim_num) + '/' + '_'.join(paralog) + '_MG94_geo_' + str(IGC_geo) + '_Sim_' + str(sim_num) + '.fasta'
     log_file = './sim' + str(sim_num) + '/' + '_'.join(paralog) + '_MG94_geo_' + str(IGC_geo) + '_Sim_' + str(sim_num) + '.log'

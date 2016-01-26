@@ -301,22 +301,23 @@ class OneBranchIGCCodonSimulator:
         tract_2 = paralog_seq_list[target_paralog][nuc_start:nuc_stop]
         compare_result = [tract_1[i] == tract_2[i] for i in range(len(tract_1))]
         
-        self.IGC_change_sites += nuc_stop - nuc_start + 1 - sum(compare_result)  # New, track changes due to IGC rather than point mutation
+        self.IGC_change_sites += nuc_stop - nuc_start - sum(compare_result)  # New, track changes due to IGC rather than point mutation
         
         similarity = (sum(compare_result) + 0.0) / (len(tract_1) + 0.0)
         if similarity > self.IGC_threshold:
-            paralog_seq_list[target_paralog] = paralog_seq_list[target_paralog][:nuc_start] + paralog_seq_list[template_paralog][nuc_start:(nuc_stop + 1)] + paralog_seq_list[target_paralog][(nuc_stop + 1):]
+            paralog_seq_list[target_paralog] = paralog_seq_list[target_paralog][:nuc_start] + paralog_seq_list[template_paralog][nuc_start:nuc_stop] + paralog_seq_list[target_paralog][nuc_stop:]
 
             new_paralog_seq = self.convert_seq_to_list(paralog_seq_list)#            [self.convert_seq_to_list(paralog_seq) for paralog_seq in paralog_seq_list]
             self.current_seq = new_paralog_seq
         else:
             self.IGC_failure_count += 1
         self.IGC_total_count += 1
-        self.IGC_contribution_count += (nuc_stop - nuc_start + 1) * 2
-        self.IGC_tract_length = (nuc_stop - nuc_start + 1)
+        self.IGC_contribution_count += (nuc_stop - nuc_start) * 2
+        self.IGC_tract_length = (nuc_stop - nuc_start)
 
         # move add_log into here        
-        IGC_info = ['IGC ' + str(template_paralog) + ' -> ' + str(target_paralog) + ' : start', str(nuc_start + 1), 'stop', str(nuc_stop), str(self.compare_similarity())]
+        IGC_info = ['IGC ' + str(template_paralog) + ' -> ' + str(target_paralog) + ' : start', str(nuc_start + 1), 'stop', str(nuc_stop), str(self.compare_similarity())
+                    + ' from ' + tract_2 + ' -> ' + tract_1]
         self.add_log(IGC_info)
 
         
