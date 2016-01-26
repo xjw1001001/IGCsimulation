@@ -183,7 +183,7 @@ class TreeIGCCodonSimulator:
         self.sim_root()
         for edge in self.edge_list:
             
-            print edge, self.edge_to_blen[edge]
+            #print edge, self.edge_to_blen[edge]
 
             # Now need to adapt branchsim
             # create an instance for each branch

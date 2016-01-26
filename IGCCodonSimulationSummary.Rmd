@@ -1,0 +1,322 @@
+---
+title: "IGCCodonSimulationSummary"
+author: "Xiang Ji"
+date: "January 18, 2016"
+output: html_document
+---
+
+This script is used for summarizing IGC Simulation result (with tract length)
+
+Read in data first
+```{r}
+rm(list=ls())  # clean up workspace
+IGC.path <- "/Users/xji3/FromCluster_IGCCodonSimulation01262016/"
+IGC.geo.list <- c(3.0, 10.0, 50.0, 100.0, 500.0)
+#IGC.geo.list <- c(1.0)
+num.sim = 100
+paralog = "YDR418W_YEL054C"
+
+#Read.summary <- function(IGC.path, IGC.x3.path, IGC.geo.list, num.sim = 100, paralog = "YDR418W_YEL054C"){
+## Now read simulation result
+
+sim.path <- paste("SimulationSummary", paralog, "",sep = "/")
+for (IGC.geo in IGC.geo.list){
+  summary_mat <- NULL
+  IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
+  file.prefix <- paste(paralog, "MG94_geo", paste(toString(IGC.geo), ".0", sep = ""), "Sim", sep = "_")
+  file.suffix <- "summary.txt"
+  for (sim.num in 0:(num.sim - 1)){
+    file.name <- paste(file.prefix, toString(sim.num), file.suffix, sep = "_")
+    summary_file <- paste(IGC.path, sim.path, IGC.geo.path, file.name, sep = "")
+    if (file.exists(summary_file)){
+      all <- readLines(summary_file, n = -1)
+      col.names <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "sim", toString(sim.num), sep = "_")
+      row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
+      summary_mat <- cbind(summary_mat, as.matrix(read.table(summary_file, 
+                                                             row.names = row.names, 
+                                                             col.names = col.names)))        
+      }
+    }
+  assign(paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "summary", sep = "_"), summary_mat)
+  }
+
+
+# ## Now read multiply 3 simulation result
+# 
+# sim.x3.path <- paste("SimulationSummary_multiply3", paralog, "",sep = "/")
+# for (IGC.geo in IGC.geo.list){
+#   summary_mat <- NULL
+#   IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
+#   file.prefix <- paste(paralog, "MG94_geo", paste(toString(IGC.geo), ".0", sep = ""), "Sim", sep = "_")
+#   file.suffix <- "summary.txt"
+#   for (sim.num in 0:(num.sim - 1)){
+#     file.name <- paste(file.prefix, toString(sim.num), file.suffix, sep = "_")
+#     summary_file <- paste(IGC.x3.path, sim.x3.path, IGC.geo.path, file.name, sep = "")
+#     if (file.exists(summary_file)){
+#       all <- readLines(summary_file, n = -1)
+#       col.names <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "sim", toString(sim.num), sep = "_")
+#       row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
+#       summary_mat <- cbind(summary_mat, as.matrix(read.table(summary_file, 
+#                                                              row.names = row.names, 
+#                                                              col.names = col.names)))        
+#       
+#       }
+#     
+#     }
+#   assign(paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "x3_summary", sep = "_"), summary_mat)
+#   }
+
+# Now read in 'real'  % changes due to IGC in the simulation
+data.path <- paste(paralog, "",sep = "/")
+for (IGC.geo in IGC.geo.list){
+  summary_mat <- NULL
+  IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
+  file.prefix <- paste(paralog, "MG94_geo", paste(toString(IGC.geo), ".0", sep = ""), "Sim", sep = "_")
+  file.suffix <- "short.log"
+  for (sim.num in 0:(num.sim - 1)){
+    file.name <- paste(file.prefix, toString(sim.num), file.suffix, sep = "_")
+    file.name <- paste("sim", paste(toString(sim.num), "/", file.prefix, sep = ""),
+                       toString(sim.num), file.suffix, sep = "_")
+    summary_file <- paste(IGC.path, data.path, IGC.geo.path, file.name, sep = "")
+    if (file.exists(summary_file)){
+      all <- readLines(summary_file, n = -1)
+      col.names <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "sim", toString(sim.num), sep = "_")
+      row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
+      summary_mat <- cbind(summary_mat, as.matrix(read.table(summary_file, 
+                                                             row.names = row.names, 
+                                                             col.names = col.names)))        
+      }
+    }
+  assign(paste("pIGC", paste(toString(IGC.geo), ".0", sep = ""), "summary", sep = "_"), summary_mat)
+  }
+
+
+```
+
+Now analyze the simulation results
+
+parameters used in generating datasets are:
+
+pi_a = 0.2983654, pi_c = 0.2095729, pi_g = 0.1871536, pi_t = 0.3049081 
+
+kappa = 8.4043336
+
+omega = 1.0
+
+tau = 1.409408  (0.42)
+
+Tau estimate summary
+
+```{r}
+# geo_3.0
+summary(geo_3.0_summary["tau", ])
+sd(geo_3.0_summary["tau", ])
+# geo_10.0
+summary(geo_10.0_summary["tau", ])
+sd(geo_10.0_summary["tau", ])
+# geo_50.0
+summary(geo_50.0_summary["tau", ])
+sd(geo_50.0_summary["tau", ])
+# geo_100.0
+summary(geo_100.0_summary["tau", ])
+sd(geo_100.0_summary["tau", ])
+# geo_500.0
+summary(geo_500.0_summary["tau", ])
+sd(geo_500.0_summary["tau", ])
+
+sd.list <- c(sd(geo_3.0_summary["tau", ]), 
+             sd(geo_10.0_summary["tau", ]),sd(geo_50.0_summary["tau", ]),
+             sd(geo_100.0_summary["tau", ]), sd(geo_500.0_summary["tau", ]))
+plot(IGC.geo.list, sd.list)
+abline(h = 0.42)
+
+mean.list <- c(mean(geo_3.0_summary["tau", ]),
+               mean(geo_10.0_summary["tau", ]), mean(geo_50.0_summary["tau", ]), 
+               mean(geo_100.0_summary["tau", ]), mean(geo_500.0_summary["tau", ]))
+plot(IGC.geo.list, mean.list)
+abline(h = 1.409408)
+```
+
+Now summarized % changes due to IGC in simulation estimates
+
+It was estimated 0.2131 (0.02884)
+```{r}
+percent.IGC.geo.3.0 <- colSums(geo_3.0_summary[34:45, ] + geo_3.0_summary[46:57, ]) / (colSums(geo_3.0_summary[34:45, ] + geo_3.0_summary[46:57, ] + geo_3.0_summary[58:69, ]))
+summary(percent.IGC.geo.3.0)
+sd(percent.IGC.geo.3.0)
+
+percent.IGC.geo.10.0 <- colSums(geo_10.0_summary[34:45, ] + geo_10.0_summary[46:57, ]) / (colSums(geo_10.0_summary[34:45, ] + geo_10.0_summary[46:57, ] + geo_10.0_summary[58:69, ]))
+summary(percent.IGC.geo.10.0)
+sd(percent.IGC.geo.10.0)
+
+percent.IGC.geo.50.0 <- colSums(geo_50.0_summary[34:45, ] + geo_50.0_summary[46:57, ]) / (colSums(geo_50.0_summary[34:45, ] + geo_50.0_summary[46:57, ] + geo_50.0_summary[58:69, ]))
+summary(percent.IGC.geo.50.0)
+sd(percent.IGC.geo.50.0)
+
+percent.IGC.geo.100.0 <- colSums(geo_100.0_summary[34:45, ] + geo_100.0_summary[46:57, ]) / (colSums(geo_100.0_summary[34:45, ] + geo_100.0_summary[46:57, ] + geo_100.0_summary[58:69, ]))
+summary(percent.IGC.geo.100.0)
+sd(percent.IGC.geo.100.0)
+
+percent.IGC.geo.500.0 <- colSums(geo_500.0_summary[34:45, ] + geo_500.0_summary[46:57, ]) / (colSums(geo_500.0_summary[34:45, ] + geo_500.0_summary[46:57, ] + geo_500.0_summary[58:69, ]))
+summary(percent.IGC.geo.500.0)
+sd(percent.IGC.geo.500.0)
+
+# plot mean % changes due to IGC v.s. IGC_geo
+mean.percent.IGC.list <- c( mean(percent.IGC.geo.3.0), 
+                           mean(percent.IGC.geo.10.0), mean(percent.IGC.geo.50.0), 
+                           mean(percent.IGC.geo.100.0), mean(percent.IGC.geo.500.0))
+plot(IGC.geo.list, mean.percent.IGC.list)
+abline(h = 0.2131)
+
+sd.percent.IGC.list <- c(sd(percent.IGC.geo.3.0), 
+                         sd(percent.IGC.geo.10.0), sd(percent.IGC.geo.50.0), 
+                         sd(percent.IGC.geo.100.0), sd(percent.IGC.geo.500.0))
+
+plot(IGC.geo.list, sd.percent.IGC.list)
+abline(h = 0.02884)
+```
+
+Now get histograms of tau estimate
+
+```{r}
+# geo_3.0
+hist(geo_3.0_summary["tau",])
+# geo_10.0
+hist(geo_10.0_summary["tau",])
+# geo_50.0
+hist(geo_50.0_summary["tau",])
+# geo_100.0
+hist(geo_100.0_summary["tau",])
+# geo_500.0
+hist(geo_500.0_summary["tau",])
+```
+
+Now get histograms of % change from IGC from estimate
+
+```{r}
+# geo_3.0
+hist(percent.IGC.geo.3.0)
+# geo_10.0
+hist(percent.IGC.geo.10.0)
+# geo_50.0
+hist(percent.IGC.geo.50.0)
+# geo_100.0
+hist(percent.IGC.geo.100.0)
+# geo_500.0
+hist(percent.IGC.geo.500.0)
+```
+
+Now summarize real % change due to IGC in simulation
+
+It was estimated 0.2131 (0.02884) in real data set
+
+```{r}
+pIGC.real.geo.3.0 <- pIGC_3.0_summary[1, ]
+summary(pIGC.real.geo.3.0)
+sd(pIGC.real.geo.3.0)
+
+pIGC.real.geo.10.0 <- pIGC_10.0_summary[1, ]
+summary(pIGC.real.geo.10.0)
+sd(pIGC.real.geo.10.0)
+
+pIGC.real.geo.50.0 <- pIGC_50.0_summary[1, ]
+summary(pIGC.real.geo.50.0)
+sd(pIGC.real.geo.50.0)
+
+pIGC.real.geo.100.0 <- pIGC_100.0_summary[1, ]
+summary(pIGC.real.geo.100.0)
+sd(pIGC.real.geo.100.0)
+
+pIGC.real.geo.500.0 <- pIGC_500.0_summary[1, ]
+summary(pIGC.real.geo.500.0)
+sd(pIGC.real.geo.500.0)
+
+# plot mean % changes due to IGC v.s. IGC_geo
+mean.pIGC.real.list <- c( mean(pIGC.real.geo.3.0), 
+                           mean(pIGC.real.geo.10.0), mean(pIGC.real.geo.50.0), 
+                           mean(pIGC.real.geo.100.0), mean(pIGC.real.geo.500.0))
+plot(IGC.geo.list, mean.pIGC.real.list)
+abline(h = 0.2131)
+
+sd.pIGC.real.list <- c(sd(pIGC.real.geo.3.0), 
+                         sd(pIGC.real.geo.10.0), sd(pIGC.real.geo.50.0), 
+                         sd(pIGC.real.geo.100.0), sd(pIGC.real.geo.500.0))
+
+plot(IGC.geo.list, sd.pIGC.real.list)
+abline(h = 0.02884)
+```
+
+Now get histograms of real % change due to IGC from simulation
+
+```{r}
+# geo_3.0
+hist(pIGC.real.geo.3.0)
+# geo_10.0
+hist(pIGC.real.geo.10.0)
+# geo_50.0
+hist(pIGC.real.geo.50.0)
+# geo_100.0
+hist(pIGC.real.geo.100.0)
+# geo_500.0
+hist(pIGC.real.geo.500.0)
+```
+
+
+Now summarize difference between real % change due to IGC with estimated %
+
+```{r}
+# geo_3.0
+diff.pIGC.geo.3.0 <- percent.IGC.geo.3.0 - pIGC.real.geo.3.0
+summary(diff.pIGC.geo.3.0)
+sd(diff.pIGC.geo.3.0)
+
+# geo_10.0
+diff.pIGC.geo.10.0 <- percent.IGC.geo.10.0 - pIGC.real.geo.10.0
+summary(diff.pIGC.geo.10.0)
+sd(diff.pIGC.geo.10.0)
+
+# geo_50.0
+diff.pIGC.geo.50.0 <- percent.IGC.geo.50.0 - pIGC.real.geo.50.0
+summary(diff.pIGC.geo.50.0)
+sd(diff.pIGC.geo.50.0)
+
+# geo_100.0
+diff.pIGC.geo.100.0 <- percent.IGC.geo.100.0 - pIGC.real.geo.100.0
+summary(diff.pIGC.geo.100.0)
+sd(diff.pIGC.geo.100.0)
+
+# geo_500.0
+diff.pIGC.geo.500.0 <- percent.IGC.geo.500.0 - pIGC.real.geo.500.0
+summary(diff.pIGC.geo.500.0)
+sd(diff.pIGC.geo.500.0)
+
+# plot mean % changes due to IGC v.s. IGC_geo
+mean.diff.pIGC.list <- c(mean(diff.pIGC.geo.3.0), 
+                           mean(diff.pIGC.geo.10.0), mean(diff.pIGC.geo.50.0), 
+                           mean(diff.pIGC.geo.100.0), mean(diff.pIGC.geo.500.0))
+plot(IGC.geo.list, mean.diff.pIGC.list)
+abline(h = 0.0)
+
+sd.diff.pIGC.list <- c(sd(diff.pIGC.geo.3.0), 
+                         sd(diff.pIGC.geo.10.0), sd(diff.pIGC.geo.50.0), 
+                         sd(diff.pIGC.geo.100.0), sd(diff.pIGC.geo.500.0))
+
+plot(IGC.geo.list, sd.diff.pIGC.list)
+abline(h = 0.02884)
+```
+
+Now get histograms of difference of % IGC from 'real' and estimate
+
+```{r}
+# geo_3.0
+hist(diff.pIGC.geo.3.0)
+# geo_10.0
+hist(diff.pIGC.geo.10.0)
+# geo_50.0
+hist(diff.pIGC.geo.50.0)
+# geo_100.0
+hist(diff.pIGC.geo.100.0)
+# geo_500.0
+hist(diff.pIGC.geo.500.0)
+```
+
