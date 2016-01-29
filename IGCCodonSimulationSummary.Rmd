@@ -11,10 +11,32 @@ Read in data first
 ```{r}
 rm(list=ls())  # clean up workspace
 IGC.path <- "/Users/xji3/FromCluster_IGCCodonSimulation01262016/"
+paml.path <- "/Users/Xiang/GitFolders/IGCCodonSimulation/"
 IGC.geo.list <- c(3.0, 10.0, 50.0, 100.0, 500.0)
 #IGC.geo.list <- c(1.0)
 num.sim = 100
 paralog = "YDR418W_YEL054C"
+
+
+# Now read in PAML analysis of these simulated data set
+data.path <- paste(paralog, "",sep = "/")
+for (IGC.geo in IGC.geo.list){
+  summary_mat <- NULL
+  IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
+  file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "paml", "summary.txt", sep = "_")
+  for (sim.num in 0:(num.sim - 1)){
+    summary_file <- paste(paml.path, file.name, sep = "")
+    if (file.exists(summary_file)){
+      all <- readLines(summary_file, n = -1)
+      col.names <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "sim", toString(sim.num), sep = "_")
+      row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
+      summary_mat <- cbind(summary_mat, as.matrix(read.table(summary_file, 
+                                                             row.names = row.names, 
+                                                             col.names = col.names)))        
+      }
+    }
+  assign(paste("pIGC", paste(toString(IGC.geo), ".0", sep = ""), "summary", sep = "_"), summary_mat)
+  }
 
 #Read.summary <- function(IGC.path, IGC.x3.path, IGC.geo.list, num.sim = 100, paralog = "YDR418W_YEL054C"){
 ## Now read simulation result
@@ -89,7 +111,6 @@ for (IGC.geo in IGC.geo.list){
     }
   assign(paste("pIGC", paste(toString(IGC.geo), ".0", sep = ""), "summary", sep = "_"), summary_mat)
   }
-
 
 ```
 
