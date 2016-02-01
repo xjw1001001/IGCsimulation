@@ -117,7 +117,9 @@ if __name__ == '__main__':
                 summary_mat.append(summary)
                 header.append('geo_' + str(IGC_geo) + '_sim_' + str(sim_num))
 
-        label.extend(['_'.join(edge) for edge in edge_list])    
+        
+        label.extend(['_'.join(edge) for edge in edge_list])
+        print len(header), len(label)
         footer = ' '.join(label)
         header = ' '.join(header)
         np.savetxt(open('./geo_' + str(IGC_geo) + '_paml_summary.txt', 'w+'), np.matrix(summary_mat).T, delimiter = ' ', footer = footer, header = header)

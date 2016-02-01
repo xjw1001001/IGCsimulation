@@ -11,7 +11,7 @@ Read in data first
 ```{r}
 rm(list=ls())  # clean up workspace
 IGC.path <- "/Users/xji3/FromCluster_IGCCodonSimulation01262016/"
-paml.path <- "/Users/Xiang/GitFolders/IGCCodonSimulation/"
+paml.path <- "/Users/xji3/GitFolders/IGCCodonSimulation/"
 IGC.geo.list <- c(3.0, 10.0, 50.0, 100.0, 500.0)
 #IGC.geo.list <- c(1.0)
 num.sim = 100
@@ -28,14 +28,15 @@ for (IGC.geo in IGC.geo.list){
     summary_file <- paste(paml.path, file.name, sep = "")
     if (file.exists(summary_file)){
       all <- readLines(summary_file, n = -1)
-      col.names <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "sim", toString(sim.num), sep = "_")
+      col.names <- strsplit(all[1], ' ')[[1]][-1]
       row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
-      summary_mat <- cbind(summary_mat, as.matrix(read.table(summary_file, 
-                                                             row.names = row.names, 
-                                                             col.names = col.names)))        
+      summary_mat <- as.matrix(read.table(summary_file, 
+                                          row.names = row.names, 
+                                          col.names = col.names))
+      
       }
     }
-  assign(paste("pIGC", paste(toString(IGC.geo), ".0", sep = ""), "summary", sep = "_"), summary_mat)
+  assign(paste("PAML", paste(toString(IGC.geo), ".0", sep = ""), "summary", sep = "_"), summary_mat)
   }
 
 #Read.summary <- function(IGC.path, IGC.x3.path, IGC.geo.list, num.sim = 100, paralog = "YDR418W_YEL054C"){
@@ -62,31 +63,6 @@ for (IGC.geo in IGC.geo.list){
   assign(paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "summary", sep = "_"), summary_mat)
   }
 
-
-# ## Now read multiply 3 simulation result
-# 
-# sim.x3.path <- paste("SimulationSummary_multiply3", paralog, "",sep = "/")
-# for (IGC.geo in IGC.geo.list){
-#   summary_mat <- NULL
-#   IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
-#   file.prefix <- paste(paralog, "MG94_geo", paste(toString(IGC.geo), ".0", sep = ""), "Sim", sep = "_")
-#   file.suffix <- "summary.txt"
-#   for (sim.num in 0:(num.sim - 1)){
-#     file.name <- paste(file.prefix, toString(sim.num), file.suffix, sep = "_")
-#     summary_file <- paste(IGC.x3.path, sim.x3.path, IGC.geo.path, file.name, sep = "")
-#     if (file.exists(summary_file)){
-#       all <- readLines(summary_file, n = -1)
-#       col.names <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "sim", toString(sim.num), sep = "_")
-#       row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
-#       summary_mat <- cbind(summary_mat, as.matrix(read.table(summary_file, 
-#                                                              row.names = row.names, 
-#                                                              col.names = col.names)))        
-#       
-#       }
-#     
-#     }
-#   assign(paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "x3_summary", sep = "_"), summary_mat)
-#   }
 
 # Now read in 'real'  % changes due to IGC in the simulation
 data.path <- paste(paralog, "",sep = "/")
@@ -184,8 +160,8 @@ sd(percent.IGC.geo.500.0)
 
 # plot mean % changes due to IGC v.s. IGC_geo
 mean.percent.IGC.list <- c( mean(percent.IGC.geo.3.0), 
-                           mean(percent.IGC.geo.10.0), mean(percent.IGC.geo.50.0), 
-                           mean(percent.IGC.geo.100.0), mean(percent.IGC.geo.500.0))
+                            mean(percent.IGC.geo.10.0), mean(percent.IGC.geo.50.0), 
+                            mean(percent.IGC.geo.100.0), mean(percent.IGC.geo.500.0))
 plot(IGC.geo.list, mean.percent.IGC.list)
 abline(h = 0.2131)
 
@@ -254,14 +230,14 @@ sd(pIGC.real.geo.500.0)
 
 # plot mean % changes due to IGC v.s. IGC_geo
 mean.pIGC.real.list <- c( mean(pIGC.real.geo.3.0), 
-                           mean(pIGC.real.geo.10.0), mean(pIGC.real.geo.50.0), 
-                           mean(pIGC.real.geo.100.0), mean(pIGC.real.geo.500.0))
+                          mean(pIGC.real.geo.10.0), mean(pIGC.real.geo.50.0), 
+                          mean(pIGC.real.geo.100.0), mean(pIGC.real.geo.500.0))
 plot(IGC.geo.list, mean.pIGC.real.list)
 abline(h = 0.2131)
 
 sd.pIGC.real.list <- c(sd(pIGC.real.geo.3.0), 
-                         sd(pIGC.real.geo.10.0), sd(pIGC.real.geo.50.0), 
-                         sd(pIGC.real.geo.100.0), sd(pIGC.real.geo.500.0))
+                       sd(pIGC.real.geo.10.0), sd(pIGC.real.geo.50.0), 
+                       sd(pIGC.real.geo.100.0), sd(pIGC.real.geo.500.0))
 
 plot(IGC.geo.list, sd.pIGC.real.list)
 abline(h = 0.02884)
@@ -313,14 +289,14 @@ sd(diff.pIGC.geo.500.0)
 
 # plot mean % changes due to IGC v.s. IGC_geo
 mean.diff.pIGC.list <- c(mean(diff.pIGC.geo.3.0), 
-                           mean(diff.pIGC.geo.10.0), mean(diff.pIGC.geo.50.0), 
-                           mean(diff.pIGC.geo.100.0), mean(diff.pIGC.geo.500.0))
+                         mean(diff.pIGC.geo.10.0), mean(diff.pIGC.geo.50.0), 
+                         mean(diff.pIGC.geo.100.0), mean(diff.pIGC.geo.500.0))
 plot(IGC.geo.list, mean.diff.pIGC.list)
 abline(h = 0.0)
 
 sd.diff.pIGC.list <- c(sd(diff.pIGC.geo.3.0), 
-                         sd(diff.pIGC.geo.10.0), sd(diff.pIGC.geo.50.0), 
-                         sd(diff.pIGC.geo.100.0), sd(diff.pIGC.geo.500.0))
+                       sd(diff.pIGC.geo.10.0), sd(diff.pIGC.geo.50.0), 
+                       sd(diff.pIGC.geo.100.0), sd(diff.pIGC.geo.500.0))
 
 plot(IGC.geo.list, sd.diff.pIGC.list)
 abline(h = 0.02884)
@@ -341,3 +317,665 @@ hist(diff.pIGC.geo.100.0)
 hist(diff.pIGC.geo.500.0)
 ```
 
+
+####update Jan 29th, 2016
+Now added PAML estimate of all simulated datasets. Start to show more comparisons.
+
+Omega estimate from PAML
+```{r}
+# geo_3.0
+summary(PAML_3.0_summary["omega", ])
+sd(PAML_3.0_summary["omega", ])
+
+# geo_10.0
+summary(PAML_10.0_summary["omega", ])
+sd(PAML_10.0_summary["omega", ])
+
+# geo_50.0
+summary(PAML_50.0_summary["omega", ])
+sd(PAML_50.0_summary["omega", ])
+
+# geo_100.0
+summary(PAML_100.0_summary["omega", ])
+sd(PAML_100.0_summary["omega", ])
+
+# geo_500.0
+summary(PAML_500.0_summary["omega", ])
+sd(PAML_500.0_summary["omega", ])
+
+PAML.omega.mean <- c(mean(PAML_3.0_summary["omega", ]), mean(PAML_10.0_summary["omega", ]),
+                     mean(PAML_50.0_summary["omega", ]), mean(PAML_100.0_summary["omega", ]), 
+                     mean(PAML_500.0_summary["omega", ]))
+PAML.omega.sd <- c(sd(PAML_3.0_summary["omega", ]), sd(PAML_10.0_summary["omega", ]),
+                   sd(PAML_50.0_summary["omega", ]), sd(PAML_100.0_summary["omega", ]), 
+                   sd(PAML_500.0_summary["omega", ]))
+
+plot(IGC.geo.list, PAML.omega.mean)
+abline(h = 1.0)
+
+plot(IGC.geo.list, PAML.omega.sd)
+```
+
+
+Omega estimate from IGC + MG94
+```{r}
+# geo_3.0
+summary(geo_3.0_summary["omega", ])
+sd(geo_3.0_summary["omega", ])
+
+# geo_10.0
+summary(geo_10.0_summary["omega", ])
+sd(geo_10.0_summary["omega", ])
+
+# geo_50.0
+summary(geo_50.0_summary["omega", ])
+sd(geo_50.0_summary["omega", ])
+
+# geo_100.0
+summary(geo_100.0_summary["omega", ])
+sd(geo_100.0_summary["omega", ])
+
+# geo_500.0
+summary(geo_500.0_summary["omega", ])
+sd(geo_500.0_summary["omega", ])
+
+geo.omega.mean <- c(mean(geo_3.0_summary["omega", ]), mean(geo_10.0_summary["omega", ]),
+                    mean(geo_50.0_summary["omega", ]), mean(geo_100.0_summary["omega", ]), 
+                    mean(geo_500.0_summary["omega", ]))
+geo.omega.sd <- c(sd(geo_3.0_summary["omega", ]), sd(geo_10.0_summary["omega", ]),
+                  sd(geo_50.0_summary["omega", ]), sd(geo_100.0_summary["omega", ]), 
+                  sd(geo_500.0_summary["omega", ]))
+
+plot(IGC.geo.list, geo.omega.mean)
+abline(h = 1.0)
+
+plot(IGC.geo.list, geo.omega.sd)
+```
+
+kappa estimate from PAML
+```{r}
+# geo_3.0
+summary(PAML_3.0_summary["kappa", ])
+sd(PAML_3.0_summary["kappa", ])
+
+# geo_10.0
+summary(PAML_10.0_summary["kappa", ])
+sd(PAML_10.0_summary["kappa", ])
+
+# geo_50.0
+summary(PAML_50.0_summary["kappa", ])
+sd(PAML_50.0_summary["kappa", ])
+
+# geo_100.0
+summary(PAML_100.0_summary["kappa", ])
+sd(PAML_100.0_summary["kappa", ])
+
+# geo_500.0
+summary(PAML_500.0_summary["kappa", ])
+sd(PAML_500.0_summary["kappa", ])
+
+PAML.kappa.mean <- c(mean(PAML_3.0_summary["kappa", ]), mean(PAML_10.0_summary["kappa", ]),
+                     mean(PAML_50.0_summary["kappa", ]), mean(PAML_100.0_summary["kappa", ]), 
+                     mean(PAML_500.0_summary["kappa", ]))
+PAML.kappa.sd <- c(sd(PAML_3.0_summary["kappa", ]), sd(PAML_10.0_summary["kappa", ]),
+                   sd(PAML_50.0_summary["kappa", ]), sd(PAML_100.0_summary["kappa", ]), 
+                   sd(PAML_500.0_summary["kappa", ]))
+
+plot(IGC.geo.list, PAML.kappa.mean)
+abline(h = 8.4043336)
+
+plot(IGC.geo.list, PAML.kappa.sd)
+```
+
+
+kappa estimate from IGC + MG94
+```{r}
+# geo_3.0
+summary(geo_3.0_summary["kappa", ])
+sd(geo_3.0_summary["kappa", ])
+
+# geo_10.0
+summary(geo_10.0_summary["kappa", ])
+sd(geo_10.0_summary["kappa", ])
+
+# geo_50.0
+summary(geo_50.0_summary["kappa", ])
+sd(geo_50.0_summary["kappa", ])
+
+# geo_100.0
+summary(geo_100.0_summary["kappa", ])
+sd(geo_100.0_summary["kappa", ])
+
+# geo_500.0
+summary(geo_500.0_summary["kappa", ])
+sd(geo_500.0_summary["kappa", ])
+
+geo.kappa.mean <- c(mean(geo_3.0_summary["kappa", ]), mean(geo_10.0_summary["kappa", ]),
+                    mean(geo_50.0_summary["kappa", ]), mean(geo_100.0_summary["kappa", ]), 
+                    mean(geo_500.0_summary["kappa", ]))
+geo.kappa.sd <- c(sd(geo_3.0_summary["kappa", ]), sd(geo_10.0_summary["kappa", ]),
+                  sd(geo_50.0_summary["kappa", ]), sd(geo_100.0_summary["kappa", ]), 
+                  sd(geo_500.0_summary["kappa", ]))
+
+plot(IGC.geo.list, geo.kappa.mean)
+abline(h = 8.4043336)
+
+plot(IGC.geo.list, geo.kappa.sd)
+```
+
+Now start to look at branch length estimates
+
+Branch lengths used in simulation:
+
+| Branch | blen |
+|--------|------|
+|N0_N1:         | 0.0197240946542 |
+|N0_kluyveri    | 0.215682181791  |
+|N1_N2          | 0.20925129872   |
+|N1_castellii   | 0.171684721483  |
+|N2_N3          | 0.0257112589202 |
+|N2_bayanus     | 0.0266075664688 |
+|N3_N4          | 0.0321083243449 |
+|N3_kudriavzevii| 0.0853588718458 |
+|N4_N5          | 0.024947887926  |
+|N4_mikatae     | 0.0566627496729 |
+|N5_cerevisiae  | 0.0581451177847 |
+|N5_paradoxus   | 0.0218788166581 |
+
+```{r}
+# N0_N1
+IGC.N0.N1.mean.list <- c(mean(geo_3.0_summary["(N0,N1)", ]), mean(geo_10.0_summary["(N0,N1)", ]),
+                         mean(geo_50.0_summary["(N0,N1)", ]), mean(geo_100.0_summary["(N0,N1)", ]),
+                         mean(geo_500.0_summary["(N0,N1)", ]))
+IGC.N0.N1.sd.list <- c(sd(geo_3.0_summary["(N0,N1)", ]), sd(geo_10.0_summary["(N0,N1)", ]),
+                       sd(geo_50.0_summary["(N0,N1)", ]), sd(geo_100.0_summary["(N0,N1)", ]),
+                       sd(geo_500.0_summary["(N0,N1)", ]))
+
+PAML.N0.N1.paralog1.mean.list <- c(mean(PAML_3.0_summary["N1_N2", ]), 
+                                   mean(PAML_10.0_summary["N1_N2", ]),
+                                   mean(PAML_50.0_summary["N1_N2", ]),
+                                   mean(PAML_100.0_summary["N1_N2", ]),
+                                   mean(PAML_500.0_summary["N1_N2", ]))
+PAML.N0.N1.paralog1.sd.list <- c(sd(PAML_3.0_summary["N1_N2", ]), 
+                                 sd(PAML_10.0_summary["N1_N2", ]),
+                                 sd(PAML_50.0_summary["N1_N2", ]),
+                                 sd(PAML_100.0_summary["N1_N2", ]),
+                                 sd(PAML_500.0_summary["N1_N2", ]))
+PAML.N0.N1.paralog2.mean.list <- c(mean(PAML_3.0_summary["N1_N7", ]), 
+                                   mean(PAML_10.0_summary["N1_N7", ]),
+                                   mean(PAML_50.0_summary["N1_N7", ]),
+                                   mean(PAML_100.0_summary["N1_N7", ]),
+                                   mean(PAML_500.0_summary["N1_N7", ]))
+PAML.N0.N1.paralog2.sd.list <- c(sd(PAML_3.0_summary["N1_N7", ]), 
+                                 sd(PAML_10.0_summary["N1_N7", ]),
+                                 sd(PAML_50.0_summary["N1_N7", ]),
+                                 sd(PAML_100.0_summary["N1_N7", ]),
+                                 sd(PAML_500.0_summary["N1_N7", ]))
+# N0_kluyveri
+IGC.N0.kluyveri.mean.list <- c(mean(geo_3.0_summary["(N0,kluyveri)", ]), mean(geo_10.0_summary["(N0,kluyveri)", ]),
+                               mean(geo_50.0_summary["(N0,kluyveri)", ]), mean(geo_100.0_summary["(N0,kluyveri)", ]),
+                               mean(geo_500.0_summary["(N0,kluyveri)", ]))
+IGC.N0.kluyveri.sd.list <- c(sd(geo_3.0_summary["(N0,kluyveri)", ]), sd(geo_10.0_summary["(N0,kluyveri)", ]),
+                             sd(geo_50.0_summary["(N0,kluyveri)", ]), sd(geo_100.0_summary["(N0,kluyveri)", ]),
+                             sd(geo_500.0_summary["(N0,kluyveri)", ]))
+PAML.N0.kluyveri.paralog1.mean.list <- c(mean(PAML_3.0_summary["N0_kluyveriYDR418W", ]), 
+                                         mean(PAML_10.0_summary["N0_kluyveriYDR418W", ]),
+                                         mean(PAML_50.0_summary["N0_kluyveriYDR418W", ]),
+                                         mean(PAML_100.0_summary["N0_kluyveriYDR418W", ]),
+                                         mean(PAML_500.0_summary["N0_kluyveriYDR418W", ]))
+PAML.N0.kluyveri.paralog1.sd.list <- c(sd(PAML_3.0_summary["N0_kluyveriYDR418W", ]), 
+                                       sd(PAML_10.0_summary["N0_kluyveriYDR418W", ]),
+                                       sd(PAML_50.0_summary["N0_kluyveriYDR418W", ]),
+                                       sd(PAML_100.0_summary["N0_kluyveriYDR418W", ]),
+                                       sd(PAML_500.0_summary["N0_kluyveriYDR418W", ]))
+# N1_N2
+IGC.N1.N2.mean.list <- c(mean(geo_3.0_summary["(N1,N2)", ]), mean(geo_10.0_summary["(N1,N2)", ]),
+                         mean(geo_50.0_summary["(N1,N2)", ]), mean(geo_100.0_summary["(N1,N2)", ]),
+                         mean(geo_500.0_summary["(N1,N2)", ]))
+IGC.N1.N2.sd.list <- c(sd(geo_3.0_summary["(N1,N2)", ]), sd(geo_10.0_summary["(N1,N2)", ]),
+                       sd(geo_50.0_summary["(N1,N2)", ]), sd(geo_100.0_summary["(N1,N2)", ]),
+                       sd(geo_500.0_summary["(N1,N2)", ]))
+
+PAML.N1.N2.paralog1.mean.list <- c(mean(PAML_3.0_summary["N2_N3", ]), 
+                                   mean(PAML_10.0_summary["N2_N3", ]),
+                                   mean(PAML_50.0_summary["N2_N3", ]),
+                                   mean(PAML_100.0_summary["N2_N3", ]),
+                                   mean(PAML_500.0_summary["N2_N3", ]))
+PAML.N1.N2.paralog1.sd.list <- c(sd(PAML_3.0_summary["N2_N3", ]), 
+                                 sd(PAML_10.0_summary["N2_N3", ]),
+                                 sd(PAML_50.0_summary["N2_N3", ]),
+                                 sd(PAML_100.0_summary["N2_N3", ]),
+                                 sd(PAML_500.0_summary["N2_N3", ]))
+PAML.N1.N2.paralog2.mean.list <- c(mean(PAML_3.0_summary["N7_N8", ]), 
+                                   mean(PAML_10.0_summary["N7_N8", ]),
+                                   mean(PAML_50.0_summary["N7_N8", ]),
+                                   mean(PAML_100.0_summary["N7_N8", ]),
+                                   mean(PAML_500.0_summary["N7_N8", ]))
+PAML.N1.N2.paralog2.sd.list <- c(sd(PAML_3.0_summary["N7_N8", ]), 
+                                 sd(PAML_10.0_summary["N7_N8", ]),
+                                 sd(PAML_50.0_summary["N7_N8", ]),
+                                 sd(PAML_100.0_summary["N7_N8", ]),
+                                 sd(PAML_500.0_summary["N7_N8", ]))
+
+# N1_castellii
+IGC.N1.castellii.mean.list <- c(mean(geo_3.0_summary["(N1,castellii)", ]), mean(geo_10.0_summary["(N1,castellii)", ]),
+                                mean(geo_50.0_summary["(N1,castellii)", ]), mean(geo_100.0_summary["(N1,castellii)", ]),
+                                mean(geo_500.0_summary["(N1,castellii)", ]))
+IGC.N1.castellii.sd.list <- c(sd(geo_3.0_summary["(N1,castellii)", ]), sd(geo_10.0_summary["(N1,castellii)", ]),
+                              sd(geo_50.0_summary["(N1,castellii)", ]), sd(geo_100.0_summary["(N1,castellii)", ]),
+                              sd(geo_500.0_summary["(N1,castellii)", ]))
+
+PAML.N1.castellii.paralog1.mean.list <- c(mean(PAML_3.0_summary["N2_castelliiYDR418W", ]), 
+                                          mean(PAML_10.0_summary["N2_castelliiYDR418W", ]),
+                                          mean(PAML_50.0_summary["N2_castelliiYDR418W", ]),
+                                          mean(PAML_100.0_summary["N2_castelliiYDR418W", ]),
+                                          mean(PAML_500.0_summary["N2_castelliiYDR418W", ]))
+PAML.N1.castellii.paralog1.sd.list <- c(sd(PAML_3.0_summary["N2_castelliiYDR418W", ]), 
+                                        sd(PAML_10.0_summary["N2_castelliiYDR418W", ]),
+                                        sd(PAML_50.0_summary["N2_castelliiYDR418W", ]),
+                                        sd(PAML_100.0_summary["N2_castelliiYDR418W", ]),
+                                        sd(PAML_500.0_summary["N2_castelliiYDR418W", ]))
+
+PAML.N1.castellii.paralog2.mean.list <- c(mean(PAML_3.0_summary["N7_castelliiYEL054C", ]), 
+                                          mean(PAML_10.0_summary["N7_castelliiYEL054C", ]),
+                                          mean(PAML_50.0_summary["N7_castelliiYEL054C", ]),
+                                          mean(PAML_100.0_summary["N7_castelliiYEL054C", ]),
+                                          mean(PAML_500.0_summary["N7_castelliiYEL054C", ]))
+PAML.N1.castellii.paralog2.sd.list <- c(sd(PAML_3.0_summary["N7_castelliiYEL054C", ]), 
+                                        sd(PAML_10.0_summary["N7_castelliiYEL054C", ]),
+                                        sd(PAML_50.0_summary["N7_castelliiYEL054C", ]),
+                                        sd(PAML_100.0_summary["N7_castelliiYEL054C", ]),
+                                        sd(PAML_500.0_summary["N7_castelliiYEL054C", ]))
+# N2_N3
+IGC.N2.N3.mean.list <- c(mean(geo_3.0_summary["(N2,N3)", ]), mean(geo_10.0_summary["(N2,N3)", ]),
+                         mean(geo_50.0_summary["(N2,N3)", ]), mean(geo_100.0_summary["(N2,N3)", ]),
+                         mean(geo_500.0_summary["(N2,N3)", ]))
+IGC.N2.N3.sd.list <- c(sd(geo_3.0_summary["(N2,N3)", ]), sd(geo_10.0_summary["(N2,N3)", ]),
+                       sd(geo_50.0_summary["(N2,N3)", ]), sd(geo_100.0_summary["(N2,N3)", ]),
+                       sd(geo_500.0_summary["(N2,N3)", ]))
+
+PAML.N2.N3.paralog1.mean.list <- c(mean(PAML_3.0_summary["N3_N4", ]), 
+                                   mean(PAML_10.0_summary["N3_N4", ]),
+                                   mean(PAML_50.0_summary["N3_N4", ]),
+                                   mean(PAML_100.0_summary["N3_N4", ]),
+                                   mean(PAML_500.0_summary["N3_N4", ]))
+PAML.N2.N3.paralog1.sd.list <- c(sd(PAML_3.0_summary["N3_N4", ]), 
+                                 sd(PAML_10.0_summary["N3_N4", ]),
+                                 sd(PAML_50.0_summary["N3_N4", ]),
+                                 sd(PAML_100.0_summary["N3_N4", ]),
+                                 sd(PAML_500.0_summary["N3_N4", ]))
+PAML.N2.N3.paralog2.mean.list <- c(mean(PAML_3.0_summary["N8_N9", ]), 
+                                   mean(PAML_10.0_summary["N8_N9", ]),
+                                   mean(PAML_50.0_summary["N8_N9", ]),
+                                   mean(PAML_100.0_summary["N8_N9", ]),
+                                   mean(PAML_500.0_summary["N8_N9", ]))
+PAML.N2.N3.paralog2.sd.list <- c(sd(PAML_3.0_summary["N8_N9", ]), 
+                                 sd(PAML_10.0_summary["N8_N9", ]),
+                                 sd(PAML_50.0_summary["N8_N9", ]),
+                                 sd(PAML_100.0_summary["N8_N9", ]),
+                                 sd(PAML_500.0_summary["N8_N9", ]))
+# N2_bayanus
+IGC.N2.bayanus.mean.list <- c(mean(geo_3.0_summary["(N2,bayanus)", ]), mean(geo_10.0_summary["(N2,bayanus)", ]),
+                              mean(geo_50.0_summary["(N2,bayanus)", ]), mean(geo_100.0_summary["(N2,bayanus)", ]),
+                              mean(geo_500.0_summary["(N2,bayanus)", ]))
+IGC.N2.bayanus.sd.list <- c(sd(geo_3.0_summary["(N2,bayanus)", ]), sd(geo_10.0_summary["(N2,bayanus)", ]),
+                            sd(geo_50.0_summary["(N2,bayanus)", ]), sd(geo_100.0_summary["(N2,bayanus)", ]),
+                            sd(geo_500.0_summary["(N2,bayanus)", ]))
+
+PAML.N2.bayanus.paralog1.mean.list <- c(mean(PAML_3.0_summary["N3_bayanusYDR418W", ]), 
+                                        mean(PAML_10.0_summary["N3_bayanusYDR418W", ]),
+                                        mean(PAML_50.0_summary["N3_bayanusYDR418W", ]),
+                                        mean(PAML_100.0_summary["N3_bayanusYDR418W", ]),
+                                        mean(PAML_500.0_summary["N3_bayanusYDR418W", ]))
+PAML.N2.bayanus.paralog1.sd.list <- c(sd(PAML_3.0_summary["N3_bayanusYDR418W", ]), 
+                                      sd(PAML_10.0_summary["N3_bayanusYDR418W", ]),
+                                      sd(PAML_50.0_summary["N3_bayanusYDR418W", ]),
+                                      sd(PAML_100.0_summary["N3_bayanusYDR418W", ]),
+                                      sd(PAML_500.0_summary["N3_bayanusYDR418W", ]))
+PAML.N2.bayanus.paralog2.mean.list <- c(mean(PAML_3.0_summary["N8_bayanusYEL054C", ]), 
+                                        mean(PAML_10.0_summary["N8_bayanusYEL054C", ]),
+                                        mean(PAML_50.0_summary["N8_bayanusYEL054C", ]),
+                                        mean(PAML_100.0_summary["N8_bayanusYEL054C", ]),
+                                        mean(PAML_500.0_summary["N8_bayanusYEL054C", ]))
+PAML.N2.bayanus.paralog2.sd.list <- c(sd(PAML_3.0_summary["N8_bayanusYEL054C", ]), 
+                                      sd(PAML_10.0_summary["N8_bayanusYEL054C", ]),
+                                      sd(PAML_50.0_summary["N8_bayanusYEL054C", ]),
+                                      sd(PAML_100.0_summary["N8_bayanusYEL054C", ]),
+                                      sd(PAML_500.0_summary["N8_bayanusYEL054C", ]))
+
+# N3_N4
+IGC.N3.N4.mean.list <- c(mean(geo_3.0_summary["(N3,N4)", ]), mean(geo_10.0_summary["(N3,N4)", ]),
+                         mean(geo_50.0_summary["(N3,N4)", ]), mean(geo_100.0_summary["(N3,N4)", ]),
+                         mean(geo_500.0_summary["(N3,N4)", ]))
+IGC.N3.N4.sd.list <- c(sd(geo_3.0_summary["(N3,N4)", ]), sd(geo_10.0_summary["(N3,N4)", ]),
+                       sd(geo_50.0_summary["(N3,N4)", ]), sd(geo_100.0_summary["(N3,N4)", ]),
+                       sd(geo_500.0_summary["(N3,N4)", ]))
+PAML.N3.N4.paralog1.mean.list <- c(mean(PAML_3.0_summary["N4_N5", ]), 
+                                   mean(PAML_10.0_summary["N4_N5", ]),
+                                   mean(PAML_50.0_summary["N4_N5", ]),
+                                   mean(PAML_100.0_summary["N4_N5", ]),
+                                   mean(PAML_500.0_summary["N4_N5", ]))
+PAML.N3.N4.paralog1.sd.list <- c(sd(PAML_3.0_summary["N4_N5", ]), 
+                                 sd(PAML_10.0_summary["N4_N5", ]),
+                                 sd(PAML_50.0_summary["N4_N5", ]),
+                                 sd(PAML_100.0_summary["N4_N5", ]),
+                                 sd(PAML_500.0_summary["N4_N5", ]))
+PAML.N3.N4.paralog2.mean.list <- c(mean(PAML_3.0_summary["N9_N10", ]), 
+                                   mean(PAML_10.0_summary["N9_N10", ]),
+                                   mean(PAML_50.0_summary["N9_N10", ]),
+                                   mean(PAML_100.0_summary["N9_N10", ]),
+                                   mean(PAML_500.0_summary["N9_N10", ]))
+PAML.N3.N4.paralog2.sd.list <- c(sd(PAML_3.0_summary["N9_N10", ]), 
+                                 sd(PAML_10.0_summary["N9_N10", ]),
+                                 sd(PAML_50.0_summary["N9_N10", ]),
+                                 sd(PAML_100.0_summary["N9_N10", ]),
+                                 sd(PAML_500.0_summary["N9_N10", ]))
+# N3_kudriavzevii
+IGC.N3.kudriavzevii.mean.list <- c(mean(geo_3.0_summary["(N3,kudriavzevii)", ]), mean(geo_10.0_summary["(N3,kudriavzevii)", ]),
+                                   mean(geo_50.0_summary["(N3,kudriavzevii)", ]), mean(geo_100.0_summary["(N3,kudriavzevii)", ]),
+                                   mean(geo_500.0_summary["(N3,kudriavzevii)", ]))
+IGC.N3.kudriavzevii.sd.list <- c(sd(geo_3.0_summary["(N3,kudriavzevii)", ]), sd(geo_10.0_summary["(N3,kudriavzevii)", ]),
+                                 sd(geo_50.0_summary["(N3,kudriavzevii)", ]), sd(geo_100.0_summary["(N3,kudriavzevii)", ]),
+                                 sd(geo_500.0_summary["(N3,kudriavzevii)", ]))
+PAML.N3.kudriavzevii.paralog1.mean.list <- c(mean(PAML_3.0_summary["N4_kudriavzeviiYDR418W", ]), 
+                                             mean(PAML_10.0_summary["N4_kudriavzeviiYDR418W", ]),
+                                             mean(PAML_50.0_summary["N4_kudriavzeviiYDR418W", ]),
+                                             mean(PAML_100.0_summary["N4_kudriavzeviiYDR418W", ]),
+                                             mean(PAML_500.0_summary["N4_kudriavzeviiYDR418W", ]))
+PAML.N3.kudriavzevii.paralog1.sd.list <- c(sd(PAML_3.0_summary["N4_kudriavzeviiYDR418W", ]), 
+                                           sd(PAML_10.0_summary["N4_kudriavzeviiYDR418W", ]),
+                                           sd(PAML_50.0_summary["N4_kudriavzeviiYDR418W", ]),
+                                           sd(PAML_100.0_summary["N4_kudriavzeviiYDR418W", ]),
+                                           sd(PAML_500.0_summary["N4_kudriavzeviiYDR418W", ]))
+PAML.N3.kudriavzevii.paralog2.mean.list <- c(mean(PAML_3.0_summary["N9_kudriavzeviiYEL054C", ]), 
+                                             mean(PAML_10.0_summary["N9_kudriavzeviiYEL054C", ]),
+                                             mean(PAML_50.0_summary["N9_kudriavzeviiYEL054C", ]),
+                                             mean(PAML_100.0_summary["N9_kudriavzeviiYEL054C", ]),
+                                             mean(PAML_500.0_summary["N9_kudriavzeviiYEL054C", ]))
+PAML.N3.kudriavzevii.paralog2.sd.list <- c(sd(PAML_3.0_summary["N9_kudriavzeviiYEL054C", ]), 
+                                           sd(PAML_10.0_summary["N9_kudriavzeviiYEL054C", ]),
+                                           sd(PAML_50.0_summary["N9_kudriavzeviiYEL054C", ]),
+                                           sd(PAML_100.0_summary["N9_kudriavzeviiYEL054C", ]),
+                                           sd(PAML_500.0_summary["N9_kudriavzeviiYEL054C", ]))
+# N4_N5
+IGC.N4.N5.mean.list <- c(mean(geo_3.0_summary["(N4,N5)", ]), mean(geo_10.0_summary["(N4,N5)", ]),
+                         mean(geo_50.0_summary["(N4,N5)", ]), mean(geo_100.0_summary["(N4,N5)", ]),
+                         mean(geo_500.0_summary["(N4,N5)", ]))
+IGC.N4.N5.sd.list <- c(sd(geo_3.0_summary["(N4,N5)", ]), sd(geo_10.0_summary["(N4,N5)", ]),
+                       sd(geo_50.0_summary["(N4,N5)", ]), sd(geo_100.0_summary["(N4,N5)", ]),
+                       sd(geo_500.0_summary["(N4,N5)", ]))
+PAML.N4.N5.paralog1.mean.list <- c(mean(PAML_3.0_summary["N5_N6", ]), 
+                                   mean(PAML_10.0_summary["N5_N6", ]),
+                                   mean(PAML_50.0_summary["N5_N6", ]),
+                                   mean(PAML_100.0_summary["N5_N6", ]),
+                                   mean(PAML_500.0_summary["N5_N6", ]))
+PAML.N4.N5.paralog1.sd.list <- c(sd(PAML_3.0_summary["N5_N6", ]), 
+                                 sd(PAML_10.0_summary["N5_N6", ]),
+                                 sd(PAML_50.0_summary["N5_N6", ]),
+                                 sd(PAML_100.0_summary["N5_N6", ]),
+                                 sd(PAML_500.0_summary["N5_N6", ]))
+PAML.N4.N5.paralog2.mean.list <- c(mean(PAML_3.0_summary["N10_N11", ]), 
+                                   mean(PAML_10.0_summary["N10_N11", ]),
+                                   mean(PAML_50.0_summary["N10_N11", ]),
+                                   mean(PAML_100.0_summary["N10_N11", ]),
+                                   mean(PAML_500.0_summary["N10_N11", ]))
+PAML.N4.N5.paralog2.sd.list <- c(sd(PAML_3.0_summary["N10_N11", ]), 
+                                 sd(PAML_10.0_summary["N10_N11", ]),
+                                 sd(PAML_50.0_summary["N10_N11", ]),
+                                 sd(PAML_100.0_summary["N10_N11", ]),
+                                 sd(PAML_500.0_summary["N10_N11", ]))
+# N4_mikatae
+IGC.N4.mikatae.mean.list <- c(mean(geo_3.0_summary["(N4,mikatae)", ]), mean(geo_10.0_summary["(N4,mikatae)", ]),
+                              mean(geo_50.0_summary["(N4,mikatae)", ]), mean(geo_100.0_summary["(N4,mikatae)", ]),
+                              mean(geo_500.0_summary["(N4,mikatae)", ]))
+IGC.N4.mikatae.sd.list <- c(sd(geo_3.0_summary["(N4,mikatae)", ]), sd(geo_10.0_summary["(N4,mikatae)", ]),
+                            sd(geo_50.0_summary["(N4,mikatae)", ]), sd(geo_100.0_summary["(N4,mikatae)", ]),
+                            sd(geo_500.0_summary["(N4,mikatae)", ]))
+PAML.N4.mikatae.paralog1.mean.list <- c(mean(PAML_3.0_summary["N5_mikataeYDR418W", ]), 
+                                        mean(PAML_10.0_summary["N5_mikataeYDR418W", ]),
+                                        mean(PAML_50.0_summary["N5_mikataeYDR418W", ]),
+                                        mean(PAML_100.0_summary["N5_mikataeYDR418W", ]),
+                                        mean(PAML_500.0_summary["N5_mikataeYDR418W", ]))
+PAML.N4.mikatae.paralog1.sd.list <- c(sd(PAML_3.0_summary["N5_mikataeYDR418W", ]), 
+                                      sd(PAML_10.0_summary["N5_mikataeYDR418W", ]),
+                                      sd(PAML_50.0_summary["N5_mikataeYDR418W", ]),
+                                      sd(PAML_100.0_summary["N5_mikataeYDR418W", ]),
+                                      sd(PAML_500.0_summary["N5_mikataeYDR418W", ]))
+PAML.N4.mikatae.paralog2.mean.list <- c(mean(PAML_3.0_summary["N10_mikataeYEL054C", ]), 
+                                        mean(PAML_10.0_summary["N10_mikataeYEL054C", ]),
+                                        mean(PAML_50.0_summary["N10_mikataeYEL054C", ]),
+                                        mean(PAML_100.0_summary["N10_mikataeYEL054C", ]),
+                                        mean(PAML_500.0_summary["N10_mikataeYEL054C", ]))
+PAML.N4.mikatae.paralog2.sd.list <- c(sd(PAML_3.0_summary["N10_mikataeYEL054C", ]), 
+                                      sd(PAML_10.0_summary["N10_mikataeYEL054C", ]),
+                                      sd(PAML_50.0_summary["N10_mikataeYEL054C", ]),
+                                      sd(PAML_100.0_summary["N10_mikataeYEL054C", ]),
+                                      sd(PAML_500.0_summary["N10_mikataeYEL054C", ]))
+# N5_cerevisiae
+IGC.N5.cerevisiae.mean.list <- c(mean(geo_3.0_summary["(N5,cerevisiae)", ]), mean(geo_10.0_summary["(N5,cerevisiae)", ]),
+                                 mean(geo_50.0_summary["(N5,cerevisiae)", ]), mean(geo_100.0_summary["(N5,cerevisiae)", ]),
+                                 mean(geo_500.0_summary["(N5,cerevisiae)", ]))
+IGC.N5.cerevisiae.sd.list <- c(sd(geo_3.0_summary["(N5,cerevisiae)", ]), sd(geo_10.0_summary["(N5,cerevisiae)", ]),
+                               sd(geo_50.0_summary["(N5,cerevisiae)", ]), sd(geo_100.0_summary["(N5,cerevisiae)", ]),
+                               sd(geo_500.0_summary["(N5,cerevisiae)", ]))
+PAML.N5.cerevisiae.paralog1.mean.list <- c(mean(PAML_3.0_summary["N6_cerevisiaeYDR418W", ]), 
+                                           mean(PAML_10.0_summary["N6_cerevisiaeYDR418W", ]),
+                                           mean(PAML_50.0_summary["N6_cerevisiaeYDR418W", ]),
+                                           mean(PAML_100.0_summary["N6_cerevisiaeYDR418W", ]),
+                                           mean(PAML_500.0_summary["N6_cerevisiaeYDR418W", ]))
+PAML.N5.cerevisiae.paralog1.sd.list <- c(sd(PAML_3.0_summary["N6_cerevisiaeYDR418W", ]), 
+                                         sd(PAML_10.0_summary["N6_cerevisiaeYDR418W", ]),
+                                         sd(PAML_50.0_summary["N6_cerevisiaeYDR418W", ]),
+                                         sd(PAML_100.0_summary["N6_cerevisiaeYDR418W", ]),
+                                         sd(PAML_500.0_summary["N6_cerevisiaeYDR418W", ]))
+PAML.N5.cerevisiae.paralog2.mean.list <- c(mean(PAML_3.0_summary["N11_cerevisiaeYEL054C", ]), 
+                                           mean(PAML_10.0_summary["N11_cerevisiaeYEL054C", ]),
+                                           mean(PAML_50.0_summary["N11_cerevisiaeYEL054C", ]),
+                                           mean(PAML_100.0_summary["N11_cerevisiaeYEL054C", ]),
+                                           mean(PAML_500.0_summary["N11_cerevisiaeYEL054C", ]))
+PAML.N5.cerevisiae.paralog2.sd.list <- c(sd(PAML_3.0_summary["N11_cerevisiaeYEL054C", ]), 
+                                         sd(PAML_10.0_summary["N11_cerevisiaeYEL054C", ]),
+                                         sd(PAML_50.0_summary["N11_cerevisiaeYEL054C", ]),
+                                         sd(PAML_100.0_summary["N11_cerevisiaeYEL054C", ]),
+                                         sd(PAML_500.0_summary["N11_cerevisiaeYEL054C", ]))
+# N5_paradoxus
+IGC.N5.paradoxus.mean.list <- c(mean(geo_3.0_summary["(N5,paradoxus)", ]), mean(geo_10.0_summary["(N5,paradoxus)", ]),
+                                mean(geo_50.0_summary["(N5,paradoxus)", ]), mean(geo_100.0_summary["(N5,paradoxus)", ]),
+                                mean(geo_500.0_summary["(N5,paradoxus)", ]))
+IGC.N5.paradoxus.sd.list <- c(sd(geo_3.0_summary["(N5,paradoxus)", ]), sd(geo_10.0_summary["(N5,paradoxus)", ]),
+                              sd(geo_50.0_summary["(N5,paradoxus)", ]), sd(geo_100.0_summary["(N5,paradoxus)", ]),
+                              sd(geo_500.0_summary["(N5,paradoxus)", ]))
+PAML.N5.paradoxus.paralog1.mean.list <- c(mean(PAML_3.0_summary["N6_paradoxusYDR418W", ]), 
+                                          mean(PAML_10.0_summary["N6_paradoxusYDR418W", ]),
+                                          mean(PAML_50.0_summary["N6_paradoxusYDR418W", ]),
+                                          mean(PAML_100.0_summary["N6_paradoxusYDR418W", ]),
+                                          mean(PAML_500.0_summary["N6_paradoxusYDR418W", ]))
+PAML.N5.paradoxus.paralog1.sd.list <- c(sd(PAML_3.0_summary["N6_paradoxusYDR418W", ]), 
+                                        sd(PAML_10.0_summary["N6_paradoxusYDR418W", ]),
+                                        sd(PAML_50.0_summary["N6_paradoxusYDR418W", ]),
+                                        sd(PAML_100.0_summary["N6_paradoxusYDR418W", ]),
+                                        sd(PAML_500.0_summary["N6_paradoxusYDR418W", ]))
+PAML.N5.paradoxus.paralog2.mean.list <- c(mean(PAML_3.0_summary["N11_paradoxusYEL054C", ]), 
+                                          mean(PAML_10.0_summary["N11_paradoxusYEL054C", ]),
+                                          mean(PAML_50.0_summary["N11_paradoxusYEL054C", ]),
+                                          mean(PAML_100.0_summary["N11_paradoxusYEL054C", ]),
+                                          mean(PAML_500.0_summary["N11_paradoxusYEL054C", ]))
+PAML.N5.paradoxus.paralog2.sd.list <- c(sd(PAML_3.0_summary["N11_paradoxusYEL054C", ]), 
+                                        sd(PAML_10.0_summary["N11_paradoxusYEL054C", ]),
+                                        sd(PAML_50.0_summary["N11_paradoxusYEL054C", ]),
+                                        sd(PAML_100.0_summary["N11_paradoxusYEL054C", ]),
+                                        sd(PAML_500.0_summary["N11_paradoxusYEL054C", ]))
+```
+
+Now plot all these tree branch length estimates from IGC + MG94 model 
+
+```{r}
+# N0_N1
+plot(IGC.geo.list, IGC.N0.N1.mean.list)
+abline(h = 0.0197240946542)
+plot(IGC.geo.list, IGC.N0.N1.sd.list)
+
+# N0_kluyveri
+plot(IGC.geo.list, IGC.N0.kluyveri.mean.list)
+abline(h = 0.215682181791)
+plot(IGC.geo.list, IGC.N0.kluyveri.sd.list)
+
+# N1_N2
+plot(IGC.geo.list, IGC.N1.N2.mean.list)
+abline(h = 0.20925129872)
+plot(IGC.geo.list, IGC.N1.N2.sd.list)
+
+# N1_castellii
+plot(IGC.geo.list, IGC.N1.castellii.mean.list)
+abline(h = 0.171684721483)
+plot(IGC.geo.list, IGC.N1.castellii.sd.list)
+
+# N2_N3
+plot(IGC.geo.list, IGC.N2.N3.mean.list)
+abline(h = 0.0257112589202)
+plot(IGC.geo.list, IGC.N2.N3.sd.list)
+
+# N2_bayanus
+plot(IGC.geo.list, IGC.N2.bayanus.mean.list)
+abline(h = 0.0266075664688)
+plot(IGC.geo.list, IGC.N2.bayanus.sd.list)
+
+# N3_N4
+plot(IGC.geo.list, IGC.N3.N4.mean.list)
+abline(h = 0.0321083243449)
+plot(IGC.geo.list, IGC.N3.N4.sd.list)
+
+# N3_kudriavzevii
+plot(IGC.geo.list, IGC.N3.kudriavzevii.mean.list)
+abline(h = 0.0853588718458)
+plot(IGC.geo.list, IGC.N3.kudriavzevii.sd.list)
+
+# N4_N5
+plot(IGC.geo.list, IGC.N4.N5.mean.list)
+abline(h = 0.024947887926)
+plot(IGC.geo.list, IGC.N4.N5.sd.list)
+
+# N4_mikatae
+plot(IGC.geo.list, IGC.N4.mikatae.mean.list)
+abline(h = 0.0566627496729)
+plot(IGC.geo.list, IGC.N4.mikatae.sd.list)
+
+# N5_cerevisiae
+plot(IGC.geo.list, IGC.N5.cerevisiae.mean.list)
+abline(h = 0.0581451177847)
+plot(IGC.geo.list, IGC.N5.cerevisiae.sd.list)
+
+# N5_paradoxus
+plot(IGC.geo.list, IGC.N5.paradoxus.mean.list)
+abline(h = 0.0218788166581)
+plot(IGC.geo.list, IGC.N5.paradoxus.sd.list)
+
+```
+
+Now plot same branch length estimates from each paralog in paml results
+
+```{r}
+# N0_N1
+matplot(IGC.geo.list, cbind(PAML.N0.N1.paralog1.mean.list, PAML.N0.N1.paralog2.mean.list),
+        type = c("p"), pch = 1, col = 1:2, ylab = "mean N0.N1 estimate")
+abline(h = 0.0197240946542)
+legend("right", legend = c("paralog1", "paralog2"), col = 1:2, pch = 1)
+matplot(IGC.geo.list, cbind(PAML.N0.N1.paralog1.sd.list, PAML.N0.N1.paralog2.sd.list),
+        type = c("p"), pch = 1, col = 1:2, ylab = "sd N0.N1 estimate")
+legend("right", legend = c("paralog1", "paralog2"), col = 1:2, pch = 1)
+
+# N0_kluyveri
+plot(IGC.geo.list, PAML.N0.kluyveri.paralog1.mean.list)
+abline(h = 0.215682181791)
+plot(IGC.geo.list, PAML.N0.kluyveri.paralog1.sd.list)
+
+# N1_N2
+matplot(IGC.geo.list, cbind(PAML.N1.N2.paralog1.mean.list, PAML.N1.N2.paralog2.mean.list),
+        type = c("p"), pch = 1, col = 1:2, ylab = "mean N1.N2 estimate")
+abline(h = 0.20925129872)
+legend("right", legend = c("paralog1", "paralog2"), col = 1:2, pch = 1)
+matplot(IGC.geo.list, cbind(PAML.N1.N2.paralog1.sd.list, PAML.N1.N2.paralog2.sd.list),
+        type = c("p"), pch = 1, col = 1:2, ylab = "sd N1.N2 estimate")
+legend("right", legend = c("paralog1", "paralog2"), col = 1:2, pch = 1)
+
+# N1_castellii
+matplot(IGC.geo.list, cbind(PAML.N1.castellii.paralog1.mean.list, PAML.N1.castellii.paralog2.mean.list),
+        type = c("p"), pch = 1, col = 1:2, ylab = "mean N1.castellii estimate")
+abline(h = 0.171684721483)
+legend("right", legend = c("paralog1", "paralog2"), col = 1:2, pch = 1)
+matplot(IGC.geo.list, cbind(PAML.N1.castellii.paralog1.sd.list, PAML.N1.castellii.paralog2.sd.list),
+        type = c("p"), pch = 1, col = 1:2, ylab = "sd N1.castellii estimate")
+legend("right", legend = c("paralog1", "paralog2"), col = 1:2, pch = 1)
+
+# N2_N3
+matplot(IGC.geo.list, cbind(PAML.N2.N3.paralog1.mean.list, PAML.N2.N3.paralog2.mean.list),
+        type = c("p"), pch = 1, col = 1:2, ylab = "mean N2.N3 estimate")
+abline(h = 0.0257112589202)
+legend("right", legend = c("paralog1", "paralog2"), col = 1:2, pch = 1)
+matplot(IGC.geo.list, cbind(PAML.N2.N3.paralog1.sd.list, PAML.N2.N3.paralog2.sd.list),
+        type = c("p"), pch = 1, col = 1:2, ylab = "sd N2.N3 estimate")
+legend("right", legend = c("paralog1", "paralog2"), col = 1:2, pch = 1)
+
+# N2_bayanus
+matplot(IGC.geo.list, cbind(PAML.N2.bayanus.paralog1.mean.list, PAML.N2.bayanus.paralog2.mean.list),
+        type = c("p"), pch = 1, col = 1:2, ylab = "mean N2.bayanus estimate")
+abline(h = 0.0266075664688)
+legend("right", legend = c("paralog1", "paralog2"), col = 1:2, pch = 1)
+matplot(IGC.geo.list, cbind(PAML.N2.bayanus.paralog1.sd.list, PAML.N2.bayanus.paralog2.sd.list),
+        type = c("p"), pch = 1, col = 1:2, ylab = "sd N2.bayanus estimate")
+legend("right", legend = c("paralog1", "paralog2"), col = 1:2, pch = 1)
+
+# N3_N4
+matplot(IGC.geo.list, cbind(PAML.N3.N4.paralog1.mean.list, PAML.N3.N4.paralog2.mean.list),
+        type = c("p"), pch = 1, col = 1:2, ylab = "mean N3.N4 estimate")
+abline(h = 0.0321083243449)
+legend("right", legend = c("paralog1", "paralog2"), col = 1:2, pch = 1)
+matplot(IGC.geo.list, cbind(PAML.N3.N4.paralog1.sd.list, PAML.N3.N4.paralog2.sd.list),
+        type = c("p"), pch = 1, col = 1:2, ylab = "sd N3.N4 estimate")
+legend("right", legend = c("paralog1", "paralog2"), col = 1:2, pch = 1)
+
+# N3_kudriavzevii
+matplot(IGC.geo.list, cbind(PAML.N3.kudriavzevii.paralog1.mean.list, PAML.N3.kudriavzevii.paralog2.mean.list),
+        type = c("p"), pch = 1, col = 1:2, ylab = "mean N3.kudriavzevii estimate")
+abline(h = 0.0853588718458)
+legend("right", legend = c("paralog1", "paralog2"), col = 1:2, pch = 1)
+matplot(IGC.geo.list, cbind(PAML.N3.kudriavzevii.paralog1.sd.list, PAML.N3.kudriavzevii.paralog2.sd.list),
+        type = c("p"), pch = 1, col = 1:2, ylab = "sd N3.kudriavzevii estimate")
+legend("right", legend = c("paralog1", "paralog2"), col = 1:2, pch = 1)
+
+# N4_N5
+matplot(IGC.geo.list, cbind(PAML.N4.N5.paralog1.mean.list, PAML.N4.N5.paralog2.mean.list),
+        type = c("p"), pch = 1, col = 1:2, ylab = "mean N4.N5 estimate")
+abline(h = 0.024947887926)
+legend("right", legend = c("paralog1", "paralog2"), col = 1:2, pch = 1)
+matplot(IGC.geo.list, cbind(PAML.N4.N5.paralog1.sd.list, PAML.N4.N5.paralog2.sd.list),
+        type = c("p"), pch = 1, col = 1:2, ylab = "sd N4.N5 estimate")
+legend("right", legend = c("paralog1", "paralog2"), col = 1:2, pch = 1)
+
+# N4_mikatae
+matplot(IGC.geo.list, cbind(PAML.N4.N5.paralog1.mean.list, PAML.N4.mikatae.paralog2.mean.list),
+        type = c("p"), pch = 1, col = 1:2, ylab = "mean N4.mikatae estimate")
+abline(h = 0.0566627496729)
+legend("right", legend = c("paralog1", "paralog2"), col = 1:2, pch = 1)
+matplot(IGC.geo.list, cbind(PAML.N4.mikatae.paralog1.sd.list, PAML.N4.mikatae.paralog2.sd.list),
+        type = c("p"), pch = 1, col = 1:2, ylab = "sd N4.mikatae estimate")
+legend("right", legend = c("paralog1", "paralog2"), col = 1:2, pch = 1)
+
+# N5_cerevisiae
+matplot(IGC.geo.list, cbind(PAML.N5.cerevisiae.paralog1.mean.list, PAML.N5.cerevisiae.paralog2.mean.list),
+        type = c("p"), pch = 1, col = 1:2, ylab = "mean N5.cerevisiae estimate")
+abline(h = 0.0581451177847)
+legend("right", legend = c("paralog1", "paralog2"), col = 1:2, pch = 1)
+matplot(IGC.geo.list, cbind(PAML.N5.cerevisiae.paralog1.sd.list, PAML.N5.cerevisiae.paralog2.sd.list),
+        type = c("p"), pch = 1, col = 1:2, ylab = "sd N5.cerevisiae estimate")
+legend("right", legend = c("paralog1", "paralog2"), col = 1:2, pch = 1)
+
+# N5_paradoxus
+matplot(IGC.geo.list, cbind(PAML.N5.paradoxus.paralog1.mean.list, PAML.N5.paradoxus.paralog2.mean.list),
+        type = c("p"), pch = 1, col = 1:2, ylab = "mean N5.paradoxus estimate")
+abline(h = 0.0218788166581)
+legend("right", legend = c("paralog1", "paralog2"), col = 1:2, pch = 1)
+matplot(IGC.geo.list, cbind(PAML.N5.paradoxus.paralog1.sd.list, PAML.N5.paradoxus.paralog2.sd.list),
+        type = c("p"), pch = 1, col = 1:2, ylab = "sd N5.paradoxus estimate")
+legend("right", legend = c("paralog1", "paralog2"), col = 1:2, pch = 1)
+```

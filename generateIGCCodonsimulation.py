@@ -20,14 +20,14 @@ if __name__ == '__main__':
     IGC_threshold = -0.1
 
     IGC_geo_list = [3.0, 10.0, 50.0, 100.0, 500.0]
-#    IGC_geo_list = [3.0]
+    IGC_geo_list = [3.0]
     for IGC_geo in IGC_geo_list:
         IGC_geo_codon = IGC_geo / 3.0
         IGC_init = tau / IGC_geo_codon
         x_IGC = [IGC_init, 1.0 / IGC_geo_codon, IGC_threshold]  # These values vary for the simulation study
         
         #sim_num = 1
-        for sim_num in range(100):
+        for sim_num in range(99, 100):
             log_folder = './' + '_'.join(paralog) + '/IGCgeo_' + str(IGC_geo) + '/sim_' + str(sim_num) + '/log/'
             div_folder = './' + '_'.join(paralog) + '/IGCgeo_' + str(IGC_geo) + '/sim_' + str(sim_num) + '/div/'
 
@@ -67,10 +67,10 @@ if __name__ == '__main__':
 
             test = TreeIGCCodonSimulator(num_exon, newicktree, paralog, seq_file, log_file, x_exon, x_IGC, log_folder, div_folder)
             test.unpack_x_rates(x_rates)
-            try:
-                test.sim()
-            except:
-                print 'failed at sim  ' + str(sim_num) + '  IGC_geo = ' + str(IGC_geo)
-                test.write_log()
-        
+##            try:
+##                test.sim()
+##            except:
+##                print 'failed at sim  ' + str(sim_num) + '  IGC_geo = ' + str(IGC_geo)
+##                test.write_log()
+##        
 
