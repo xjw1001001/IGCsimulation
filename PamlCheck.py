@@ -88,7 +88,7 @@ if __name__ == '__main__':
     IGC_geo_list = [3.0, 10.0, 50.0, 100.0, 500.0]
     tree_loc = '/Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_tree.newick'
 
-    #IGC_geo_list = [500.0]
+    IGC_geo_list = [500.0]
     name_tree = '/Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C.newick'
 
     for IGC_geo in IGC_geo_list:
@@ -99,9 +99,9 @@ if __name__ == '__main__':
             wk_dir = '/Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C/IGCgeo_' + str(IGC_geo) + '/sim_' + str(sim_num) + '/'
             seq_loc = wk_dir + 'YDR418W_YEL054C_MG94_geo_' + str(IGC_geo) + '_Sim_' + str(sim_num) + '.fasta'
             ctl_loc = wk_dir + 'geo_' + str(IGC_geo) + '_Sim_' + str(sim_num) + '_codeml.ctl'
-            out_file = wk_dir + 'YDR418W_YEL054C_MG94_geo_' + str(IGC_geo) + '_Sim_' + str(sim_num) + '_codeml_output.txt'
-            #prepare_ctl(tree_loc, seq_loc, out_file, ctl_loc)
-            #run_paml(wk_dir, ctl_loc)
+            out_file = wk_dir + 'unrooted_MG94_geo_' + str(IGC_geo) + '_Sim_' + str(sim_num) + '_codeml_output.txt'
+            prepare_ctl(tree_loc, seq_loc, out_file, ctl_loc)
+            run_paml(wk_dir, ctl_loc)
 
             if os.path.isfile(out_file):
                 codeml_result = codeml.read(out_file)
@@ -122,7 +122,7 @@ if __name__ == '__main__':
         print len(header), len(label)
         footer = ' '.join(label)
         header = ' '.join(header)
-        np.savetxt(open('./geo_' + str(IGC_geo) + '_paml_summary.txt', 'w+'), np.matrix(summary_mat).T, delimiter = ' ', footer = footer, header = header)
+        np.savetxt(open('./geo_' + str(IGC_geo) + '_paml_unrooted_summary.txt', 'w+'), np.matrix(summary_mat).T, delimiter = ' ', footer = footer, header = header)
             
 
 

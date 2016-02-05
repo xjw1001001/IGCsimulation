@@ -1,0 +1,237 @@
+---
+title: "CheckBlenAsymmetry"
+author: "Xiang Ji"
+date: "February 4, 2016"
+output: html_document
+---
+
+Load data from All.RData
+
+```{r}
+rm(list=ls())  # clean up workspace
+load("/Users/xji3/GitFolders/IGCCodonSimulation/All.RData")
+```
+
+Now start to check branches ratio of subtree branches of paralog 1 over paralog 2 ratios
+
+```{r}
+# N0_N1
+target <- PAML_3.0_summary["N0_N1", ] / PAML_3.0_summary["N0_N6", ]
+hist(target, main = "N0_N1"); mean(target); sd(target)
+
+# N1_N2
+target <- PAML_3.0_summary["N1_N2", ] / PAML_3.0_summary["N6_N7", ]
+hist(target, main = "N1_N2"); mean(target); sd(target)
+
+# N1_castellii
+target <- PAML_3.0_summary["N1_castelliiYDR418W", ] / PAML_3.0_summary["N6_castelliiYEL054C", ]
+hist(target, main = "N1_castellii"); mean(target); sd(target)
+
+# N2_N3
+target <- PAML_3.0_summary["N2_N3", ] / PAML_3.0_summary["N7_N8", ]
+hist(target, main = "N2_N3"); mean(target); sd(target)
+
+# N2_bayanus
+target <- PAML_3.0_summary["N2_bayanusYDR418W", ] / PAML_3.0_summary["N7_bayanusYEL054C", ]
+hist(target, main = "N2_bayanus"); mean(target); sd(target)
+
+# N3_N4
+target <- PAML_3.0_summary["N3_N4", ] / PAML_3.0_summary["N8_N9", ]
+hist(target, main = "N3_N4"); mean(target); sd(target)
+
+# N3_kudriavzevii
+target <- PAML_3.0_summary["N3_kudriavzeviiYDR418W", ] / PAML_3.0_summary["N8_kudriavzeviiYEL054C", ]
+hist(target, main = "N3_kudriavzevii"); mean(target); sd(target)
+
+# N4_N5
+target <- PAML_3.0_summary["N4_N5", ] / PAML_3.0_summary["N9_N10", ]
+hist(target, main = "N4_N5"); mean(target); sd(target)
+
+# N4_mikatae
+target <- PAML_3.0_summary["N4_mikataeYDR418W", ] / PAML_3.0_summary["N9_mikataeYEL054C", ]  # paralog 1 / paralog 2
+hist(target, main = "N4_mikatae"); mean(target); sd(target)
+
+# N5_paradoxus
+target <- PAML_3.0_summary["N5_paradoxusYDR418W", ] / PAML_3.0_summary["N10_paradoxusYEL054C", ]  # paralog 1 / paralog 2
+hist(target, main = "N5_paradoxus"); mean(target); sd(target)
+
+# N5_cerevisiae
+target <- PAML_3.0_summary["N5_cerevisiaeYDR418W", ] / PAML_3.0_summary["N10_cerevisiaeYEL054C", ]  # paralog 1 / paralog 2
+hist(target, main = "N5_cerevisiae"); mean(target); sd(target)
+ 
+# N0_N1
+target <- PAML_10.0_summary["N0_N1", ] / PAML_10.0_summary["N0_N6", ]
+hist(target, main = "N0_N1"); mean(target); sd(target)
+
+# N1_N2
+target <- PAML_10.0_summary["N1_N2", ] / PAML_10.0_summary["N6_N7", ]
+hist(target, main = "N1_N2"); mean(target); sd(target)
+
+# N1_castellii
+target <- PAML_10.0_summary["N1_castelliiYDR418W", ] / PAML_10.0_summary["N6_castelliiYEL054C", ]
+hist(target, main = "N1_castellii"); mean(target); sd(target)
+
+# N2_N3
+target <- PAML_10.0_summary["N2_N3", ] / PAML_10.0_summary["N7_N8", ]
+hist(target, main = "N2_N3"); mean(target); sd(target)
+
+# N2_bayanus
+target <- PAML_10.0_summary["N2_bayanusYDR418W", ] / PAML_10.0_summary["N7_bayanusYEL054C", ]
+hist(target, main = "N2_bayanus"); mean(target); sd(target)
+
+# N3_N4
+target <- PAML_10.0_summary["N3_N4", ] / PAML_10.0_summary["N8_N9", ]
+hist(target, main = "N3_N4"); mean(target); sd(target)
+
+# N3_kudriavzevii
+target <- PAML_10.0_summary["N3_kudriavzeviiYDR418W", ] / PAML_10.0_summary["N8_kudriavzeviiYEL054C", ]
+hist(target, main = "N3_kudriavzevii"); mean(target); sd(target)
+
+# N4_N5
+target <- PAML_10.0_summary["N4_N5", ] / PAML_10.0_summary["N9_N10", ]
+hist(target, main = "N4_N5"); mean(target); sd(target)
+
+# N4_mikatae
+target <- PAML_10.0_summary["N4_mikataeYDR418W", ] / PAML_10.0_summary["N9_mikataeYEL054C", ]  # paralog 1 / paralog 2
+hist(target, main = "N4_mikatae"); mean(target); sd(target)
+
+# N5_paradoxus
+target <- PAML_10.0_summary["N5_paradoxusYDR418W", ] / PAML_10.0_summary["N10_paradoxusYEL054C", ]  # paralog 1 / paralog 2
+hist(target, main = "N5_paradoxus"); mean(target); sd(target)
+
+# N5_cerevisiae
+target <- PAML_10.0_summary["N5_cerevisiaeYDR418W", ] / PAML_10.0_summary["N10_cerevisiaeYEL054C", ]  # paralog 1 / paralog 2
+hist(target, main = "N5_cerevisiae"); mean(target); sd(target)
+ 
+# N0_N1
+target <- PAML_50.0_summary["N0_N1", ] / PAML_50.0_summary["N0_N6", ]
+hist(target, main = "N0_N1"); mean(target); sd(target)
+
+# N1_N2
+target <- PAML_50.0_summary["N1_N2", ] / PAML_50.0_summary["N6_N7", ]
+hist(target, main = "N1_N2"); mean(target); sd(target)
+
+# N1_castellii
+target <- PAML_50.0_summary["N1_castelliiYDR418W", ] / PAML_50.0_summary["N6_castelliiYEL054C", ]
+hist(target, main = "N1_castellii"); mean(target); sd(target)
+
+# N2_N3
+target <- PAML_50.0_summary["N2_N3", ] / PAML_50.0_summary["N7_N8", ]
+hist(target, main = "N2_N3"); mean(target); sd(target)
+
+# N2_bayanus
+target <- PAML_50.0_summary["N2_bayanusYDR418W", ] / PAML_50.0_summary["N7_bayanusYEL054C", ]
+hist(target, main = "N2_bayanus"); mean(target); sd(target)
+
+# N3_N4
+target <- PAML_50.0_summary["N3_N4", ] / PAML_50.0_summary["N8_N9", ]
+hist(target, main = "N3_N4"); mean(target); sd(target)
+
+# N3_kudriavzevii
+target <- PAML_50.0_summary["N3_kudriavzeviiYDR418W", ] / PAML_50.0_summary["N8_kudriavzeviiYEL054C", ]
+hist(target, main = "N3_kudriavzevii"); mean(target); sd(target)
+
+# N4_N5
+target <- PAML_50.0_summary["N4_N5", ] / PAML_50.0_summary["N9_N10", ]
+hist(target, main = "N4_N5"); mean(target); sd(target)
+
+# N4_mikatae
+target <- PAML_50.0_summary["N4_mikataeYDR418W", ] / PAML_50.0_summary["N9_mikataeYEL054C", ]  # paralog 1 / paralog 2
+hist(target, main = "N4_mikatae"); mean(target); sd(target)
+
+# N5_paradoxus
+target <- PAML_50.0_summary["N5_paradoxusYDR418W", ] / PAML_50.0_summary["N10_paradoxusYEL054C", ]  # paralog 1 / paralog 2
+hist(target, main = "N5_paradoxus"); mean(target); sd(target)
+
+# N5_cerevisiae
+target <- PAML_50.0_summary["N5_cerevisiaeYDR418W", ] / PAML_50.0_summary["N10_cerevisiaeYEL054C", ]  # paralog 1 / paralog 2
+hist(target, main = "N5_cerevisiae"); mean(target); sd(target)
+ # N0_N1
+target <- PAML_100.0_summary["N0_N1", ] / PAML_100.0_summary["N0_N6", ]
+hist(target, main = "N0_N1"); mean(target); sd(target)
+
+# N1_N2
+target <- PAML_100.0_summary["N1_N2", ] / PAML_100.0_summary["N6_N7", ]
+hist(target, main = "N1_N2"); mean(target); sd(target)
+
+# N1_castellii
+target <- PAML_100.0_summary["N1_castelliiYDR418W", ] / PAML_100.0_summary["N6_castelliiYEL054C", ]
+hist(target, main = "N1_castellii"); mean(target); sd(target)
+
+# N2_N3
+target <- PAML_100.0_summary["N2_N3", ] / PAML_100.0_summary["N7_N8", ]
+hist(target, main = "N2_N3"); mean(target); sd(target)
+
+# N2_bayanus
+target <- PAML_100.0_summary["N2_bayanusYDR418W", ] / PAML_100.0_summary["N7_bayanusYEL054C", ]
+hist(target, main = "N2_bayanus"); mean(target); sd(target)
+
+# N3_N4
+target <- PAML_100.0_summary["N3_N4", ] / PAML_100.0_summary["N8_N9", ]
+hist(target, main = "N3_N4"); mean(target); sd(target)
+
+# N3_kudriavzevii
+target <- PAML_100.0_summary["N3_kudriavzeviiYDR418W", ] / PAML_100.0_summary["N8_kudriavzeviiYEL054C", ]
+hist(target, main = "N3_kudriavzevii"); mean(target); sd(target)
+
+# N4_N5
+target <- PAML_100.0_summary["N4_N5", ] / PAML_100.0_summary["N9_N10", ]
+hist(target, main = "N4_N5"); mean(target); sd(target)
+
+# N4_mikatae
+target <- PAML_100.0_summary["N4_mikataeYDR418W", ] / PAML_100.0_summary["N9_mikataeYEL054C", ]  # paralog 1 / paralog 2
+hist(target, main = "N4_mikatae"); mean(target); sd(target)
+
+# N5_paradoxus
+target <- PAML_100.0_summary["N5_paradoxusYDR418W", ] / PAML_100.0_summary["N10_paradoxusYEL054C", ]  # paralog 1 / paralog 2
+hist(target, main = "N5_paradoxus"); mean(target); sd(target)
+
+# N5_cerevisiae
+target <- PAML_100.0_summary["N5_cerevisiaeYDR418W", ] / PAML_100.0_summary["N10_cerevisiaeYEL054C", ]  # paralog 1 / paralog 2
+hist(target, main = "N5_cerevisiae"); mean(target); sd(target)
+ # N0_N1
+target <- PAML_500.0_summary["N0_N1", ] / PAML_500.0_summary["N0_N6", ]
+hist(target, main = "N0_N1"); mean(target); sd(target)
+
+# N1_N2
+target <- PAML_500.0_summary["N1_N2", ] / PAML_500.0_summary["N6_N7", ]
+hist(target, main = "N1_N2"); mean(target); sd(target)
+
+# N1_castellii
+target <- PAML_500.0_summary["N1_castelliiYDR418W", ] / PAML_500.0_summary["N6_castelliiYEL054C", ]
+hist(target, main = "N1_castellii"); mean(target); sd(target)
+
+# N2_N3
+target <- PAML_500.0_summary["N2_N3", ] / PAML_500.0_summary["N7_N8", ]
+hist(target, main = "N2_N3"); mean(target); sd(target)
+
+# N2_bayanus
+target <- PAML_500.0_summary["N2_bayanusYDR418W", ] / PAML_500.0_summary["N7_bayanusYEL054C", ]
+hist(target, main = "N2_bayanus"); mean(target); sd(target)
+
+# N3_N4
+target <- PAML_500.0_summary["N3_N4", ] / PAML_500.0_summary["N8_N9", ]
+hist(target, main = "N3_N4"); mean(target); sd(target)
+
+# N3_kudriavzevii
+target <- PAML_500.0_summary["N3_kudriavzeviiYDR418W", ] / PAML_500.0_summary["N8_kudriavzeviiYEL054C", ]
+hist(target, main = "N3_kudriavzevii"); mean(target); sd(target)
+
+# N4_N5
+target <- PAML_500.0_summary["N4_N5", ] / PAML_500.0_summary["N9_N10", ]
+hist(target, main = "N4_N5"); mean(target); sd(target)
+
+# N4_mikatae
+target <- PAML_500.0_summary["N4_mikataeYDR418W", ] / PAML_500.0_summary["N9_mikataeYEL054C", ]  # paralog 1 / paralog 2
+hist(target, main = "N4_mikatae"); mean(target); sd(target)
+
+# N5_paradoxus
+target <- PAML_500.0_summary["N5_paradoxusYDR418W", ] / PAML_500.0_summary["N10_paradoxusYEL054C", ]  # paralog 1 / paralog 2
+hist(target, main = "N5_paradoxus"); mean(target); sd(target)
+
+# N5_cerevisiae
+target <- PAML_500.0_summary["N5_cerevisiaeYDR418W", ] / PAML_500.0_summary["N10_cerevisiaeYEL054C", ]  # paralog 1 / paralog 2
+hist(target, main = "N5_cerevisiae"); mean(target); sd(target)
+ 
+ 
+```

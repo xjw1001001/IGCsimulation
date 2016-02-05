@@ -1,6 +1,6 @@
 seqfile = /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C/IGCgeo_10.0/sim_19/YDR418W_YEL054C_MG94_geo_10.0_Sim_19.fasta
 treefile = /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_tree.newick
-outfile = /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C/IGCgeo_10.0/sim_19/YDR418W_YEL054C_MG94_geo_10.0_Sim_19_codeml_output.txt
+outfile = /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C/IGCgeo_10.0/sim_19/unrooted_MG94_geo_10.0_Sim_19_codeml_output.txt
 noisy = 9
 verbose = 1
 runmode = 0
