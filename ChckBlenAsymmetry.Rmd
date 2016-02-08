@@ -9,90 +9,90 @@ Load data from All.RData
 
 ```{r}
 rm(list=ls())  # clean up workspace
-load("/Users/Xiang/GitFolders/IGCCodonSimulation/All.RData")
+load("/Users/xji3/GitFolders/IGCCodonSimulation/All.RData")
 
-paml.path <- "/Users/Xiang/GitFolders/IGCCodonSimulation/"
-IGC.geo.list <- c(3.0)
-
-# Read in new PAML results
-data.path <- paste(paralog, "",sep = "/")
-for (IGC.geo in IGC.geo.list){
-  summary_mat <- NULL
-  IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
-  file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "estimatedTau", "paml", "unrooted", "1stTree", "summary.txt", sep = "_")
-  for (sim.num in 0:(num.sim - 1)){
-    summary_file <- paste(paml.path, file.name, sep = "")
-    if (file.exists(summary_file)){
-      all <- readLines(summary_file, n = -1)
-      col.names <- strsplit(all[1], ' ')[[1]][-1]
-      row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
-      summary_mat <- as.matrix(read.table(summary_file, 
-                                          row.names = row.names, 
-                                          col.names = col.names))
-      
-      }
-    }
-  assign(paste("PAML", "estimatedTau", paste(toString(IGC.geo), ".0", sep = ""), "1stTree", "summary", sep = "_"), summary_mat)
-}
-
-for (IGC.geo in IGC.geo.list){
-  summary_mat <- NULL
-  IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
-  file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "estimatedTau", "paml", "unrooted", "2ndTree", "summary.txt", sep = "_")
-  for (sim.num in 0:(num.sim - 1)){
-    summary_file <- paste(paml.path, file.name, sep = "")
-    if (file.exists(summary_file)){
-      all <- readLines(summary_file, n = -1)
-      col.names <- strsplit(all[1], ' ')[[1]][-1]
-      row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
-      summary_mat <- as.matrix(read.table(summary_file, 
-                                          row.names = row.names, 
-                                          col.names = col.names))
-      
-      }
-    }
-  assign(paste("PAML", "estimatedTau", paste(toString(IGC.geo), ".0", sep = ""), "2ndTree", "summary", sep = "_"), summary_mat)
-}
-
-for (IGC.geo in IGC.geo.list){
-  summary_mat <- NULL
-  IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
-  file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "10Tau", "paml", "unrooted", "1stTree", "summary.txt", sep = "_")
-  for (sim.num in 0:(num.sim - 1)){
-    summary_file <- paste(paml.path, file.name, sep = "")
-    if (file.exists(summary_file)){
-      all <- readLines(summary_file, n = -1)
-      col.names <- strsplit(all[1], ' ')[[1]][-1]
-      row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
-      summary_mat <- as.matrix(read.table(summary_file, 
-                                          row.names = row.names, 
-                                          col.names = col.names))
-      
-      }
-    }
-  assign(paste("PAML", "10Tau", paste(toString(IGC.geo), ".0", sep = ""), "1stTree", "summary", sep = "_"), summary_mat)
-  }
-
-for (IGC.geo in IGC.geo.list){
-  summary_mat <- NULL
-  IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
-  file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "10Tau", "paml", "unrooted", "2ndTree", "summary.txt", sep = "_")
-  for (sim.num in 0:(num.sim - 1)){
-    summary_file <- paste(paml.path, file.name, sep = "")
-    if (file.exists(summary_file)){
-      all <- readLines(summary_file, n = -1)
-      col.names <- strsplit(all[1], ' ')[[1]][-1]
-      row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
-      summary_mat <- as.matrix(read.table(summary_file, 
-                                          row.names = row.names, 
-                                          col.names = col.names))
-      
-      }
-    }
-  assign(paste("PAML", "10Tau", paste(toString(IGC.geo), ".0", sep = ""), "2ndTree", "summary", sep = "_"), summary_mat)
-}
-
-save.image("/Users/Xiang/GitFolders/IGCCodonSimulation/All.RData")
+# paml.path <- "/Users/xji3/GitFolders/IGCCodonSimulation/"
+# IGC.geo.list <- c(3.0)
+# 
+# # Read in new PAML results
+# data.path <- paste(paralog, "",sep = "/")
+# for (IGC.geo in IGC.geo.list){
+#   summary_mat <- NULL
+#   IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
+#   file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "estimatedTau", "paml", "unrooted", "1stTree", "summary.txt", sep = "_")
+#   for (sim.num in 0:(num.sim - 1)){
+#     summary_file <- paste(paml.path, file.name, sep = "")
+#     if (file.exists(summary_file)){
+#       all <- readLines(summary_file, n = -1)
+#       col.names <- strsplit(all[1], ' ')[[1]][-1]
+#       row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
+#       summary_mat <- as.matrix(read.table(summary_file, 
+#                                           row.names = row.names, 
+#                                           col.names = col.names))
+#       
+#       }
+#     }
+#   assign(paste("PAML", "estimatedTau", paste(toString(IGC.geo), ".0", sep = ""), "1stTree", "summary", sep = "_"), summary_mat)
+# }
+# 
+# for (IGC.geo in IGC.geo.list){
+#   summary_mat <- NULL
+#   IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
+#   file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "estimatedTau", "paml", "unrooted", "2ndTree", "summary.txt", sep = "_")
+#   for (sim.num in 0:(num.sim - 1)){
+#     summary_file <- paste(paml.path, file.name, sep = "")
+#     if (file.exists(summary_file)){
+#       all <- readLines(summary_file, n = -1)
+#       col.names <- strsplit(all[1], ' ')[[1]][-1]
+#       row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
+#       summary_mat <- as.matrix(read.table(summary_file, 
+#                                           row.names = row.names, 
+#                                           col.names = col.names))
+#       
+#       }
+#     }
+#   assign(paste("PAML", "estimatedTau", paste(toString(IGC.geo), ".0", sep = ""), "2ndTree", "summary", sep = "_"), summary_mat)
+# }
+# 
+# for (IGC.geo in IGC.geo.list){
+#   summary_mat <- NULL
+#   IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
+#   file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "10Tau", "paml", "unrooted", "1stTree", "summary.txt", sep = "_")
+#   for (sim.num in 0:(num.sim - 1)){
+#     summary_file <- paste(paml.path, file.name, sep = "")
+#     if (file.exists(summary_file)){
+#       all <- readLines(summary_file, n = -1)
+#       col.names <- strsplit(all[1], ' ')[[1]][-1]
+#       row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
+#       summary_mat <- as.matrix(read.table(summary_file, 
+#                                           row.names = row.names, 
+#                                           col.names = col.names))
+#       
+#       }
+#     }
+#   assign(paste("PAML", "10Tau", paste(toString(IGC.geo), ".0", sep = ""), "1stTree", "summary", sep = "_"), summary_mat)
+#   }
+# 
+# for (IGC.geo in IGC.geo.list){
+#   summary_mat <- NULL
+#   IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
+#   file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "10Tau", "paml", "unrooted", "2ndTree", "summary.txt", sep = "_")
+#   for (sim.num in 0:(num.sim - 1)){
+#     summary_file <- paste(paml.path, file.name, sep = "")
+#     if (file.exists(summary_file)){
+#       all <- readLines(summary_file, n = -1)
+#       col.names <- strsplit(all[1], ' ')[[1]][-1]
+#       row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
+#       summary_mat <- as.matrix(read.table(summary_file, 
+#                                           row.names = row.names, 
+#                                           col.names = col.names))
+#       
+#       }
+#     }
+#   assign(paste("PAML", "10Tau", paste(toString(IGC.geo), ".0", sep = ""), "2ndTree", "summary", sep = "_"), summary_mat)
+# }
+# 
+# save.image("/Users/xji3/GitFolders/IGCCodonSimulation/All.RData")
 ```
 
 #### Feb 5 update
@@ -112,49 +112,60 @@ sd(PAML_estimatedTau_3.0_1stTree_summary["kappa", ] - PAML_estimatedTau_3.0_2ndT
 # omega
 summary(PAML_estimatedTau_3.0_1stTree_summary["omega", ] - PAML_estimatedTau_3.0_2ndTree_summary["omega", ])
 sd(PAML_estimatedTau_3.0_1stTree_summary["omega", ] - PAML_estimatedTau_3.0_2ndTree_summary["omega", ])
-# N0_N6
-summary(PAML_estimatedTau_3.0_1stTree_summary["N0_N6", ] - PAML_estimatedTau_3.0_2ndTree_summary["N0_N6", ])
-sd(PAML_estimatedTau_3.0_1stTree_summary["N0_N6", ] - PAML_estimatedTau_3.0_2ndTree_summary["N0_N6", ])
 # N0_kluyveriYDR418W
 summary(PAML_estimatedTau_3.0_1stTree_summary["N0_kluyveriYDR418W", ] - PAML_estimatedTau_3.0_2ndTree_summary["N0_kluyveriYDR418W", ])
 sd(PAML_estimatedTau_3.0_1stTree_summary["N0_kluyveriYDR418W", ] - PAML_estimatedTau_3.0_2ndTree_summary["N0_kluyveriYDR418W", ])
 # N0_N1
-summary(PAML_estimatedTau_3.0_1stTree_summary["N0_N1", ] - PAML_estimatedTau_3.0_2ndTree_summary["N0_N1", ])
-sd(PAML_estimatedTau_3.0_1stTree_summary["N0_N1", ] - PAML_estimatedTau_3.0_2ndTree_summary["N0_N1", ])
-# N1_N2
-summary(PAML_estimatedTau_3.0_1stTree_summary["N1_N2", ] - PAML_estimatedTau_3.0_2ndTree_summary["N1_N2", ])
-sd(PAML_estimatedTau_3.0_1stTree_summary["N1_N2", ] - PAML_estimatedTau_3.0_2ndTree_summary["N1_N2", ])
-# N1_castelliiYEL054C
-summary(PAML_estimatedTau_3.0_1stTree_summary["N1_castelliiYEL054C", ] - PAML_estimatedTau_3.0_2ndTree_summary["N1_castelliiYEL054C", ])
-sd(PAML_estimatedTau_3.0_1stTree_summary["N1_castelliiYEL054C", ] - PAML_estimatedTau_3.0_2ndTree_summary["N1_castelliiYEL054C", ])
-# N2_bayanusYEL054C
-summary(PAML_estimatedTau_3.0_1stTree_summary["N2_bayanusYEL054C", ] - PAML_estimatedTau_3.0_2ndTree_summary["N2_bayanusYEL054C", ])
-sd(PAML_estimatedTau_3.0_1stTree_summary["N2_bayanusYEL054C", ] - PAML_estimatedTau_3.0_2ndTree_summary["N2_bayanusYEL054C", ])
-# N2_N3
-summary(PAML_estimatedTau_3.0_1stTree_summary["N2_N3", ] - PAML_estimatedTau_3.0_2ndTree_summary["N2_N3", ])
-sd(PAML_estimatedTau_3.0_1stTree_summary["N2_N3", ] - PAML_estimatedTau_3.0_2ndTree_summary["N2_N3", ])
-# N3_N4
-summary(PAML_estimatedTau_3.0_1stTree_summary["N3_N4", ] - PAML_estimatedTau_3.0_2ndTree_summary["N3_N4", ])
-sd(PAML_estimatedTau_3.0_1stTree_summary["N3_N4", ] - PAML_estimatedTau_3.0_2ndTree_summary["N3_N4", ])
-# N3_kudriavzeviiYEL054C
-summary(PAML_estimatedTau_3.0_1stTree_summary["N3_kudriavzeviiYEL054C", ] - PAML_estimatedTau_3.0_2ndTree_summary["N3_kudriavzeviiYEL054C", ])
-sd(PAML_estimatedTau_3.0_1stTree_summary["N3_kudriavzeviiYEL054C", ] - PAML_estimatedTau_3.0_2ndTree_summary["N3_kudriavzeviiYEL054C", ])
-# N4_N5
-summary(PAML_estimatedTau_3.0_1stTree_summary["N4_N5", ] - PAML_estimatedTau_3.0_2ndTree_summary["N4_N5", ])
-sd(PAML_estimatedTau_3.0_1stTree_summary["N4_N5", ] - PAML_estimatedTau_3.0_2ndTree_summary["N4_N5", ])
-# N4_mikataeYEL054C
-summary(PAML_estimatedTau_3.0_1stTree_summary["N4_mikataeYEL054C", ] - PAML_estimatedTau_3.0_2ndTree_summary["N4_mikataeYEL054C", ])
-sd(PAML_estimatedTau_3.0_1stTree_summary["N4_mikataeYEL054C", ] - PAML_estimatedTau_3.0_2ndTree_summary["N4_mikataeYEL054C", ])
-# N5_paradoxusYEL054C
-summary(PAML_estimatedTau_3.0_1stTree_summary["N5_paradoxusYEL054C", ] - PAML_estimatedTau_3.0_2ndTree_summary["N5_paradoxusYEL054C", ])
-sd(PAML_estimatedTau_3.0_1stTree_summary["N5_paradoxusYEL054C", ] - PAML_estimatedTau_3.0_2ndTree_summary["N5_paradoxusYEL054C", ])
-# N5_cerevisiaeYEL054C
-summary(PAML_estimatedTau_3.0_1stTree_summary["N5_cerevisiaeYEL054C", ] - PAML_estimatedTau_3.0_2ndTree_summary["N5_cerevisiaeYEL054C", ])
-sd(PAML_estimatedTau_3.0_1stTree_summary["N5_cerevisiaeYEL054C", ] - PAML_estimatedTau_3.0_2ndTree_summary["N5_cerevisiaeYEL054C", ])
-
-
+summary(PAML_estimatedTau_3.0_1stTree_summary["N0_N1", ] - PAML_estimatedTau_3.0_2ndTree_summary["N0_N6", ])
+sd(PAML_estimatedTau_3.0_1stTree_summary["N0_N1", ] - PAML_estimatedTau_3.0_2ndTree_summary["N0_N6", ])
 ```
 
+There seems no difference between two different tree representations
+
+Now check PAML results on simulation with 10*Tau 
+
+```{r}
+# Simulation using 10 * Tau value of 1.409408 * 10 = 14.09408
+# Look at difference of each estimate (Tree 1 - Tree 2)
+
+# log likelihood
+summary(PAML_10Tau_3.0_1stTree_summary["ll", ] - PAML_10Tau_3.0_2ndTree_summary["ll", ])
+sd(PAML_10Tau_3.0_1stTree_summary["ll", ] - PAML_10Tau_3.0_2ndTree_summary["ll", ])
+hist(PAML_10Tau_3.0_1stTree_summary["ll", ] - PAML_10Tau_3.0_2ndTree_summary["ll", ])
+# kappa
+summary(PAML_10Tau_3.0_1stTree_summary["kappa", ] - PAML_10Tau_3.0_2ndTree_summary["kappa", ])
+sd(PAML_10Tau_3.0_1stTree_summary["kappa", ] - PAML_10Tau_3.0_2ndTree_summary["kappa", ])
+# omega
+summary(PAML_10Tau_3.0_1stTree_summary["omega", ] - PAML_10Tau_3.0_2ndTree_summary["omega", ])
+sd(PAML_10Tau_3.0_1stTree_summary["omega", ] - PAML_10Tau_3.0_2ndTree_summary["omega", ])
+# N0_kluyveriYDR418W
+summary(PAML_10Tau_3.0_1stTree_summary["N0_kluyveriYDR418W", ] - PAML_10Tau_3.0_2ndTree_summary["N0_kluyveriYDR418W", ])
+sd(PAML_10Tau_3.0_1stTree_summary["N0_kluyveriYDR418W", ] - PAML_10Tau_3.0_2ndTree_summary["N0_kluyveriYDR418W", ])
+# N0_N1
+summary(PAML_10Tau_3.0_1stTree_summary["N0_N1", ] - PAML_10Tau_3.0_2ndTree_summary["N0_N6", ])
+sd(PAML_10Tau_3.0_1stTree_summary["N0_N1", ] - PAML_10Tau_3.0_2ndTree_summary["N0_N6", ])
+# N1_N2
+summary(PAML_10Tau_3.0_1stTree_summary["N1_N2", ] - PAML_10Tau_3.0_2ndTree_summary["N6_N7", ])
+sd(PAML_10Tau_3.0_1stTree_summary["N1_N2", ] - PAML_10Tau_3.0_2ndTree_summary["N6_N7", ])
+hist(PAML_10Tau_3.0_1stTree_summary["N1_N2", ] - PAML_10Tau_3.0_2ndTree_summary["N6_N7", ])
+# N1_castelliiYDR418W
+summary(PAML_10Tau_3.0_1stTree_summary["N1_castelliiYDR418W", ] - PAML_10Tau_3.0_2ndTree_summary["N6_castelliiYDR418W", ])
+sd(PAML_10Tau_3.0_1stTree_summary["N1_castelliiYDR418W", ] - PAML_10Tau_3.0_2ndTree_summary["N6_castelliiYDR418W", ])
+hist(PAML_10Tau_3.0_1stTree_summary["N1_castelliiYDR418W", ] - PAML_10Tau_3.0_2ndTree_summary["N6_castelliiYDR418W", ])
+# N2_N3
+summary(PAML_10Tau_3.0_1stTree_summary["N2_N3", ] - PAML_10Tau_3.0_2ndTree_summary["N7_N8", ])
+sd(PAML_10Tau_3.0_1stTree_summary["N2_N3", ] - PAML_10Tau_3.0_2ndTree_summary["N7_N8", ])
+hist(PAML_10Tau_3.0_1stTree_summary["N2_N3", ] - PAML_10Tau_3.0_2ndTree_summary["N7_N8", ])
+# N2_N3
+summary(PAML_10Tau_3.0_1stTree_summary["N2_N3", ] - PAML_10Tau_3.0_2ndTree_summary["N7_N8", ])
+sd(PAML_10Tau_3.0_1stTree_summary["N2_N3", ] - PAML_10Tau_3.0_2ndTree_summary["N7_N8", ])
+hist(PAML_10Tau_3.0_1stTree_summary["N2_N3", ] - PAML_10Tau_3.0_2ndTree_summary["N7_N8", ])
+# N2_bayanusYDR418W
+summary(PAML_10Tau_3.0_1stTree_summary["N2_bayanusYDR418W", ] - PAML_10Tau_3.0_2ndTree_summary["N7_bayanusYDR418W", ])
+sd(PAML_10Tau_3.0_1stTree_summary["N2_bayanusYDR418W", ] - PAML_10Tau_3.0_2ndTree_summary["N7_bayanusYDR418W", ])
+hist(PAML_10Tau_3.0_1stTree_summary["N2_bayanusYDR418W", ] - PAML_10Tau_3.0_2ndTree_summary["N7_bayanusYDR418W", ])
+
+```
 Now start to check branches ratio of subtree branches of paralog 1 over paralog 2 ratios
 
 ```{r}
