@@ -16,7 +16,7 @@ if __name__ == '__main__':
     paralog = [paralog1, paralog2]
     newicktree = './YeastTree.newick'
     num_exon = 163
-    tau = 1.409408
+    tau = 1.409408 * 10.0
     IGC_threshold = -0.1
 
     IGC_geo_list = [3.0, 10.0, 50.0, 100.0, 500.0]
@@ -27,17 +27,17 @@ if __name__ == '__main__':
         x_IGC = [IGC_init, 1.0 / IGC_geo_codon, IGC_threshold]  # These values vary for the simulation study
         
         #sim_num = 1
-        for sim_num in range(99, 100):
-            log_folder = './' + '_'.join(paralog) + '/IGCgeo_' + str(IGC_geo) + '/sim_' + str(sim_num) + '/log/'
-            div_folder = './' + '_'.join(paralog) + '/IGCgeo_' + str(IGC_geo) + '/sim_' + str(sim_num) + '/div/'
+        for sim_num in range(100):
+            log_folder = './' + '_'.join(paralog) + '_10Tau/IGCgeo_' + str(IGC_geo) + '/sim_' + str(sim_num) + '/log/'
+            div_folder = './' + '_'.join(paralog) + '_10Tau/IGCgeo_' + str(IGC_geo) + '/sim_' + str(sim_num) + '/div/'
 
             # Now create folder if they don't exist
             
-            if not os.path.isdir('./' + '_'.join(paralog) + '/IGCgeo_' + str(IGC_geo) + '/'):
-                os.mkdir('./' + '_'.join(paralog) + '/IGCgeo_' + str(IGC_geo) + '/')
+            if not os.path.isdir('./' + '_'.join(paralog) + '_10Tau/IGCgeo_' + str(IGC_geo) + '/'):
+                os.mkdir('./' + '_'.join(paralog) + '_10Tau/IGCgeo_' + str(IGC_geo) + '/')
 
-            if not os.path.isdir('./' + '_'.join(paralog) + '/IGCgeo_' + str(IGC_geo) + '/sim_' + str(sim_num) + '/'):
-                os.mkdir('./' + '_'.join(paralog) + '/IGCgeo_' + str(IGC_geo) + '/sim_' + str(sim_num) + '/')
+            if not os.path.isdir('./' + '_'.join(paralog) + '_10Tau/IGCgeo_' + str(IGC_geo) + '/sim_' + str(sim_num) + '/'):
+                os.mkdir('./' + '_'.join(paralog) + '_10Tau/IGCgeo_' + str(IGC_geo) + '/sim_' + str(sim_num) + '/')
 
             if not os.path.isdir(log_folder):
                 os.mkdir(log_folder)
@@ -46,8 +46,8 @@ if __name__ == '__main__':
                 os.mkdir(div_folder)
 
             
-            seq_file = './' + '_'.join(paralog) + '/IGCgeo_' + str(IGC_geo) + '/sim_' + str(sim_num) + '/' + '_'.join(paralog) + '_MG94_geo_' + str(IGC_geo) + '_Sim_' + str(sim_num) + '.fasta'
-            log_file = './' + '_'.join(paralog) + '/IGCgeo_' + str(IGC_geo) + '/sim_' + str(sim_num) + '/' + '_'.join(paralog) + '_MG94_geo_' + str(IGC_geo) + '_Sim_' + str(sim_num) + '.log'
+            seq_file = './' + '_'.join(paralog) + '_10Tau/IGCgeo_' + str(IGC_geo) + '/sim_' + str(sim_num) + '/' + '_'.join(paralog) + '_MG94_geo_' + str(IGC_geo) + '_Sim_' + str(sim_num) + '.fasta'
+            log_file = './' + '_'.join(paralog) + '_10Tau/IGCgeo_' + str(IGC_geo) + '/sim_' + str(sim_num) + '/' + '_'.join(paralog) + '_MG94_geo_' + str(IGC_geo) + '_Sim_' + str(sim_num) + '.log'
 
             save_file = './save/MG94_' + '_'.join(paralog) + '_nonclock_save.txt'
 
@@ -67,10 +67,10 @@ if __name__ == '__main__':
 
             test = TreeIGCCodonSimulator(num_exon, newicktree, paralog, seq_file, log_file, x_exon, x_IGC, log_folder, div_folder)
             test.unpack_x_rates(x_rates)
-##            try:
-##                test.sim()
-##            except:
-##                print 'failed at sim  ' + str(sim_num) + '  IGC_geo = ' + str(IGC_geo)
-##                test.write_log()
-##        
+            try:
+                test.sim()
+            except:
+                print 'failed at sim  ' + str(sim_num) + '  IGC_geo = ' + str(IGC_geo)
+                test.write_log()
+        
 

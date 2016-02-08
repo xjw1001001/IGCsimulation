@@ -87,7 +87,6 @@ for (IGC.geo in IGC.geo.list){
     }
   assign(paste("pIGC", paste(toString(IGC.geo), ".0", sep = ""), "summary", sep = "_"), summary_mat)
   }
-
 ```
 
 Now analyze the simulation results

@@ -1,0 +1,17 @@
+Model: MG94  nSites: 163 TreeFile: ./YeastTree.newick
+x_exon: 0.485519006052, 0.614528703121, 0.40734821392, 8.40433364203, 1.0
+x_IGC: 14.09408, 1.0, -0.1
+N0_N1: 0.0197240946542
+N0_kluyveri: 0.215682181791
+N1_N2: 0.20925129872
+N1_castellii: 0.171684721483
+N2_N3: 0.0257112589202
+N2_bayanus: 0.0266075664688
+N3_N4: 0.0321083243449
+N3_kudriavzevii: 0.0853588718458
+N4_N5: 0.024947887926
+N4_mikatae: 0.0566627496729
+N5_cerevisiae: 0.0581451177847
+N5_paradoxus: 0.0218788166581
+Total point mutation: 314  Total IGC: 3367  Total IGC affecting sites: 20202 Total changes due to IGC: 220
+% change due to IGC: 0.411985018727
