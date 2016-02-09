@@ -46,7 +46,7 @@ cerevisiaeYEL054C               ... .C. ..T G.T ... .GA ... .G. G.. ..C ..C ... 
     1    2    2    1    1    1    1    1    2    1    1    1    1    1    1
     1    1    1    1    1    1    1    1    1    1    1    1    2
 
-CODONML (in paml version 4.8a, August 2014)  /Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_10Tau/IGCgeo_3.0/sim_27/YDR418W_YEL054C_MG94_geo_3.0_Sim_27.fasta
+CODONML (in paml version 4.8a, August 2014)  /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_10Tau/IGCgeo_3.0/sim_27/YDR418W_YEL054C_MG94_geo_3.0_Sim_27.fasta
 Model: One dN/dS ratio for branches, 
 Codon frequency model: F1x4MG
 ns =  13  ls = 163
@@ -269,7 +269,7 @@ cerevisiaeYEL054C    0.4151 (0.1410 0.3397) 0.4445 (0.1399 0.3147) 0.5808 (0.049
 
 
 TREE #  2:  (5, (2, (11, (9, (4, (13, 7))))), (1, (10, (8, (3, (12, 6))))));   MP score: 267
-lnL(ntime: 23  np: 28):  -1995.394137      -0.000000
+lnL(ntime: 23  np: 28):  -1995.394137      +0.000000
   14..5    14..15   15..2    15..16   16..11   16..17   17..9    17..18   18..4    18..19   19..13   19..7    14..20   20..1    20..21   21..10   21..22   22..8    22..23   23..3    23..24   24..12   24..6  
  0.269911 0.000004 0.149667 0.205913 0.026891 0.063445 0.093758 0.031519 0.089387 0.019886 0.064050 0.032108 0.000004 0.163960 0.198117 0.011593 0.066258 0.100510 0.031487 0.095218 0.013861 0.057451 0.032060 8.009611 1.681950 1.023320 1.515435 0.803201
 
@@ -344,12 +344,12 @@ Number of replicates: 10000
 
   tree           li       Dli     +- SE     pKH       pSH    pRELL
 
-     1    -1995.394    -0.000     0.000   0.500     0.500    0.502
-     2*   -1995.394     0.000     0.000  -1.000    -1.000    0.498
+     1    -1995.394    -0.000     0.000   0.500     0.493    0.500
+     2*   -1995.394     0.000     0.000  -1.000    -1.000    0.500
 
 pKH: P value for KH normal test (Kishino & Hasegawa 1989)
 pRELL: RELL bootstrap proportions (Kishino & Hasegawa 1989)
 pSH: P value with multiple-comparison correction (MC in table 1 of Shimodaira & Hasegawa 1999)
 (-1 for P values means N/A)
 
-Time used:  0:41
+Time used:  1:36

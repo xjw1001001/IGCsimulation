@@ -47,7 +47,7 @@ cerevisiaeYEL054C               ... ... ... .GT ... G.T .G. ... ... ... ... .G. 
     1    1    1    1    1    1    1    1    1    1    1    1    1    1    3
 
 
-CODONML (in paml version 4.8a, August 2014)  /Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_10Tau/IGCgeo_3.0/sim_91/YDR418W_YEL054C_MG94_geo_3.0_Sim_91.fasta
+CODONML (in paml version 4.8a, August 2014)  /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_10Tau/IGCgeo_3.0/sim_91/YDR418W_YEL054C_MG94_geo_3.0_Sim_91.fasta
 Model: One dN/dS ratio for branches, 
 Codon frequency model: F1x4MG
 ns =  13  ls = 163
@@ -342,7 +342,7 @@ tree length for dS:       0.6505
 
 
 TREE #  2:  (5, (2, (11, (9, (4, (13, 7))))), (1, (10, (8, (3, (12, 6))))));   MP score: 260
-lnL(ntime: 23  np: 28):  -2046.211356      +0.000000
+lnL(ntime: 23  np: 28):  -2046.211356      -0.000000
   14..5    14..15   15..2    15..16   16..11   16..17   17..9    17..18   18..4    18..19   19..13   19..7    14..20   20..1    20..21   21..10   21..22   22..8    22..23   23..3    23..24   24..12   24..6  
  0.239500 0.000004 0.124075 0.244756 0.045540 0.023991 0.117069 0.028413 0.037701 0.057501 0.070038 0.055273 0.000004 0.117616 0.224455 0.016064 0.038545 0.104011 0.037610 0.059616 0.053089 0.088050 0.036996 7.660930 1.543058 1.005165 1.371989 0.901250
 
@@ -417,12 +417,12 @@ Number of replicates: 10000
 
   tree           li       Dli     +- SE     pKH       pSH    pRELL
 
-     1    -2046.211    -0.000     0.000   0.500     0.503    0.500
-     2*   -2046.211     0.000     0.000  -1.000    -1.000    0.500
+     1    -2046.211    -0.000     0.000   0.500     0.495    0.499
+     2*   -2046.211     0.000     0.000  -1.000    -1.000    0.501
 
 pKH: P value for KH normal test (Kishino & Hasegawa 1989)
 pRELL: RELL bootstrap proportions (Kishino & Hasegawa 1989)
 pSH: P value with multiple-comparison correction (MC in table 1 of Shimodaira & Hasegawa 1999)
 (-1 for P values means N/A)
 
-Time used:  0:40
+Time used:  1:34

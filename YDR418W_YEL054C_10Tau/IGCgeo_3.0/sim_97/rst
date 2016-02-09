@@ -1,11 +1,11 @@
-Supplemental results for CODEML (seqf: /Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_10Tau/IGCgeo_3.0/sim_97/YDR418W_YEL054C_MG94_geo_3.0_Sim_97.fasta  treef: /Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_tree.newick)
+Supplemental results for CODEML (seqf: /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_10Tau/IGCgeo_3.0/sim_97/YDR418W_YEL054C_MG94_geo_3.0_Sim_97.fasta  treef: /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_tree.newick)
 
 
 TREE #  1
 
 Ancestral reconstruction by CODONML.
 
-((((((cerevisiaeYDR418W: 0.055861, paradoxusYDR418W: 0.036344): 0.011819, mikataeYDR418W: 0.062197): 0.048451, kudriavzeviiYDR418W: 0.118612): 0.005580, bayanusYDR418W: 0.052980): 0.192128, castelliiYDR418W: 0.169574): 0.000004, (((((cerevisiaeYEL054C: 0.062077, paradoxusYEL054C: 0.037024): 0.005119, mikataeYEL054C: 0.055274): 0.037298, kudriavzeviiYEL054C: 0.135841): 0.000004, bayanusYEL054C: 0.018932): 0.194082, castelliiYEL054C: 0.165752): 0.000004, kluyveriYDR418W: 0.181758);
+((((((cerevisiaeYDR418W: 0.055861, paradoxusYDR418W: 0.036344): 0.011819, mikataeYDR418W: 0.062197): 0.048451, kudriavzeviiYDR418W: 0.118612): 0.005580, bayanusYDR418W: 0.052980): 0.192128, castelliiYDR418W: 0.169574): 0.000004, (((((cerevisiaeYEL054C: 0.062077, paradoxusYEL054C: 0.037024): 0.005119, mikataeYEL054C: 0.055274): 0.037298, kudriavzeviiYEL054C: 0.135841): 0.000004, bayanusYEL054C: 0.018932): 0.194082, castelliiYEL054C: 0.165751): 0.000004, kluyveriYDR418W: 0.181758);
 
 ((((((12, 6), 3), 8), 10), 1), (((((13, 7), 4), 9), 11), 2), 5);
 
@@ -938,7 +938,7 @@ TREE #  2
 
 Ancestral reconstruction by CODONML.
 
-(kluyveriYDR418W: 0.181758, (castelliiYEL054C: 0.165751, (bayanusYEL054C: 0.018932, (kudriavzeviiYEL054C: 0.135841, (mikataeYEL054C: 0.055274, (cerevisiaeYEL054C: 0.062077, paradoxusYEL054C: 0.037024): 0.005119): 0.037298): 0.000004): 0.194082): 0.000004, (castelliiYDR418W: 0.169575, (bayanusYDR418W: 0.052980, (kudriavzeviiYDR418W: 0.118612, (mikataeYDR418W: 0.062197, (cerevisiaeYDR418W: 0.055861, paradoxusYDR418W: 0.036344): 0.011819): 0.048451): 0.005580): 0.192128): 0.000004);
+(kluyveriYDR418W: 0.181758, (castelliiYEL054C: 0.165751, (bayanusYEL054C: 0.018932, (kudriavzeviiYEL054C: 0.135841, (mikataeYEL054C: 0.055274, (cerevisiaeYEL054C: 0.062077, paradoxusYEL054C: 0.037024): 0.005119): 0.037298): 0.000004): 0.194082): 0.000004, (castelliiYDR418W: 0.169574, (bayanusYDR418W: 0.052979, (kudriavzeviiYDR418W: 0.118612, (mikataeYDR418W: 0.062197, (cerevisiaeYDR418W: 0.055861, paradoxusYDR418W: 0.036344): 0.011819): 0.048451): 0.005580): 0.192128): 0.000004);
 
 (5, (2, (11, (9, (4, (13, 7))))), (1, (10, (8, (3, (12, 6))))));
 

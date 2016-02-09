@@ -31,10 +31,10 @@ def prepare_ctl(tree_loc, seq_loc, out_file, ctl_loc):
     fixed_stuff = ['noisy = 9', 'verbose = 1', 'runmode = 0', 'seqtype = 1',
                    'CodonFreq = 4', 'estFreq = 1', 'ndata = 1', 'clock = 0', 'aaDist = 0',
                    'model = 0', 'NSsites = 0', 'icode = 0', 'Mgene = 0',
-                   'fix_kappa = 0', 'kappa = 2', 'fix_omega = 0', 'omega = 0.4',
+                   'fix_kappa = 0', 'kappa = 8.40433364203', 'fix_omega = 0', 'omega = 1.0',
                    'fix_alpha = 1', 'alpha = 0.', 'Malpha = 0', 'ncatG = 1',
                    'getSE = 0', 'RateAncestor =0', 'Small_Diff = .5e-6',
-                   'cleandata = 0', 'fix_blength = 0', 'method = 0']
+                   'cleandata = 0', 'fix_blength = 1', 'method = 0']
     with open(ctl_loc, 'w+') as f:
         f.write('seqfile = ' + seq_loc + '\n')
         f.write('treefile = ' + tree_loc + '\n')
@@ -125,11 +125,11 @@ if __name__ == '__main__':
             ctl_loc = wk_dir + 'geo_' + str(IGC_geo) + '_Sim_' + str(sim_num) + '_codeml.ctl'
             out_file = wk_dir + 'unrooted_MG94_geo_' + str(IGC_geo) + '_Sim_' + str(sim_num) + '_codeml_output.txt'
 ##            prepare_ctl(tree_loc, seq_loc, out_file, ctl_loc)
-##            run_paml(wk_dir, ctl_loc, "/Users/xji3/Software/paml4.8/bin/codeml")
+##            run_paml(wk_dir, ctl_loc)#, "/Users/Xiang/Software/paml4.8/bin/codeml")
             out_tree1_file = out_file.replace('_output.txt', '_tree1_output.txt')
             out_tree2_file = out_file.replace('_output.txt', '_tree2_output.txt')
             out_tree_files = [out_tree1_file, out_tree2_file]
-            #Seperate_codeml_result(out_file, out_tree_files)
+            Seperate_codeml_result(out_file, out_tree_files)
 
             if os.path.isfile(out_tree1_file):
                 codeml_result = codeml.read(out_tree1_file)
@@ -188,7 +188,7 @@ if __name__ == '__main__':
             ctl_loc = wk_dir + 'geo_' + str(IGC_geo) + '_Sim_' + str(sim_num) + '_codeml.ctl'
             out_file = wk_dir + 'unrooted_MG94_geo_' + str(IGC_geo) + '_Sim_' + str(sim_num) + '_codeml_output.txt'
 ##            prepare_ctl(tree_loc, seq_loc, out_file, ctl_loc)
-##            run_paml(wk_dir, ctl_loc, "/Users/xji3/Software/paml4.8/bin/codeml")
+##            run_paml(wk_dir, ctl_loc)#, "/Users/Xiang/Software/paml4.8/bin/codeml")
             out_tree1_file = out_file.replace('_output.txt', '_tree1_output.txt')
             out_tree2_file = out_file.replace('_output.txt', '_tree2_output.txt')
             out_tree_files = [out_tree1_file, out_tree2_file]

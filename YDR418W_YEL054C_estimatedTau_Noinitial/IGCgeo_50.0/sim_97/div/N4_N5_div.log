@@ -1,0 +1,5 @@
+# time 	 divergence 	 # of mutations 	 # IGC chances 	 IGC length 	 # IGC failures 	 Changes due to IGC  	 % change due to IGC 
+0.0	0.102249488753	0	0	0	0	0	0.0
+0.0180299805001	0.104294478528	1	0	0	0	0	0.0
+0.0198128802772	0.106339468303	2	0	0	0	0	0.0
+0.0233322020604	0.100204498978	2	1	30	0	3	0.6

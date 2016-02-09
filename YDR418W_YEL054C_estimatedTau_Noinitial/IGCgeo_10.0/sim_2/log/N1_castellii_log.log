@@ -1,0 +1,85 @@
+Initial seq: 
+CACGGCGGCGAAAGAATGTTCGACCATGACCACTATTTGATTGAAAACCGTAGGTTTAGGTTGAATACAAAATACGCCCTCCCGATCAGTTTATCAATGTTCCCAGGAAATTTGCCTGGAACGGTACACACTATCCTAACCCCACGTTCCAGACTTTTTAGGGCCCTGCCCTCAAGTCAGTATAAGTTGCAATGTCTTCAATTCCAAAACTTAACAAAAGAAAGCCCTGTAATGATCCTTGCCCAAGTGGATTTCCACTCAGGACCGCATGACGCAGATGTTGTCAGAGCTGAGAAATTAACACTCCATGAACCCTATTGTAGCGCAAGGCTTTGTGAGCCAACAATGTATGGCGGATTGCAACATTCAAAGGGCCAATGTATTAACGGTAGCGGACTCAGCAATCGTGTGCGGAAAGCCGACTTCACGATTCTTATCTATCGAGAGGCAAGAAACCAGTCCTTAAGGGTAAAGATTCTGACGCACATT
+CACGGTGGCGAAAGAATGTTCGACCATGAGCACTATTTGATTGAAAACCGTAGGTTTAGGTTGAATACAAAATACGCCCTCCCGATCAGTTTATCAATGTTCCCAGGAAATTTGCCTGGAACGGTACACACTATCTTAACCCCACGTTCCAGACTTTTTAGGGCCCTGCCCTCAAGTCAGTATAAGTTGCAATGTCTTCAATTCCAAAACTTAACAAAAGAGAGCCCTGTAATGATCCTTGCCCAAGTGGATTTCCACTCAGGACCGCATGACGCAGATGTTGTCAGAGCTGAGAAATTAACATTCCATGAACCCTATTGTAGCGCAAGGCTTTGTGAGACAACAATGTATGGCGGATTGCAACATTCAAAGGGCCAATGTATTAACGGTAGCGGACTCAGCAATCGTGTGCGGAAAGCCGACTTCACGATTCTTATCTATCGAGAGGCAAGAAACCAGTCCTTAAGGGTAAAGATTCTGACGCACATT
+Exon model: MG94 Exon nsite: 163 blen: 0.171684721483
+x_exon: 0.485519006052, 0.614528703121, 0.40734821392, 8.40433364203, 1.0
+x_IGC: 0.4228224, 0.3, -0.1
+IGC 1 -> 0 : start	379	stop	381	0.98773006135 from TGT -> TGT
+Point mutation at paralog 1 position 23 from	AAA	to	AGA	0.985685071575
+IGC 1 -> 0 : start	406	stop	411	0.985685071575 from CGTGTG -> CGTGTG
+Point mutation at paralog 1 position 31 from	TCA	to	CCA	0.9836400818
+IGC 0 -> 1 : start	178	stop	186	0.9836400818 from CAGTATAAG -> CAGTATAAG
+Point mutation at paralog 1 position 100 from	ACA	to	ATA	0.981595092025
+IGC 0 -> 1 : start	106	stop	123	0.981595092025 from GGAAATTTGCCTGGAACG -> GGAAATTTGCCTGGAACG
+Point mutation at paralog 1 position 51 from	CTT	to	CGT	0.979550102249
+Point mutation at paralog 1 position 145 from	ATC	to	ACC	0.977505112474
+IGC 1 -> 0 : start	376	stop	378	0.977505112474 from CAA -> CAA
+Point mutation at paralog 0 position 98 from	AAA	to	AAG	0.975460122699
+Point mutation at paralog 1 position 41 from	GTA	to	GAA	0.973415132924
+Point mutation at paralog 1 position 39 from	GGA	to	AGA	0.971370143149
+Point mutation at paralog 0 position 157 from	AAG	to	AGG	0.969325153374
+Point mutation at paralog 1 position 23 from	AGA	to	AGG	0.967280163599
+Point mutation at paralog 0 position 43 from	ACT	to	AAT	0.965235173824
+Point mutation at paralog 1 position 52 from	TTT	to	CTT	0.963190184049
+Point mutation at paralog 0 position 109 from	AGG	to	AGA	0.961145194274
+Point mutation at paralog 1 position 88 from	CCG	to	CTG	0.959100204499
+Point mutation at paralog 1 position 116 from	TAT	to	TGT	0.957055214724
+Point mutation at paralog 1 position 126 from	TGT	to	TAT	0.955010224949
+Point mutation at paralog 0 position 1 from	GGC	to	GAC	0.952965235174
+Point mutation at paralog 1 position 87 from	GGA	to	AGA	0.950920245399
+IGC 1 -> 0 : start	346	stop	354	0.952965235174 from ATGTATGGC -> ATGTGTGGC
+IGC 0 -> 1 : start	202	stop	204	0.952965235174 from TTC -> TTC
+IGC 0 -> 1 : start	298	stop	312	0.957055214724 from TTAATATTCCATGAA -> TTAACACTCCATGAA
+Point mutation at paralog 1 position 138 from	AAA	to	AAG	0.955010224949
+Point mutation at paralog 1 position 92 from	GAT	to	GGT	0.952965235174
+Point mutation at paralog 1 position 143 from	ATT	to	GTT	0.950920245399
+IGC 0 -> 1 : start	277	stop	282	0.952965235174 from GGTGTT -> GATGTT
+Point mutation at paralog 0 position 18 from	TTT	to	CTT	0.950920245399
+IGC 0 -> 1 : start	418	stop	420	0.950920245399 from GCC -> GCC
+Point mutation at paralog 0 position 122 from	TCA	to	TTA	0.948875255624
+IGC 0 -> 1 : start	232	stop	246	0.948875255624 from ATGATCCTTGCCCAA -> ATGATCCTTGCCCAA
+Point mutation at paralog 0 position 77 from	ATG	to	ATA	0.946830265849
+Point mutation at paralog 0 position 31 from	TCA	to	CCA	0.948875255624
+IGC 0 -> 1 : start	70	stop	90	0.952965235174 from AGGTACGCCCTCCCGATCAGT -> AAATACGCCCTCCCGATCAGT
+Point mutation at paralog 1 position 62 from	TTG	to	GTG	0.950920245399
+Point mutation at paralog 1 position 67 from	TTC	to	TTT	0.948875255624
+Point mutation at paralog 1 position 114 from	ACA	to	TCA	0.946830265849
+Point mutation at paralog 1 position 119 from	TTG	to	CTG	0.944785276074
+Point mutation at paralog 1 position 151 from	AAC	to	GAC	0.942740286299
+Point mutation at paralog 0 position 160 from	ACG	to	TCG	0.940695296524
+Point mutation at paralog 1 position 153 from	TCC	to	TTC	0.938650306748
+Point mutation at paralog 0 position 136 from	GTG	to	GAG	0.936605316973
+Point mutation at paralog 0 position 30 from	TTA	to	CTA	0.934560327198
+Point mutation at paralog 1 position 25 from	GCC	to	GTC	0.932515337423
+IGC 0 -> 1 : start	157	stop	159	0.934560327198 from CTT -> TTT
+IGC 0 -> 1 : start	181	stop	195	0.936605316973 from TATAAGGTGCAATGT -> TATAAGTTGCAATGT
+Point mutation at paralog 1 position 42 from	CAC	to	TAC	0.934560327198
+Point mutation at paralog 0 position 8 from	CAT	to	AAT	0.932515337423
+Point mutation at paralog 1 position 110 from	CTT	to	GTT	0.930470347648
+Point mutation at paralog 0 position 134 from	AAT	to	TAT	0.928425357873
+Point mutation at paralog 1 position 152 from	CAG	to	CGG	0.926380368098
+IGC 1 -> 0 : start	316	stop	321	0.926380368098 from TATTGT -> TATTGT
+IGC 1 -> 0 : start	337	stop	339	0.926380368098 from GAG -> GAG
+Point mutation at paralog 1 position 60 from	TAT	to	TGT	0.924335378323
+Point mutation at paralog 0 position 8 from	AAT	to	GAT	0.924335378323
+IGC 1 -> 0 : start	49	stop	54	0.924335378323 from CGTAGG -> CGTAGG
+Point mutation at paralog 0 position 117 from	GGC	to	GCC	0.922290388548
+Point mutation at paralog 1 position 17 from	AGG	to	AAG	0.920245398773
+Point mutation at paralog 0 position 145 from	ATC	to	AGC	0.920245398773
+Point mutation at paralog 1 position 134 from	AAT	to	GAT	0.920245398773
+Point mutation at paralog 0 position 120 from	CAA	to	CGA	0.918200408998
+Point mutation at paralog 0 position 139 from	GCC	to	GAC	0.916155419223
+IGC 0 -> 1 : start	445	stop	447	0.916155419223 from GAG -> GAG
+Point mutation at paralog 1 position 41 from	GAA	to	GGA	0.916155419223
+IGC 0 -> 1 : start	232	stop	240	0.918200408998 from ATGATCCTT -> ATAATCCTT
+IGC 0 -> 1 : start	7	stop	30	0.922290388548 from GGCGAAAGAATGTTCGACCATGAG -> GGCGAAAGAATGTTCGACGATGAC
+Point mutation at paralog 0 position 21 from	AAT	to	AAC	0.920245398773
+Point mutation at paralog 0 position 25 from	GCC	to	GCT	0.918200408998
+IGC 1 -> 0 : start	325	stop	327	0.918200408998 from GCA -> GCA
+Point mutation at paralog 0 position 38 from	CCT	to	CTT	0.916155419223
+Point mutation at paralog 0 position 58 from	AGT	to	AAT	0.914110429448
+Point mutation at paralog 1 position 54 from	GCC	to	GCT	0.912065439673
+IGC 1 -> 0 : start	268	stop	273	0.912065439673 from CATGAC -> CATGAC
+Point mutation at paralog 0 position 67 from	TTC	to	TTT	0.914110429448
+Point mutation at paralog 1 position 81 from	CAA	to	CGA	0.912065439673
+Point mutation at paralog 0 position 0 from	CAC	to	TAC	0.910020449898

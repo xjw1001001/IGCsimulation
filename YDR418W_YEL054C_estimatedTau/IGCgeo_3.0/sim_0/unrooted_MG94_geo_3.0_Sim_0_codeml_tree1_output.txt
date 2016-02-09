@@ -47,7 +47,7 @@ cerevisiaeYEL054C               ... ... ... C.. ... ... ... ..G .C. ... ... .G. 
     1    1    1    1    1    1    1    1    1    1    1    1    1    1    1
     1    1    1    2
 
-CODONML (in paml version 4.8a, August 2014)  /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C/IGCgeo_3.0/sim_0/YDR418W_YEL054C_MG94_geo_3.0_Sim_0.fasta
+CODONML (in paml version 4.8a, August 2014)  /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_3.0/sim_0/YDR418W_YEL054C_MG94_geo_3.0_Sim_0.fasta
 Model: One dN/dS ratio for branches, 
 Codon frequency model: F1x4MG
 ns =  13  ls = 163
@@ -272,7 +272,7 @@ cerevisiaeYEL054C    0.7742 (0.1682 0.2172) 0.8082 (0.1603 0.1983) 0.6623 (0.142
 TREE #  1:  ((((((12, 6), 3), 8), 10), 1), (((((13, 7), 4), 9), 11), 2), 5);   MP score: 270
 lnL(ntime: 23  np: 28):  -2104.717952      +0.000000
   14..15   15..16   16..17   17..18   18..19   19..12   19..6    18..3    17..8    16..10   15..1    14..20   20..21   21..22   22..23   23..24   24..13   24..7    23..4    22..9    21..11   20..2    14..5  
- 0.008835 0.168221 0.017083 0.062708 0.042951 0.056969 0.018537 0.081843 0.211764 0.023682 0.152006 0.020674 0.203119 0.004865 0.053125 0.047149 0.089176 0.045388 0.047904 0.226704 0.010541 0.157022 0.190817 6.652091 1.634989 0.989681 1.590996 1.110478
+ 0.008835 0.168221 0.017083 0.062708 0.042951 0.056969 0.018537 0.081843 0.211764 0.023682 0.152006 0.020674 0.203119 0.004865 0.053125 0.047149 0.089176 0.045388 0.047904 0.226704 0.010541 0.157022 0.190817 6.652092 1.634989 0.989681 1.590996 1.110478
 
 Note: Branch length is defined as number of nucleotide substitutions per codon (not per neucleotide site).
 

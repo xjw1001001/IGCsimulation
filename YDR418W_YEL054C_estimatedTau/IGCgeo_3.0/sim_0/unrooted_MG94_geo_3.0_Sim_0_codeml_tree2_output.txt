@@ -47,7 +47,7 @@ cerevisiaeYEL054C               ... ... ... C.. ... ... ... ..G .C. ... ... .G. 
     1    1    1    1    1    1    1    1    1    1    1    1    1    1    1
     1    1    1    2
 
-CODONML (in paml version 4.8a, August 2014)  /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C/IGCgeo_3.0/sim_0/YDR418W_YEL054C_MG94_geo_3.0_Sim_0.fasta
+CODONML (in paml version 4.8a, August 2014)  /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_3.0/sim_0/YDR418W_YEL054C_MG94_geo_3.0_Sim_0.fasta
 Model: One dN/dS ratio for branches, 
 Codon frequency model: F1x4MG
 ns =  13  ls = 163
@@ -289,7 +289,7 @@ kappa (ts/tv) =  6.65209
 Frequency parameters:
    0.31348 (T)   0.18975 (C)   0.30504 (A)   0.19173 (G)
 Equilibrium codon frequencies (evolver-style):
-  0.03297557  0.01996056  0.03208830  0.02016868
+  0.03297556  0.01996056  0.03208830  0.02016868
   0.01996056  0.01208240  0.01942348  0.01220838
   0.03208830  0.01942348  0.00000000  0.00000000
   0.02016868  0.01220838  0.00000000  0.01233567
@@ -299,7 +299,7 @@ Equilibrium codon frequencies (evolver-style):
   0.01220838  0.00738990  0.01187989  0.00746695
   0.03208830  0.01942348  0.03122491  0.01962601
   0.01942348  0.01175730  0.01890086  0.01187989
-  0.03122491  0.01890086  0.03038474  0.01909794
+  0.03122491  0.01890086  0.03038475  0.01909794
   0.01962601  0.01187989  0.01909794  0.01200376
   0.02016868  0.01220838  0.01962601  0.01233567
   0.01220838  0.00738990  0.01187989  0.00746695
@@ -345,12 +345,12 @@ Number of replicates: 10000
 
   tree           li       Dli     +- SE     pKH       pSH    pRELL
 
-     1    -2104.718    -0.000     0.000   0.500     0.504    0.498
-     2*   -2104.718     0.000     0.000  -1.000    -1.000    0.502
+     1*   -2104.718     0.000     0.000  -1.000    -1.000    0.499
+     2    -2104.718    -0.000     0.000   0.500     0.497    0.501
 
 pKH: P value for KH normal test (Kishino & Hasegawa 1989)
 pRELL: RELL bootstrap proportions (Kishino & Hasegawa 1989)
 pSH: P value with multiple-comparison correction (MC in table 1 of Shimodaira & Hasegawa 1999)
 (-1 for P values means N/A)
 
-Time used:  1:35
+Time used:  1:31

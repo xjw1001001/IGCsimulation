@@ -46,7 +46,7 @@ cerevisiaeYEL054C               ..G ... ... ... ... ... .AG G.. C.. .T. G.. TT. 
     1    1    1    1    1    1    1    2    1    2    1    3    1    1    1
     1    1    1    1    1    1    1    1    2
 
-CODONML (in paml version 4.8a, August 2014)  /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C/IGCgeo_3.0/sim_66/YDR418W_YEL054C_MG94_geo_3.0_Sim_66.fasta
+CODONML (in paml version 4.8a, August 2014)  /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_3.0/sim_66/YDR418W_YEL054C_MG94_geo_3.0_Sim_66.fasta
 Model: One dN/dS ratio for branches, 
 Codon frequency model: F1x4MG
 ns =  13  ls = 163
@@ -288,7 +288,7 @@ kappa (ts/tv) =  6.72013
 Frequency parameters:
    0.31195 (T)   0.23778 (C)   0.26811 (A)   0.18216 (G)
 Equilibrium codon frequencies (evolver-style):
-  0.03205097  0.02443079  0.02754719  0.01871620
+  0.03205096  0.02443079  0.02754719  0.01871620
   0.02443079  0.01862233  0.02099780  0.01426639
   0.02754719  0.02099780  0.00000000  0.00000000
   0.01871620  0.01426639  0.00000000  0.01092935
@@ -298,12 +298,12 @@ Equilibrium codon frequencies (evolver-style):
   0.01426639  0.01087453  0.01226169  0.00833088
   0.02754719  0.02099780  0.02367628  0.01608621
   0.02099780  0.01600553  0.01804720  0.01226169
-  0.02367628  0.01804720  0.02034930  0.01382579
+  0.02367628  0.01804720  0.02034931  0.01382579
   0.01608621  0.01226169  0.01382579  0.00939356
   0.01871620  0.01426639  0.01608621  0.01092935
   0.01426639  0.01087453  0.01226169  0.00833088
   0.01608621  0.01226169  0.01382579  0.00939356
-  0.01092935  0.00833088  0.00939356  0.00638221
+  0.01092935  0.00833088  0.00939356  0.00638220
 
 omega (dN/dS) =  0.90228
 

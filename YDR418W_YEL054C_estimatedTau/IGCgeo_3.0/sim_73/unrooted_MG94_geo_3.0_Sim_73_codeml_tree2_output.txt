@@ -47,7 +47,7 @@ cerevisiaeYEL054C               ... G.. ... ... ... ... G.. ..A ..A G.A CT. ... 
     1    1    1    1    1    1    1    1    1    1    1    1    1    1    1
     1    3
 
-CODONML (in paml version 4.8a, August 2014)  /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C/IGCgeo_3.0/sim_73/YDR418W_YEL054C_MG94_geo_3.0_Sim_73.fasta
+CODONML (in paml version 4.8a, August 2014)  /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_3.0/sim_73/YDR418W_YEL054C_MG94_geo_3.0_Sim_73.fasta
 Model: One dN/dS ratio for branches, 
 Codon frequency model: F1x4MG
 ns =  13  ls = 163
@@ -270,7 +270,7 @@ cerevisiaeYEL054C    0.7012 (0.1696 0.2419) 0.4856 (0.1439 0.2964) 0.6204 (0.136
 
 
 TREE #  2:  (5, (2, (11, (9, (4, (13, 7))))), (1, (10, (8, (3, (12, 6))))));   MP score: 280
-lnL(ntime: 23  np: 28):  -2120.243692      +0.000000
+lnL(ntime: 23  np: 28):  -2120.243692      -0.000000
   14..5    14..15   15..2    15..16   16..11   16..17   17..9    17..18   18..4    18..19   19..13   19..7    14..20   20..1    20..21   21..10   21..22   22..8    22..23   23..3    23..24   24..12   24..6  
  0.235746 0.014778 0.190520 0.149640 0.053314 0.027124 0.108945 0.019453 0.058324 0.058436 0.085625 0.027696 0.000004 0.200625 0.232492 0.067431 0.007407 0.140835 0.055565 0.091213 0.034582 0.108864 0.031138 10.192614 1.789508 1.275110 1.784191 0.882633
 
@@ -287,7 +287,7 @@ Detailed output identifying parameters
 kappa (ts/tv) = 10.19261
 
 Frequency parameters:
-   0.30596 (T)   0.21801 (C)   0.30505 (A)   0.17097 (G)
+   0.30596 (T)   0.21801 (C)   0.30505 (A)   0.17098 (G)
 Equilibrium codon frequencies (evolver-style):
   0.03048243  0.02172019  0.03039186  0.01703398
   0.02172019  0.01547668  0.02165566  0.01213753
@@ -300,11 +300,11 @@ Equilibrium codon frequencies (evolver-style):
   0.03039186  0.02165566  0.03030156  0.01698337
   0.02165566  0.01543070  0.02159132  0.01210146
   0.03030156  0.02159132  0.03021153  0.01693291
-  0.01698337  0.01210146  0.01693291  0.00949052
+  0.01698337  0.01210146  0.01693291  0.00949053
   0.01703398  0.01213753  0.01698337  0.00951881
   0.01213753  0.00864857  0.01210146  0.00678261
-  0.01698337  0.01210146  0.01693291  0.00949052
-  0.00951881  0.00678261  0.00949052  0.00531923
+  0.01698337  0.01210146  0.01693291  0.00949053
+  0.00951881  0.00678261  0.00949053  0.00531923
 
 omega (dN/dS) =  0.88263
 
@@ -345,12 +345,12 @@ Number of replicates: 10000
 
   tree           li       Dli     +- SE     pKH       pSH    pRELL
 
-     1    -2120.244    -0.000     0.000   0.500     0.503    0.502
-     2*   -2120.244     0.000     0.000  -1.000    -1.000    0.498
+     1*   -2120.244     0.000     0.000  -1.000    -1.000    0.500
+     2    -2120.244    -0.000     0.000  -1.000    -1.000    0.500
 
 pKH: P value for KH normal test (Kishino & Hasegawa 1989)
 pRELL: RELL bootstrap proportions (Kishino & Hasegawa 1989)
 pSH: P value with multiple-comparison correction (MC in table 1 of Shimodaira & Hasegawa 1999)
 (-1 for P values means N/A)
 
-Time used:  1:32
+Time used:  1:29

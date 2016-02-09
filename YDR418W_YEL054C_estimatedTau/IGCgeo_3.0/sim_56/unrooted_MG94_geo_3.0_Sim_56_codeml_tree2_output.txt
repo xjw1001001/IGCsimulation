@@ -47,7 +47,7 @@ cerevisiaeYEL054C               ... .G. ... ..T GGT ... ... ... ... ... ... ... 
     1    1    1    1    1    1    1    1    1    1    1    1    1    1    1
     1    1    1    1    1    1    2
 
-CODONML (in paml version 4.8a, August 2014)  /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C/IGCgeo_3.0/sim_56/YDR418W_YEL054C_MG94_geo_3.0_Sim_56.fasta
+CODONML (in paml version 4.8a, August 2014)  /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_3.0/sim_56/YDR418W_YEL054C_MG94_geo_3.0_Sim_56.fasta
 Model: One dN/dS ratio for branches, 
 Codon frequency model: F1x4MG
 ns =  13  ls = 163
@@ -270,7 +270,7 @@ cerevisiaeYEL054C    0.8697 (0.1658 0.1906) 0.8917 (0.1693 0.1898) 0.7287 (0.139
 
 
 TREE #  2:  (5, (2, (11, (9, (4, (13, 7))))), (1, (10, (8, (3, (12, 6))))));   MP score: 274
-lnL(ntime: 23  np: 28):  -2058.193281      +0.000000
+lnL(ntime: 23  np: 28):  -2058.193281      -0.000000
   14..5    14..15   15..2    15..16   16..11   16..17   17..9    17..18   18..4    18..19   19..13   19..7    14..20   20..1    20..21   21..10   21..22   22..8    22..23   23..3    23..24   24..12   24..6  
  0.246873 0.000004 0.138493 0.221911 0.035897 0.023249 0.130945 0.065298 0.109402 0.010417 0.094332 0.012491 0.000004 0.139541 0.213042 0.020416 0.010526 0.087525 0.052501 0.114549 0.037977 0.089349 0.036945 9.249478 1.867291 1.194626 1.687540 1.155399
 
@@ -345,12 +345,12 @@ Number of replicates: 10000
 
   tree           li       Dli     +- SE     pKH       pSH    pRELL
 
-     1    -2058.193    -0.000     0.000   0.500     0.500    0.500
-     2*   -2058.193     0.000     0.000  -1.000    -1.000    0.500
+     1    -2058.193    -0.000     0.000   0.500     0.499    0.499
+     2*   -2058.193     0.000     0.000  -1.000    -1.000    0.501
 
 pKH: P value for KH normal test (Kishino & Hasegawa 1989)
 pRELL: RELL bootstrap proportions (Kishino & Hasegawa 1989)
 pSH: P value with multiple-comparison correction (MC in table 1 of Shimodaira & Hasegawa 1999)
 (-1 for P values means N/A)
 
-Time used:  1:49
+Time used:  1:46

@@ -168,7 +168,7 @@ Suzuki-Gojobori (1999) style test
 List of sites with changes according to ancestral reconstruction
 Suzuki-Gojobori (1999) style test
    1 S N:   0.350  2.650 Sd Nd:    2.0   3.0  - p = 0.107 
-   2 S N:   1.000  2.000 Sd Nd:    1.0   2.0  + p = 0.741 
+   2 S N:   1.000  2.000 Sd Nd:    1.0   2.0  - p = 0.704 
    3 S N:   1.307  1.693 Sd Nd:    2.0   2.0  - p = 0.586 
    4 S N:   0.375  2.625 Sd Nd:    1.0   1.0  - p = 0.234 
    5 S N:   0.771  2.229 Sd Nd:    2.0   1.0  - p = 0.164 
@@ -293,7 +293,7 @@ Suzuki-Gojobori (1999) style test
  124 S N:   1.000  2.000 Sd Nd:    1.0   0.0  - p = 0.333 
  125 S N:   0.994  2.006 Sd Nd:    0.0   1.0  + p = 0.669 
  126 S N:   0.363  2.637 Sd Nd:    0.0   1.0  + p = 0.879 
- 127 S N:   1.000  2.000 Sd Nd:    1.0   2.0  + p = 0.741 
+ 127 S N:   1.000  2.000 Sd Nd:    1.0   2.0  - p = 0.704 
  128 S N:   0.473  2.527 Sd Nd:    1.0   2.0  - p = 0.402 
  129 S N:   0.429  2.571 Sd Nd:    0.0   0.0 
  130 S N:   1.000  2.000 Sd Nd:    1.0   0.0  - p = 0.333 
@@ -330,4 +330,4 @@ Suzuki-Gojobori (1999) style test
  161 S N:   0.333  2.667 Sd Nd:    0.0   1.0  + p = 0.889 
  162 S N:   0.375  2.625 Sd Nd:    0.0   0.0 
  163 S N:   0.541  2.459 Sd Nd:    0.0   2.0  + p = 0.672 
-  2 -2167.208198 0.497 0.503
+  1 -2167.208198 0.497 0.502

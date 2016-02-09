@@ -11,87 +11,87 @@ Load data from All.RData
 rm(list=ls())  # clean up workspace
 load("/Users/xji3/GitFolders/IGCCodonSimulation/All.RData")
 
-# paml.path <- "/Users/xji3/GitFolders/IGCCodonSimulation/"
-# IGC.geo.list <- c(3.0)
-# 
-# # Read in new PAML results
-# data.path <- paste(paralog, "",sep = "/")
-# for (IGC.geo in IGC.geo.list){
-#   summary_mat <- NULL
-#   IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
-#   file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "estimatedTau", "paml", "unrooted", "1stTree", "summary.txt", sep = "_")
-#   for (sim.num in 0:(num.sim - 1)){
-#     summary_file <- paste(paml.path, file.name, sep = "")
-#     if (file.exists(summary_file)){
-#       all <- readLines(summary_file, n = -1)
-#       col.names <- strsplit(all[1], ' ')[[1]][-1]
-#       row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
-#       summary_mat <- as.matrix(read.table(summary_file, 
-#                                           row.names = row.names, 
-#                                           col.names = col.names))
-#       
-#       }
-#     }
-#   assign(paste("PAML", "estimatedTau", paste(toString(IGC.geo), ".0", sep = ""), "1stTree", "summary", sep = "_"), summary_mat)
-# }
-# 
-# for (IGC.geo in IGC.geo.list){
-#   summary_mat <- NULL
-#   IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
-#   file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "estimatedTau", "paml", "unrooted", "2ndTree", "summary.txt", sep = "_")
-#   for (sim.num in 0:(num.sim - 1)){
-#     summary_file <- paste(paml.path, file.name, sep = "")
-#     if (file.exists(summary_file)){
-#       all <- readLines(summary_file, n = -1)
-#       col.names <- strsplit(all[1], ' ')[[1]][-1]
-#       row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
-#       summary_mat <- as.matrix(read.table(summary_file, 
-#                                           row.names = row.names, 
-#                                           col.names = col.names))
-#       
-#       }
-#     }
-#   assign(paste("PAML", "estimatedTau", paste(toString(IGC.geo), ".0", sep = ""), "2ndTree", "summary", sep = "_"), summary_mat)
-# }
-# 
-# for (IGC.geo in IGC.geo.list){
-#   summary_mat <- NULL
-#   IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
-#   file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "10Tau", "paml", "unrooted", "1stTree", "summary.txt", sep = "_")
-#   for (sim.num in 0:(num.sim - 1)){
-#     summary_file <- paste(paml.path, file.name, sep = "")
-#     if (file.exists(summary_file)){
-#       all <- readLines(summary_file, n = -1)
-#       col.names <- strsplit(all[1], ' ')[[1]][-1]
-#       row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
-#       summary_mat <- as.matrix(read.table(summary_file, 
-#                                           row.names = row.names, 
-#                                           col.names = col.names))
-#       
-#       }
-#     }
-#   assign(paste("PAML", "10Tau", paste(toString(IGC.geo), ".0", sep = ""), "1stTree", "summary", sep = "_"), summary_mat)
-#   }
-# 
-# for (IGC.geo in IGC.geo.list){
-#   summary_mat <- NULL
-#   IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
-#   file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "10Tau", "paml", "unrooted", "2ndTree", "summary.txt", sep = "_")
-#   for (sim.num in 0:(num.sim - 1)){
-#     summary_file <- paste(paml.path, file.name, sep = "")
-#     if (file.exists(summary_file)){
-#       all <- readLines(summary_file, n = -1)
-#       col.names <- strsplit(all[1], ' ')[[1]][-1]
-#       row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
-#       summary_mat <- as.matrix(read.table(summary_file, 
-#                                           row.names = row.names, 
-#                                           col.names = col.names))
-#       
-#       }
-#     }
-#   assign(paste("PAML", "10Tau", paste(toString(IGC.geo), ".0", sep = ""), "2ndTree", "summary", sep = "_"), summary_mat)
-# }
-# 
+paml.path <- "/Users/xji3/GitFolders/IGCCodonSimulation/"
+IGC.geo.list <- c(3.0)
+
+# Read in new PAML results
+data.path <- paste(paralog, "",sep = "/")
+for (IGC.geo in IGC.geo.list){
+  summary_mat <- NULL
+  IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
+  file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "estimatedTau", "paml", "unrooted", "1stTree", "summary.txt", sep = "_")
+  for (sim.num in 0:(num.sim - 1)){
+    summary_file <- paste(paml.path, file.name, sep = "")
+    if (file.exists(summary_file)){
+      all <- readLines(summary_file, n = -1)
+      col.names <- strsplit(all[1], ' ')[[1]][-1]
+      row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
+      summary_mat <- as.matrix(read.table(summary_file, 
+                                          row.names = row.names, 
+                                          col.names = col.names))
+      
+      }
+    }
+  assign(paste("PAML", "estimatedTau", paste(toString(IGC.geo), ".0", sep = ""), "1stTree", "summary", sep = "_"), summary_mat)
+}
+
+for (IGC.geo in IGC.geo.list){
+  summary_mat <- NULL
+  IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
+  file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "estimatedTau", "paml", "unrooted", "2ndTree", "summary.txt", sep = "_")
+  for (sim.num in 0:(num.sim - 1)){
+    summary_file <- paste(paml.path, file.name, sep = "")
+    if (file.exists(summary_file)){
+      all <- readLines(summary_file, n = -1)
+      col.names <- strsplit(all[1], ' ')[[1]][-1]
+      row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
+      summary_mat <- as.matrix(read.table(summary_file, 
+                                          row.names = row.names, 
+                                          col.names = col.names))
+      
+      }
+    }
+  assign(paste("PAML", "estimatedTau", paste(toString(IGC.geo), ".0", sep = ""), "2ndTree", "summary", sep = "_"), summary_mat)
+}
+
+for (IGC.geo in IGC.geo.list){
+  summary_mat <- NULL
+  IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
+  file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "10Tau", "paml", "unrooted", "1stTree", "summary.txt", sep = "_")
+  for (sim.num in 0:(num.sim - 1)){
+    summary_file <- paste(paml.path, file.name, sep = "")
+    if (file.exists(summary_file)){
+      all <- readLines(summary_file, n = -1)
+      col.names <- strsplit(all[1], ' ')[[1]][-1]
+      row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
+      summary_mat <- as.matrix(read.table(summary_file, 
+                                          row.names = row.names, 
+                                          col.names = col.names))
+      
+      }
+    }
+  assign(paste("PAML", "10Tau", paste(toString(IGC.geo), ".0", sep = ""), "1stTree", "summary", sep = "_"), summary_mat)
+  }
+
+for (IGC.geo in IGC.geo.list){
+  summary_mat <- NULL
+  IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
+  file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "10Tau", "paml", "unrooted", "2ndTree", "summary.txt", sep = "_")
+  for (sim.num in 0:(num.sim - 1)){
+    summary_file <- paste(paml.path, file.name, sep = "")
+    if (file.exists(summary_file)){
+      all <- readLines(summary_file, n = -1)
+      col.names <- strsplit(all[1], ' ')[[1]][-1]
+      row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
+      summary_mat <- as.matrix(read.table(summary_file, 
+                                          row.names = row.names, 
+                                          col.names = col.names))
+      
+      }
+    }
+  assign(paste("PAML", "10Tau", paste(toString(IGC.geo), ".0", sep = ""), "2ndTree", "summary", sep = "_"), summary_mat)
+}
+
 # save.image("/Users/xji3/GitFolders/IGCCodonSimulation/All.RData")
 ```
 

@@ -1,11 +1,11 @@
-Supplemental results for CODEML (seqf: /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C/IGCgeo_3.0/sim_83/YDR418W_YEL054C_MG94_geo_3.0_Sim_83.fasta  treef: /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_tree.newick)
+Supplemental results for CODEML (seqf: /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_3.0/sim_83/YDR418W_YEL054C_MG94_geo_3.0_Sim_83.fasta  treef: /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_tree.newick)
 
 
 TREE #  1
 
 Ancestral reconstruction by CODONML.
 
-((((((cerevisiaeYDR418W: 0.076867, paradoxusYDR418W: 0.031071): 0.056488, mikataeYDR418W: 0.045029): 0.065641, kudriavzeviiYDR418W: 0.109104): 0.048855, bayanusYDR418W: 0.028893): 0.214332, castelliiYDR418W: 0.151940): 0.000004, (((((cerevisiaeYEL054C: 0.052572, paradoxusYEL054C: 0.028606): 0.033944, mikataeYEL054C: 0.069547): 0.044452, kudriavzeviiYEL054C: 0.134873): 0.000004, bayanusYEL054C: 0.045737): 0.223807, castelliiYEL054C: 0.208218): 0.000004, kluyveriYDR418W: 0.253220);
+((((((cerevisiaeYDR418W: 0.076867, paradoxusYDR418W: 0.031071): 0.056488, mikataeYDR418W: 0.045029): 0.065641, kudriavzeviiYDR418W: 0.109104): 0.048855, bayanusYDR418W: 0.028893): 0.214332, castelliiYDR418W: 0.151940): 0.000004, (((((cerevisiaeYEL054C: 0.052572, paradoxusYEL054C: 0.028606): 0.033944, mikataeYEL054C: 0.069547): 0.044452, kudriavzeviiYEL054C: 0.134873): 0.000004, bayanusYEL054C: 0.045737): 0.223807, castelliiYEL054C: 0.208218): 0.000004, kluyveriYDR418W: 0.253221);
 
 ((((((12, 6), 3), 8), 10), 1), (((((13, 7), 4), 9), 11), 2), 5);
 

@@ -46,7 +46,7 @@ cerevisiaeYEL054C               ... ... ... ..G G.C ... ... ... ..A ... ..C ... 
     1    1    1    1    1    1    1    1    1    1    1    1    1    1    1
     1    1    1    1    2    1    1    1
 
-CODONML (in paml version 4.8a, August 2014)  /Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_10Tau/IGCgeo_3.0/sim_88/YDR418W_YEL054C_MG94_geo_3.0_Sim_88.fasta
+CODONML (in paml version 4.8a, August 2014)  /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_10Tau/IGCgeo_3.0/sim_88/YDR418W_YEL054C_MG94_geo_3.0_Sim_88.fasta
 Model: One dN/dS ratio for branches, 
 Codon frequency model: F1x4MG
 ns =  13  ls = 163
@@ -269,9 +269,9 @@ cerevisiaeYEL054C    0.8755 (0.1612 0.1841) 0.8476 (0.1698 0.2003) 0.5261 (0.060
 
 
 TREE #  2:  (5, (2, (11, (9, (4, (13, 7))))), (1, (10, (8, (3, (12, 6))))));   MP score: 259
-lnL(ntime: 23  np: 28):  -1997.386687     +10.676141
+lnL(ntime: 23  np: 28):  -1997.386687      +0.000000
   14..5    14..15   15..2    15..16   16..11   16..17   17..9    17..18   18..4    18..19   19..13   19..7    14..20   20..1    20..21   21..10   21..22   22..8    22..23   23..3    23..24   24..12   24..6  
- 0.256637 0.000004 0.149681 0.176297 0.051807 0.016053 0.143790 0.044879 0.067635 0.044988 0.093475 0.028063 0.000004 0.133071 0.165174 0.022084 0.015147 0.109582 0.060520 0.075263 0.030961 0.110795 0.030668 10.383435 1.884802 1.482761 1.811126 1.559531
+ 0.256637 0.000004 0.149681 0.176297 0.051807 0.016053 0.143790 0.044879 0.067635 0.044988 0.093475 0.028063 0.000004 0.133071 0.165174 0.022084 0.015147 0.109582 0.060520 0.075263 0.030961 0.110795 0.030668 10.383434 1.884802 1.482761 1.811126 1.559531
 
 Note: Branch length is defined as number of nucleotide substitutions per codon (not per neucleotide site).
 
@@ -344,12 +344,12 @@ Number of replicates: 10000
 
   tree           li       Dli     +- SE     pKH       pSH    pRELL
 
-     1    -2008.063   -10.676    12.897   0.204     0.201    0.212
-     2*   -1997.387     0.000     0.000  -1.000    -1.000    0.788
+     1*   -1997.387     0.000     0.000  -1.000    -1.000    0.499
+     2    -1997.387    -0.000     0.000   0.500     0.500    0.501
 
 pKH: P value for KH normal test (Kishino & Hasegawa 1989)
 pRELL: RELL bootstrap proportions (Kishino & Hasegawa 1989)
 pSH: P value with multiple-comparison correction (MC in table 1 of Shimodaira & Hasegawa 1999)
 (-1 for P values means N/A)
 
-Time used:  0:40
+Time used:  1:23

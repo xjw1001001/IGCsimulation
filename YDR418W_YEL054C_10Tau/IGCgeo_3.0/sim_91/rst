@@ -1,4 +1,4 @@
-Supplemental results for CODEML (seqf: /Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_10Tau/IGCgeo_3.0/sim_91/YDR418W_YEL054C_MG94_geo_3.0_Sim_91.fasta  treef: /Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_tree.newick)
+Supplemental results for CODEML (seqf: /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_10Tau/IGCgeo_3.0/sim_91/YDR418W_YEL054C_MG94_geo_3.0_Sim_91.fasta  treef: /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_tree.newick)
 
 
 TREE #  1
@@ -582,7 +582,7 @@ Overall accuracy of the 11 ancestral sequences:
   0.98003  0.98003  0.99564  0.99386  0.99580  0.99771  0.98003  0.99488  0.99562  0.99314  0.99256
 for a site.
 
-  0.02761  0.02761  0.44701  0.31117  0.45873  0.68559  0.02761  0.39899  0.44423  0.25148  0.23133
+  0.02761  0.02761  0.44701  0.31117  0.45874  0.68559  0.02761  0.39899  0.44423  0.25148  0.23133
 for the sequence.
 
 

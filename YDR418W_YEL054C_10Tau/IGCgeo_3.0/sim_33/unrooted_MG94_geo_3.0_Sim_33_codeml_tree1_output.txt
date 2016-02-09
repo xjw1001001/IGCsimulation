@@ -46,7 +46,7 @@ cerevisiaeYEL054C               ... .T. ..C ... ..T ... ... ... ... ..C ..C ... 
     1    1    1    1    1    1    1    1    1    1    1    1    1    1    1
     1    2    1    1    1    1    1    1    4
 
-CODONML (in paml version 4.8a, August 2014)  /Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_10Tau/IGCgeo_3.0/sim_33/YDR418W_YEL054C_MG94_geo_3.0_Sim_33.fasta
+CODONML (in paml version 4.8a, August 2014)  /Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_10Tau/IGCgeo_3.0/sim_33/YDR418W_YEL054C_MG94_geo_3.0_Sim_33.fasta
 Model: One dN/dS ratio for branches, 
 Codon frequency model: F1x4MG
 ns =  13  ls = 163
@@ -293,7 +293,7 @@ Equilibrium codon frequencies (evolver-style):
   0.02961146  0.02185818  0.00000000  0.00000000
   0.01773941  0.01309463  0.00000000  0.00965961
   0.02404766  0.01775117  0.02185818  0.01309463
-  0.01775117  0.01310332  0.01613497  0.00966602
+  0.01775117  0.01310331  0.01613497  0.00966602
   0.02185818  0.01613497  0.01986804  0.01190240
   0.01309463  0.00966602  0.01190240  0.00713040
   0.02961146  0.02185818  0.02691540  0.01612428
