@@ -1088,7 +1088,7 @@ matplot(IGC.geo.list, cbind(PAML.N4.N5.paralog1.sd.list, PAML.N4.N5.paralog2.sd.
 legend("right", legend = c("paralog1", "paralog2", "posterior IGC"), col = 1:3, pch = 1)
 
 # N4_mikatae
-matplot(IGC.geo.list, cbind(PAML.N4.N5.paralog1.mean.list, PAML.N4.mikatae.paralog2.mean.list, mean.post.N4.mikatae.list),
+matplot(IGC.geo.list, cbind(PAML.N4.mikatae.paralog1.mean.list, PAML.N4.mikatae.paralog2.mean.list, mean.post.N4.mikatae.list),
         type = c("p"), pch = 1, col = 1:3, ylab = "mean N4.mikatae estimate")
 abline(h = 0.0566627496729)
 legend("right", legend = c("paralog1", "paralog2", "posterior IGC"), col = 1:3, pch = 1)
@@ -1118,6 +1118,6 @@ legend("right", legend = c("paralog1", "paralog2", "posterior IGC"), col = 1:3, 
 
 Now save workspace. 
 ```{r}
-save.image("/Users/xji3/GitFolders/IGCCodonSimulation/All.RData")
+#save.image("/Users/xji3/GitFolders/IGCCodonSimulation/All.RData")
 ```
 
