@@ -9,90 +9,111 @@ Load data from All.RData
 
 ```{r}
 rm(list=ls())  # clean up workspace
-load("/Users/xji3/GitFolders/IGCCodonSimulation/All.RData")
+load("/Users/Xiang/GitFolders/IGCCodonSimulation/All.RData")
 
-# paml.path <- "/Users/xji3/GitFolders/IGCCodonSimulation/"
-# IGC.geo.list <- c(3.0)
-# 
-# # Read in new PAML results
-# data.path <- paste(paralog, "",sep = "/")
-# for (IGC.geo in IGC.geo.list){
-#   summary_mat <- NULL
-#   IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
-#   file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "estimatedTau", "paml", "unrooted", "1stTree", "summary.txt", sep = "_")
-#   for (sim.num in 0:(num.sim - 1)){
-#     summary_file <- paste(paml.path, file.name, sep = "")
-#     if (file.exists(summary_file)){
-#       all <- readLines(summary_file, n = -1)
-#       col.names <- strsplit(all[1], ' ')[[1]][-1]
-#       row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
-#       summary_mat <- as.matrix(read.table(summary_file, 
-#                                           row.names = row.names, 
-#                                           col.names = col.names))
-#       
-#       }
-#     }
-#   assign(paste("PAML", "estimatedTau", paste(toString(IGC.geo), ".0", sep = ""), "1stTree", "summary", sep = "_"), summary_mat)
-# }
-# 
-# for (IGC.geo in IGC.geo.list){
-#   summary_mat <- NULL
-#   IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
-#   file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "estimatedTau", "paml", "unrooted", "2ndTree", "summary.txt", sep = "_")
-#   for (sim.num in 0:(num.sim - 1)){
-#     summary_file <- paste(paml.path, file.name, sep = "")
-#     if (file.exists(summary_file)){
-#       all <- readLines(summary_file, n = -1)
-#       col.names <- strsplit(all[1], ' ')[[1]][-1]
-#       row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
-#       summary_mat <- as.matrix(read.table(summary_file, 
-#                                           row.names = row.names, 
-#                                           col.names = col.names))
-#       
-#       }
-#     }
-#   assign(paste("PAML", "estimatedTau", paste(toString(IGC.geo), ".0", sep = ""), "2ndTree", "summary", sep = "_"), summary_mat)
-# }
-# 
-# for (IGC.geo in IGC.geo.list){
-#   summary_mat <- NULL
-#   IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
-#   file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "10Tau", "paml", "unrooted", "1stTree", "summary.txt", sep = "_")
-#   for (sim.num in 0:(num.sim - 1)){
-#     summary_file <- paste(paml.path, file.name, sep = "")
-#     if (file.exists(summary_file)){
-#       all <- readLines(summary_file, n = -1)
-#       col.names <- strsplit(all[1], ' ')[[1]][-1]
-#       row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
-#       summary_mat <- as.matrix(read.table(summary_file, 
-#                                           row.names = row.names, 
-#                                           col.names = col.names))
-#       
-#       }
-#     }
-#   assign(paste("PAML", "10Tau", paste(toString(IGC.geo), ".0", sep = ""), "1stTree", "summary", sep = "_"), summary_mat)
-#   }
-# 
-# for (IGC.geo in IGC.geo.list){
-#   summary_mat <- NULL
-#   IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
-#   file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "10Tau", "paml", "unrooted", "2ndTree", "summary.txt", sep = "_")
-#   for (sim.num in 0:(num.sim - 1)){
-#     summary_file <- paste(paml.path, file.name, sep = "")
-#     if (file.exists(summary_file)){
-#       all <- readLines(summary_file, n = -1)
-#       col.names <- strsplit(all[1], ' ')[[1]][-1]
-#       row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
-#       summary_mat <- as.matrix(read.table(summary_file, 
-#                                           row.names = row.names, 
-#                                           col.names = col.names))
-#       
-#       }
-#     }
-#   assign(paste("PAML", "10Tau", paste(toString(IGC.geo), ".0", sep = ""), "2ndTree", "summary", sep = "_"), summary_mat)
-# }
+paml.path <- "/Users/Xiang/GitFolders/IGCCodonSimulation/"
+IGC.geo.list <- c(3.0)
 
-save.image("/Users/xji3/GitFolders/IGCCodonSimulation/All.RData")
+for (IGC.geo in IGC.geo.list){
+  for (localtree in 1:3){
+    summary_mat <- NULL
+    IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
+    file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "estimatedTau", "paml", "unrooted", "LocalTree", toString(localtree), "summary.txt", sep = "_")
+    for (sim.num in 0:(num.sim - 1)){
+      summary_file <- paste(paml.path, file.name, sep = "")
+      if (file.exists(summary_file)){
+        all <- readLines(summary_file, n = -1)
+        col.names <- strsplit(all[1], ' ')[[1]][-1]
+        row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
+        summary_mat <- as.matrix(read.table(summary_file, 
+                                            row.names = row.names, 
+                                            col.names = col.names))
+        
+      }
+    }
+    assign(paste("PAML", "estimatedTau", paste(toString(IGC.geo), ".0", sep = ""), "LocalTree", toString(localtree), "summary", sep = "_"), summary_mat)}
+}
+
+
+# Read in new PAML results
+data.path <- paste(paralog, "",sep = "/")
+for (IGC.geo in IGC.geo.list){
+  summary_mat <- NULL
+  IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
+  file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "estimatedTau", "paml", "unrooted", "1stTree", "summary.txt", sep = "_")
+  for (sim.num in 0:(num.sim - 1)){
+    summary_file <- paste(paml.path, file.name, sep = "")
+    if (file.exists(summary_file)){
+      all <- readLines(summary_file, n = -1)
+      col.names <- strsplit(all[1], ' ')[[1]][-1]
+      row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
+      summary_mat <- as.matrix(read.table(summary_file, 
+                                          row.names = row.names, 
+                                          col.names = col.names))
+      
+    }
+  }
+  assign(paste("PAML", "estimatedTau", paste(toString(IGC.geo), ".0", sep = ""), "1stTree", "summary", sep = "_"), summary_mat)
+}
+
+for (IGC.geo in IGC.geo.list){
+  summary_mat <- NULL
+  IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
+  file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "estimatedTau", "paml", "unrooted", "2ndTree", "summary.txt", sep = "_")
+  for (sim.num in 0:(num.sim - 1)){
+    summary_file <- paste(paml.path, file.name, sep = "")
+    if (file.exists(summary_file)){
+      all <- readLines(summary_file, n = -1)
+      col.names <- strsplit(all[1], ' ')[[1]][-1]
+      row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
+      summary_mat <- as.matrix(read.table(summary_file, 
+                                          row.names = row.names, 
+                                          col.names = col.names))
+      
+    }
+  }
+  assign(paste("PAML", "estimatedTau", paste(toString(IGC.geo), ".0", sep = ""), "2ndTree", "summary", sep = "_"), summary_mat)
+}
+
+for (IGC.geo in IGC.geo.list){
+  summary_mat <- NULL
+  IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
+  file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "10Tau", "paml", "unrooted", "1stTree", "summary.txt", sep = "_")
+  for (sim.num in 0:(num.sim - 1)){
+    summary_file <- paste(paml.path, file.name, sep = "")
+    if (file.exists(summary_file)){
+      all <- readLines(summary_file, n = -1)
+      col.names <- strsplit(all[1], ' ')[[1]][-1]
+      row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
+      summary_mat <- as.matrix(read.table(summary_file, 
+                                          row.names = row.names, 
+                                          col.names = col.names))
+      
+    }
+  }
+  assign(paste("PAML", "10Tau", paste(toString(IGC.geo), ".0", sep = ""), "1stTree", "summary", sep = "_"), summary_mat)
+}
+
+for (IGC.geo in IGC.geo.list){
+  summary_mat <- NULL
+  IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
+  file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "10Tau", "paml", "unrooted", "2ndTree", "summary.txt", sep = "_")
+  for (sim.num in 0:(num.sim - 1)){
+    summary_file <- paste(paml.path, file.name, sep = "")
+    if (file.exists(summary_file)){
+      all <- readLines(summary_file, n = -1)
+      col.names <- strsplit(all[1], ' ')[[1]][-1]
+      row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
+      summary_mat <- as.matrix(read.table(summary_file, 
+                                          row.names = row.names, 
+                                          col.names = col.names))
+      
+    }
+  }
+  assign(paste("PAML", "10Tau", paste(toString(IGC.geo), ".0", sep = ""), "2ndTree", "summary", sep = "_"), summary_mat)
+}
+
+#save.image("/Users/xji3/GitFolders/IGCCodonSimulation/All.RData")
 ```
 
 #### Feb 10 update
@@ -103,46 +124,46 @@ IGC.geo.list <- c(3.0, 10.0, 50.0, 100.0, 500.0)
 
 # N4_N5
 non.zero.PAML.N4.N5.paralog1.mean.list <- c(mean(PAML_3.0_summary["N4_N5", (PAML_3.0_summary[4, ] > 1e-5 & PAML_3.0_summary[6,] > 1e-5)]), 
-                                   mean(PAML_10.0_summary["N4_N5", (PAML_10.0_summary[4, ] > 1e-5 & PAML_10.0_summary[6,] > 1e-5)]),
-                                   mean(PAML_50.0_summary["N4_N5", (PAML_50.0_summary[4, ] > 1e-5 & PAML_50.0_summary[6,] > 1e-5)]),
-                                   mean(PAML_100.0_summary["N4_N5", (PAML_100.0_summary[4, ] > 1e-5 & PAML_100.0_summary[6,] > 1e-5)]),
-                                   mean(PAML_500.0_summary["N4_N5", (PAML_500.0_summary[4, ] > 1e-5 & PAML_500.0_summary[6,] > 1e-5)]))
+                                            mean(PAML_10.0_summary["N4_N5", (PAML_10.0_summary[4, ] > 1e-5 & PAML_10.0_summary[6,] > 1e-5)]),
+                                            mean(PAML_50.0_summary["N4_N5", (PAML_50.0_summary[4, ] > 1e-5 & PAML_50.0_summary[6,] > 1e-5)]),
+                                            mean(PAML_100.0_summary["N4_N5", (PAML_100.0_summary[4, ] > 1e-5 & PAML_100.0_summary[6,] > 1e-5)]),
+                                            mean(PAML_500.0_summary["N4_N5", (PAML_500.0_summary[4, ] > 1e-5 & PAML_500.0_summary[6,] > 1e-5)]))
 non.zero.PAML.N4.N5.paralog1.sd.list <- c(sd(PAML_3.0_summary["N4_N5", (PAML_3.0_summary[4, ] > 1e-5 & PAML_3.0_summary[6,] > 1e-5)]), 
-                                 sd(PAML_10.0_summary["N4_N5", (PAML_10.0_summary[4, ] > 1e-5 & PAML_10.0_summary[6,] > 1e-5)]),
-                                 sd(PAML_50.0_summary["N4_N5", (PAML_50.0_summary[4, ] > 1e-5 & PAML_50.0_summary[6,] > 1e-5)]),
-                                 sd(PAML_100.0_summary["N4_N5", (PAML_100.0_summary[4, ] > 1e-5 & PAML_100.0_summary[6,] > 1e-5)]),
-                                 sd(PAML_500.0_summary["N4_N5", (PAML_500.0_summary[4, ] > 1e-5 & PAML_500.0_summary[6,] > 1e-5)]))
+                                          sd(PAML_10.0_summary["N4_N5", (PAML_10.0_summary[4, ] > 1e-5 & PAML_10.0_summary[6,] > 1e-5)]),
+                                          sd(PAML_50.0_summary["N4_N5", (PAML_50.0_summary[4, ] > 1e-5 & PAML_50.0_summary[6,] > 1e-5)]),
+                                          sd(PAML_100.0_summary["N4_N5", (PAML_100.0_summary[4, ] > 1e-5 & PAML_100.0_summary[6,] > 1e-5)]),
+                                          sd(PAML_500.0_summary["N4_N5", (PAML_500.0_summary[4, ] > 1e-5 & PAML_500.0_summary[6,] > 1e-5)]))
 non.zero.PAML.N4.N5.paralog2.mean.list <- c(mean(PAML_3.0_summary["N9_N10", (PAML_3.0_summary[4, ] > 1e-5 & PAML_3.0_summary[6,] > 1e-5)]), 
-                                   mean(PAML_10.0_summary["N9_N10", (PAML_10.0_summary[4, ] > 1e-5 & PAML_10.0_summary[6,] > 1e-5)]),
-                                   mean(PAML_50.0_summary["N9_N10", (PAML_50.0_summary[4, ] > 1e-5 & PAML_50.0_summary[6,] > 1e-5)]),
-                                   mean(PAML_100.0_summary["N9_N10", (PAML_100.0_summary[4, ] > 1e-5 & PAML_100.0_summary[6,] > 1e-5)]),
-                                   mean(PAML_500.0_summary["N9_N10", (PAML_500.0_summary[4, ] > 1e-5 & PAML_500.0_summary[6,] > 1e-5)]))
+                                            mean(PAML_10.0_summary["N9_N10", (PAML_10.0_summary[4, ] > 1e-5 & PAML_10.0_summary[6,] > 1e-5)]),
+                                            mean(PAML_50.0_summary["N9_N10", (PAML_50.0_summary[4, ] > 1e-5 & PAML_50.0_summary[6,] > 1e-5)]),
+                                            mean(PAML_100.0_summary["N9_N10", (PAML_100.0_summary[4, ] > 1e-5 & PAML_100.0_summary[6,] > 1e-5)]),
+                                            mean(PAML_500.0_summary["N9_N10", (PAML_500.0_summary[4, ] > 1e-5 & PAML_500.0_summary[6,] > 1e-5)]))
 non.zero.PAML.N4.N5.paralog2.sd.list <- c(sd(PAML_3.0_summary["N9_N10", (PAML_3.0_summary[4, ] > 1e-5 & PAML_3.0_summary[6,] > 1e-5)]), 
-                                 sd(PAML_10.0_summary["N9_N10", (PAML_10.0_summary[4, ] > 1e-5 & PAML_10.0_summary[6,] > 1e-5)]),
-                                 sd(PAML_50.0_summary["N9_N10", (PAML_50.0_summary[4, ] > 1e-5 & PAML_50.0_summary[6,] > 1e-5)]),
-                                 sd(PAML_100.0_summary["N9_N10", (PAML_100.0_summary[4, ] > 1e-5 & PAML_100.0_summary[6,] > 1e-5)]),
-                                 sd(PAML_500.0_summary["N9_N10", (PAML_500.0_summary[4, ] > 1e-5 & PAML_500.0_summary[6,] > 1e-5)]))
+                                          sd(PAML_10.0_summary["N9_N10", (PAML_10.0_summary[4, ] > 1e-5 & PAML_10.0_summary[6,] > 1e-5)]),
+                                          sd(PAML_50.0_summary["N9_N10", (PAML_50.0_summary[4, ] > 1e-5 & PAML_50.0_summary[6,] > 1e-5)]),
+                                          sd(PAML_100.0_summary["N9_N10", (PAML_100.0_summary[4, ] > 1e-5 & PAML_100.0_summary[6,] > 1e-5)]),
+                                          sd(PAML_500.0_summary["N9_N10", (PAML_500.0_summary[4, ] > 1e-5 & PAML_500.0_summary[6,] > 1e-5)]))
 # N4_mikatae
 non.zero.PAML.N4.mikatae.paralog1.mean.list <- c(mean(PAML_3.0_summary["N4_mikataeYDR418W", (PAML_3.0_summary[4, ] > 1e-5 & PAML_3.0_summary[6,] > 1e-5)]), 
-                                        mean(PAML_10.0_summary["N4_mikataeYDR418W", (PAML_10.0_summary[4, ] > 1e-5 & PAML_10.0_summary[6,] > 1e-5)]),
-                                        mean(PAML_50.0_summary["N4_mikataeYDR418W", (PAML_50.0_summary[4, ] > 1e-5 & PAML_50.0_summary[6,] > 1e-5)]),
-                                        mean(PAML_100.0_summary["N4_mikataeYDR418W", (PAML_100.0_summary[4, ] > 1e-5 & PAML_100.0_summary[6,] > 1e-5)]),
-                                        mean(PAML_500.0_summary["N4_mikataeYDR418W", (PAML_500.0_summary[4, ] > 1e-5 & PAML_500.0_summary[6,] > 1e-5)]))
+                                                 mean(PAML_10.0_summary["N4_mikataeYDR418W", (PAML_10.0_summary[4, ] > 1e-5 & PAML_10.0_summary[6,] > 1e-5)]),
+                                                 mean(PAML_50.0_summary["N4_mikataeYDR418W", (PAML_50.0_summary[4, ] > 1e-5 & PAML_50.0_summary[6,] > 1e-5)]),
+                                                 mean(PAML_100.0_summary["N4_mikataeYDR418W", (PAML_100.0_summary[4, ] > 1e-5 & PAML_100.0_summary[6,] > 1e-5)]),
+                                                 mean(PAML_500.0_summary["N4_mikataeYDR418W", (PAML_500.0_summary[4, ] > 1e-5 & PAML_500.0_summary[6,] > 1e-5)]))
 non.zero.PAML.N4.mikatae.paralog1.sd.list <- c(sd(PAML_3.0_summary["N4_mikataeYDR418W", (PAML_3.0_summary[4, ] > 1e-5 & PAML_3.0_summary[6,] > 1e-5)]), 
-                                      sd(PAML_10.0_summary["N4_mikataeYDR418W", (PAML_10.0_summary[4, ] > 1e-5 & PAML_10.0_summary[6,] > 1e-5)]),
-                                      sd(PAML_50.0_summary["N4_mikataeYDR418W", (PAML_50.0_summary[4, ] > 1e-5 & PAML_50.0_summary[6,] > 1e-5)]),
-                                      sd(PAML_100.0_summary["N4_mikataeYDR418W", (PAML_100.0_summary[4, ] > 1e-5 & PAML_100.0_summary[6,] > 1e-5)]),
-                                      sd(PAML_500.0_summary["N4_mikataeYDR418W", (PAML_500.0_summary[4, ] > 1e-5 & PAML_500.0_summary[6,] > 1e-5)]))
+                                               sd(PAML_10.0_summary["N4_mikataeYDR418W", (PAML_10.0_summary[4, ] > 1e-5 & PAML_10.0_summary[6,] > 1e-5)]),
+                                               sd(PAML_50.0_summary["N4_mikataeYDR418W", (PAML_50.0_summary[4, ] > 1e-5 & PAML_50.0_summary[6,] > 1e-5)]),
+                                               sd(PAML_100.0_summary["N4_mikataeYDR418W", (PAML_100.0_summary[4, ] > 1e-5 & PAML_100.0_summary[6,] > 1e-5)]),
+                                               sd(PAML_500.0_summary["N4_mikataeYDR418W", (PAML_500.0_summary[4, ] > 1e-5 & PAML_500.0_summary[6,] > 1e-5)]))
 non.zero.PAML.N4.mikatae.paralog2.mean.list <- c(mean(PAML_3.0_summary["N9_mikataeYEL054C", (PAML_3.0_summary[4, ] > 1e-5 & PAML_3.0_summary[6,] > 1e-5)]), 
-                                        mean(PAML_10.0_summary["N9_mikataeYEL054C", (PAML_10.0_summary[4, ] > 1e-5 & PAML_10.0_summary[6,] > 1e-5)]),
-                                        mean(PAML_50.0_summary["N9_mikataeYEL054C", (PAML_50.0_summary[4, ] > 1e-5 & PAML_50.0_summary[6,] > 1e-5)]),
-                                        mean(PAML_100.0_summary["N9_mikataeYEL054C", (PAML_100.0_summary[4, ] > 1e-5 & PAML_100.0_summary[6,] > 1e-5)]),
-                                        mean(PAML_500.0_summary["N9_mikataeYEL054C", (PAML_500.0_summary[4, ] > 1e-5 & PAML_500.0_summary[6,] > 1e-5)]))
+                                                 mean(PAML_10.0_summary["N9_mikataeYEL054C", (PAML_10.0_summary[4, ] > 1e-5 & PAML_10.0_summary[6,] > 1e-5)]),
+                                                 mean(PAML_50.0_summary["N9_mikataeYEL054C", (PAML_50.0_summary[4, ] > 1e-5 & PAML_50.0_summary[6,] > 1e-5)]),
+                                                 mean(PAML_100.0_summary["N9_mikataeYEL054C", (PAML_100.0_summary[4, ] > 1e-5 & PAML_100.0_summary[6,] > 1e-5)]),
+                                                 mean(PAML_500.0_summary["N9_mikataeYEL054C", (PAML_500.0_summary[4, ] > 1e-5 & PAML_500.0_summary[6,] > 1e-5)]))
 non.zero.PAML.N4.mikatae.paralog2.sd.list <- c(sd(PAML_3.0_summary["N9_mikataeYEL054C", (PAML_3.0_summary[4, ] > 1e-5 & PAML_3.0_summary[6,] > 1e-5)]), 
-                                      sd(PAML_10.0_summary["N9_mikataeYEL054C", (PAML_10.0_summary[4, ] > 1e-5 & PAML_10.0_summary[6,] > 1e-5)]),
-                                      sd(PAML_50.0_summary["N9_mikataeYEL054C", (PAML_50.0_summary[4, ] > 1e-5 & PAML_50.0_summary[6,] > 1e-5)]),
-                                      sd(PAML_100.0_summary["N9_mikataeYEL054C", (PAML_100.0_summary[4, ] > 1e-5 & PAML_100.0_summary[6,] > 1e-5)]),
-                                      sd(PAML_500.0_summary["N9_mikataeYEL054C", (PAML_500.0_summary[4, ] > 1e-5 & PAML_500.0_summary[6,] > 1e-5)]))
+                                               sd(PAML_10.0_summary["N9_mikataeYEL054C", (PAML_10.0_summary[4, ] > 1e-5 & PAML_10.0_summary[6,] > 1e-5)]),
+                                               sd(PAML_50.0_summary["N9_mikataeYEL054C", (PAML_50.0_summary[4, ] > 1e-5 & PAML_50.0_summary[6,] > 1e-5)]),
+                                               sd(PAML_100.0_summary["N9_mikataeYEL054C", (PAML_100.0_summary[4, ] > 1e-5 & PAML_100.0_summary[6,] > 1e-5)]),
+                                               sd(PAML_500.0_summary["N9_mikataeYEL054C", (PAML_500.0_summary[4, ] > 1e-5 & PAML_500.0_summary[6,] > 1e-5)]))
 
 # N4_N5
 par(mfrow = c(2, 2))
@@ -303,7 +324,7 @@ hist(target, main = "N5_paradoxus"); mean(target); sd(target)
 # N5_cerevisiae
 target <- PAML_3.0_summary["N5_cerevisiaeYDR418W", ] / PAML_3.0_summary["N10_cerevisiaeYEL054C", ]  # paralog 1 / paralog 2
 hist(target, main = "N5_cerevisiae"); mean(target); sd(target)
- 
+
 # N0_N1
 target <- PAML_10.0_summary["N0_N1", ] / PAML_10.0_summary["N0_N6", ]
 hist(target, main = "N0_N1"); mean(target); sd(target)
@@ -347,7 +368,7 @@ hist(target, main = "N5_paradoxus"); mean(target); sd(target)
 # N5_cerevisiae
 target <- PAML_10.0_summary["N5_cerevisiaeYDR418W", ] / PAML_10.0_summary["N10_cerevisiaeYEL054C", ]  # paralog 1 / paralog 2
 hist(target, main = "N5_cerevisiae"); mean(target); sd(target)
- 
+
 # N0_N1
 target <- PAML_50.0_summary["N0_N1", ] / PAML_50.0_summary["N0_N6", ]
 hist(target, main = "N0_N1"); mean(target); sd(target)
@@ -391,7 +412,7 @@ hist(target, main = "N5_paradoxus"); mean(target); sd(target)
 # N5_cerevisiae
 target <- PAML_50.0_summary["N5_cerevisiaeYDR418W", ] / PAML_50.0_summary["N10_cerevisiaeYEL054C", ]  # paralog 1 / paralog 2
 hist(target, main = "N5_cerevisiae"); mean(target); sd(target)
- # N0_N1
+# N0_N1
 target <- PAML_100.0_summary["N0_N1", ] / PAML_100.0_summary["N0_N6", ]
 hist(target, main = "N0_N1"); mean(target); sd(target)
 
@@ -434,7 +455,7 @@ hist(target, main = "N5_paradoxus"); mean(target); sd(target)
 # N5_cerevisiae
 target <- PAML_100.0_summary["N5_cerevisiaeYDR418W", ] / PAML_100.0_summary["N10_cerevisiaeYEL054C", ]  # paralog 1 / paralog 2
 hist(target, main = "N5_cerevisiae"); mean(target); sd(target)
- # N0_N1
+# N0_N1
 target <- PAML_500.0_summary["N0_N1", ] / PAML_500.0_summary["N0_N6", ]
 hist(target, main = "N0_N1"); mean(target); sd(target)
 
@@ -477,6 +498,6 @@ hist(target, main = "N5_paradoxus"); mean(target); sd(target)
 # N5_cerevisiae
 target <- PAML_500.0_summary["N5_cerevisiaeYDR418W", ] / PAML_500.0_summary["N10_cerevisiaeYEL054C", ]  # paralog 1 / paralog 2
 hist(target, main = "N5_cerevisiae"); mean(target); sd(target)
- 
- 
+
+
 ```
