@@ -33,7 +33,7 @@ if __name__ == '__main__':
                  '/Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_local_nametree3.newick']
     IGC_geo_list = [3.0]
 
-    local_tree_num = 3
+    local_tree_num = 1
     tree_loc = tree_list[local_tree_num - 1]
     name_tree = nametree_list[local_tree_num - 1]
             
@@ -47,28 +47,28 @@ if __name__ == '__main__':
             seq_loc = wk_dir + 'YDR418W_YEL054C_MG94_geo_' + str(IGC_geo) + '_Sim_' + str(sim_num) + '.fasta'
             ctl_loc = wk_dir + 'geo_' + str(IGC_geo) + '_Sim_' + str(sim_num) + '_localTree_' + str(local_tree_num) + '_codeml.ctl'
             out_file = wk_dir + 'unrooted_MG94_geo_' + str(IGC_geo) + '_Sim_' + str(sim_num) + '_localTree_' + str(local_tree_num) + '_codeml_output.txt'
-            prepare_ctl(tree_loc, seq_loc, out_file, ctl_loc)
-            run_paml(wk_dir, ctl_loc)#, "/Users/xji3/Software/paml4.8/bin/codeml")
+##            prepare_ctl(tree_loc, seq_loc, out_file, ctl_loc)
+##            run_paml(wk_dir, ctl_loc)#, "/Users/xji3/Software/paml4.8/bin/codeml")
             
-##            if os.path.isfile(out_file):
-##                codeml_result = codeml.read(out_file)
-##                tree_file = out_file.replace('codeml_output.txt', 'codeml_est.newick')
-##                with open(tree_file, 'w+') as f:
-##                    f.write(codeml_result['NSsites'][0]['tree'] + '\n')
-##
-##                edge_to_blen, edge_list = get_tree(tree_file, name_tree)
-##                summary = [codeml_result['NSsites'][0]['lnL'],
-##                           codeml_result['NSsites'][0]['parameters']['kappa'],
-##                           codeml_result['NSsites'][0]['parameters']['omega']]
-##                summary.extend([edge_to_blen[edge] for edge in edge_list])
-##                summary_mat.append(summary)
-##                header.append('geo_' + str(IGC_geo) + '_sim_' + str(sim_num))
-##
-##        
-##        label.extend(['_'.join(edge) for edge in edge_list])
-##        print len(header), len(label)
-##        footer = ' '.join(label)
-##        header = ' '.join(header)
-##        np.savetxt(open('./geo_' + str(IGC_geo) + '_estimatedTau_paml_unrooted_localTree_' + str(local_tree_num) +'_summary.txt', 'w+'), np.matrix(summary_mat).T, delimiter = ' ', footer = footer, header = header)
+            if os.path.isfile(out_file):
+                codeml_result = codeml.read(out_file)
+                tree_file = out_file.replace('codeml_output.txt', 'codeml_est.newick')
+                with open(tree_file, 'w+') as f:
+                    f.write(codeml_result['NSsites'][0]['tree'] + '\n')
+
+                edge_to_blen, edge_list = get_tree(tree_file, name_tree)
+                summary = [codeml_result['NSsites'][0]['lnL'],
+                           codeml_result['NSsites'][0]['parameters']['kappa'],
+                           codeml_result['NSsites'][0]['parameters']['omega']]
+                summary.extend([edge_to_blen[edge] for edge in edge_list])
+                summary_mat.append(summary)
+                header.append('geo_' + str(IGC_geo) + '_sim_' + str(sim_num))
+
+        
+        label.extend(['_'.join(edge) for edge in edge_list])
+        print len(header), len(label)
+        footer = ' '.join(label)
+        header = ' '.join(header)
+        np.savetxt(open('./geo_' + str(IGC_geo) + '_estimatedTau_paml_unrooted_localTree_' + str(local_tree_num) +'_summary.txt', 'w+'), np.matrix(summary_mat).T, delimiter = ' ', footer = footer, header = header)
 ##     
                 
