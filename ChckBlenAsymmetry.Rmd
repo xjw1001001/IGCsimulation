@@ -9,9 +9,9 @@ Load data from All.RData
 
 ```{r}
 rm(list=ls())  # clean up workspace
-load("/Users/xji3/GitFolders/IGCCodonSimulation/All.RData")
+load("/Users/Xiang/GitFolders/IGCCodonSimulation/All.RData")
 
-paml.path <- "/Users/xji3/GitFolders/IGCCodonSimulation/"
+paml.path <- "/Users/Xiang/GitFolders/IGCCodonSimulation/"
 IGC.geo.list <- c(3.0)
 
 for (IGC.geo in IGC.geo.list){
@@ -113,7 +113,7 @@ for (IGC.geo in IGC.geo.list){
   assign(paste("PAML", "10Tau", paste(toString(IGC.geo), ".0", sep = ""), "2ndTree", "summary", sep = "_"), summary_mat)
 }
 
-save.image("/Users/xji3/GitFolders/IGCCodonSimulation/All.RData")
+save.image("/Users/Xiang/GitFolders/IGCCodonSimulation/All.RData")
 ```
 
 #### Feb 11 update
@@ -124,11 +124,14 @@ sum(PAML_estimatedTau_3.0_1stTree_summary["ll",] - PAML_estimatedTau_3.0_LocalTr
 sum(PAML_estimatedTau_3.0_1stTree_summary["ll",] - PAML_estimatedTau_3.0_LocalTree_3_summary["ll",] < 0)
 
 hist((PAML_estimatedTau_3.0_1stTree_summary["ll",] - PAML_estimatedTau_3.0_LocalTree_1_summary["ll",])[PAML_estimatedTau_3.0_1stTree_summary["ll",] - PAML_estimatedTau_3.0_LocalTree_1_summary["ll",] < 0],
-     main = "lnL difference - local tree 1")
+     main = "lnL difference - local tree 1",
+     xlab = "lnL difference")
 hist((PAML_estimatedTau_3.0_1stTree_summary["ll",] - PAML_estimatedTau_3.0_LocalTree_2_summary["ll",])[PAML_estimatedTau_3.0_1stTree_summary["ll",] - PAML_estimatedTau_3.0_LocalTree_2_summary["ll",] < 0],
-     main = "lnL difference - local tree 2")
+     main = "lnL difference - local tree 2",
+     xlab = "lnL difference")
 hist((PAML_estimatedTau_3.0_1stTree_summary["ll",] - PAML_estimatedTau_3.0_LocalTree_3_summary["ll",])[PAML_estimatedTau_3.0_1stTree_summary["ll",] - PAML_estimatedTau_3.0_LocalTree_3_summary["ll",] < 0],
-     main = "lnL difference - local tree 3")
+     main = "lnL difference - local tree 3",
+     xlab = "lnL difference")
 
 ```
 
