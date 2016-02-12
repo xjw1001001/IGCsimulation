@@ -5,6 +5,7 @@ from cStringIO import StringIO
 from Bio.Phylo.PAML import codeml, baseml
 import numpy as np
 import networkx as nx
+from copy import deepcopy
 
 def initialize(paralog, out_path = './output/', alignment_path = '../MafftAlignment/'):
     if not os.path.isdir(out_path + '_'.join(paralog)):
@@ -202,10 +203,12 @@ if __name__ == '__main__':
                     f.write(codeml_result['NSsites'][0]['tree'] + '\n')
 
                 edge_to_blen, edge_list_1 = get_tree(tree1_file, name_tree_1st)
+                if sim_num == 0:
+                    edge_list_1_fix = deepcopy(edge_list_1)
                 summary = [codeml_result['NSsites'][0]['lnL'],
                            codeml_result['NSsites'][0]['parameters']['kappa'],
                            codeml_result['NSsites'][0]['parameters']['omega']]
-                summary.extend([edge_to_blen[edge] for edge in edge_list_1])
+                summary.extend([edge_to_blen[edge] for edge in edge_list_1_fix])
                 summary_mat.append(summary)
                 header.append('geo_' + str(IGC_geo) + '_sim_' + str(sim_num))
 
@@ -222,20 +225,22 @@ if __name__ == '__main__':
                     f.write(tree_line)
 
                 edge_to_blen, edge_list_2 = get_tree(tree2_file, name_tree_2nd)
+                if sim_num == 0:
+                    edge_list_2_fix = deepcopy(edge_list_2)
                 summary = [codeml_result['NSsites'][0]['lnL'],
                            codeml_result['NSsites'][0]['parameters']['kappa'],
                            codeml_result['NSsites'][0]['parameters']['omega']]
-                summary.extend([edge_to_blen[edge] for edge in edge_list_2])
+                summary.extend([edge_to_blen[edge] for edge in edge_list_2_fix])
                 summary_mat_2.append(summary)
                 #header.append('geo_' + str(IGC_geo) + '_sim_' + str(sim_num))
         
-        label.extend(['_'.join(edge) for edge in edge_list_1])
+        label.extend(['_'.join(edge) for edge in edge_list_1_fix])
         print len(header), len(label)
         footer = ' '.join(label)
         header = ' '.join(header)
         np.savetxt(open('./geo_' + str(IGC_geo) + '_estimatedTau_paml_unrooted_1stTree_summary.txt', 'w+'), np.matrix(summary_mat).T, delimiter = ' ', footer = footer, header = header)
         label = ['ll', 'kappa', 'omega']
-        label.extend(['_'.join(edge) for edge in edge_list_2])
+        label.extend(['_'.join(edge) for edge in edge_list_2_fix])
         footer = ' '.join(label)
         np.savetxt(open('./geo_' + str(IGC_geo) + '_estimatedTau_paml_unrooted_2ndTree_summary.txt', 'w+'), np.matrix(summary_mat_2).T, delimiter = ' ', footer = footer, header = header)
   

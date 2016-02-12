@@ -6,6 +6,7 @@ from Bio.Phylo.PAML import codeml, baseml
 import numpy as np
 import networkx as nx
 from PamlCheck import run_paml, prepare_ctl, get_tree, Seperate_codeml_result
+from copy import deepcopy
 
 def ReverseFastaOrder(input_fasta_file, output_fasta_flie):
     if os.path.isfile(input_fasta_file):
@@ -32,6 +33,7 @@ if __name__ == '__main__':
                  '/Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_local_nametree2.newick',
                  '/Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_local_nametree3.newick']
     IGC_geo_list = [3.0, 10.0, 50.0, 100.0, 500.0]
+    #IGC_geo_list = [3.0]
 
     #local_tree_num = 1
     for local_tree_num in range(1, 4):
@@ -58,15 +60,17 @@ if __name__ == '__main__':
                         f.write(codeml_result['NSsites'][0]['tree'] + '\n')
 
                     edge_to_blen, edge_list = get_tree(tree_file, name_tree)
+                    if sim_num == 0:
+                        edge_list_fix = deepcopy(edge_list)
                     summary = [codeml_result['NSsites'][0]['lnL'],
                                codeml_result['NSsites'][0]['parameters']['kappa'],
                                codeml_result['NSsites'][0]['parameters']['omega']]
-                    summary.extend([edge_to_blen[edge] for edge in edge_list])
+                    summary.extend([edge_to_blen[edge] for edge in edge_list_fix])
                     summary_mat.append(summary)
                     header.append('geo_' + str(IGC_geo) + '_sim_' + str(sim_num))
 
             
-            label.extend(['_'.join(edge) for edge in edge_list])
+            label.extend(['_'.join(edge) for edge in edge_list_fix])
             print len(header), len(label)
             footer = ' '.join(label)
             header = ' '.join(header)

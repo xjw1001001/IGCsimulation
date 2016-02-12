@@ -14,6 +14,30 @@ load("/Users/xji3/GitFolders/IGCCodonSimulation/All.RData")
 paml.path <- "/Users/xji3/GitFolders/IGCCodonSimulation/"
 IGC.geo.list <- c(3.0, 10.0, 50.0, 100.0, 500.0)
 
+check.paml.path <- "/Users/xji3/TempChecking/IGCCodonSimulation/"
+#IGC.geo.list <- c(3.0)
+for (IGC.geo in IGC.geo.list){
+  for (localtree in 1:3){
+    summary_mat <- NULL
+    IGC.geo.path <- paste("IGCgeo_", toString(IGC.geo), ".0/", sep = "")
+    file.name <- paste("geo", paste(toString(IGC.geo), ".0", sep = ""), "estimatedTau", "paml", "unrooted", "LocalTree", toString(localtree), "summary.txt", sep = "_")
+    for (sim.num in 0:(num.sim - 1)){
+      summary_file <- paste(check.paml.path, file.name, sep = "")
+      if (file.exists(summary_file)){
+        all <- readLines(summary_file, n = -1)
+        col.names <- strsplit(all[1], ' ')[[1]][-1]
+        row.names <- strsplit(all[length(all)], ' ')[[1]][-1]
+        summary_mat <- as.matrix(read.table(summary_file, 
+                                            row.names = row.names, 
+                                            col.names = col.names))
+        
+      }
+    }
+    assign(paste("check_PAML", "estimatedTau", paste(toString(IGC.geo), ".0", sep = ""), "LocalTree", toString(localtree), "summary", sep = "_"), summary_mat)}
+}
+
+
+
 for (IGC.geo in IGC.geo.list){
   for (localtree in 1:3){
     summary_mat <- NULL
@@ -138,51 +162,104 @@ hist((PAML_estimatedTau_3.0_1stTree_summary["ll",] - PAML_estimatedTau_3.0_Local
 sum(PAML_3.0_summary[4, ] < 5e-6 & PAML_3.0_summary[6, ] > 5e-6 )
 sum(PAML_3.0_summary[4, ] > 5e-6 & PAML_3.0_summary[6, ] < 5e-6 )
 # No asymmetry in the 0 branch length estimates
-convert.summary <- function(localTree, summary){
-  new.summary <- NULL
+convert.summary <- function(localTree, summary, vector.names){
+  new.summary <- vector("numeric", length(vector.names))
+  names(new.summary) <- vector.names
   if (localTree == 1){
-    new.summary <- summary[1:3]
-    new.summary <- c(new.summary, summary["N0_N5"], summary["N0_kluyveriYDR418W"],
-                     0.0, summary["N0_N1"], summary["N0_castelliiYDR418W"], 
-                     summary["N1_bayanusYDR418W"], summary["N1_N2"], summary["N2_N3"],
-                     summary["N2_kudriavzeviiYDR418W"], summary["N3_N4"], summary["N3_mikataeYDR418W"],
-                     summary["N4_paradoxusYDR418W"], summary["N4_cerevisiaeYDR418W"],
-                     summary["N5_N6"], summary["N5_castelliiYEL054C"], summary["N6_N7"], summary["N6_bayanusYEL054C"],
-                     summary["N7_N8"], summary["N7_kudriavzeviiYEL054C"], summary["N8_mikataeYEL054C"], summary["N8_N9"],
-                     summary["N9_paradoxusYEL054C"], summary["N9_cerevisiaeYEL054C"])
+    new.summary[1:3] <- summary[1:3]
+    new.summary["N0_N6"] <- summary["N0_N5"]
+    new.summary["N0_kluyveriYDR418W"] <- summary["N0_kluyveriYDR418W"]
+    new.summary["N0_N1"] <- 0.0
+    new.summary["N1_N2"] <- summary["N0_N1"]
+    new.summary["N1_castelliiYDR418W"] <- summary["N0_castelliiYDR418W"]
+    new.summary["N2_bayanusYDR418W"] <- summary["N1_bayanusYDR418W"]
+    new.summary["N2_N3"] <- summary["N1_N2"]
+    new.summary["N3_N4"] <- summary["N2_N3"]
+    new.summary["N3_kudriavzeviiYDR418W"] <- summary["N2_kudriavzeviiYDR418W"]
+    new.summary["N4_N5"] <- summary["N3_N4"]
+    new.summary["N4_mikataeYDR418W"] <- summary["N3_mikataeYDR418W"]
+    new.summary["N5_paradoxusYDR418W"] <- summary["N4_paradoxusYDR418W"]
+    new.summary["N5_cerevisiaeYDR418W"] <- summary["N4_cerevisiaeYDR418W"]
+    new.summary["N6_N7"] <- summary["N5_N6"]
+    new.summary["N6_castelliiYEL054C"] <- summary["N5_castelliiYEL054C"]
+    new.summary["N7_N8"] <- summary["N6_N7"]
+    new.summary["N7_bayanusYEL054C"] <- summary["N6_bayanusYEL054C"]
+    new.summary["N8_N9"] <- summary["N7_N8"]
+    new.summary["N8_kudriavzeviiYEL054C"] <- summary["N7_kudriavzeviiYEL054C"]
+    new.summary["N9_mikataeYEL054C"] <- summary["N8_mikataeYEL054C"]
+    new.summary["N9_N10"] <- summary["N8_N9"]
+    new.summary["N10_paradoxusYEL054C"] <- summary["N9_paradoxusYEL054C"]
+    new.summary["N10_cerevisiaeYEL054C"] <- summary["N9_cerevisiaeYEL054C"]
+  
     }
   else if (localTree == 2){
-    new.summary <- summary[1:3]
-    new.summary <- c(new.summary, 0.0, summary[6:17], summary["N0_N6"], summary["N0_castelliiYEL054C"],
-                     summary["N6_N7"], summary["N6_bayanusYEL054C"], summary["N7_N8"], 
-                     summary["N7_kudriavzeviiYEL054C"], summary["N8_mikataeYEL054C"],
-                     summary["N8_N9"], summary["N9_paradoxusYEL054C"], summary["N9_cerevisiaeYEL054C"])
+    new.summary[1:3] <- summary[1:3]
+    new.summary["N0_N6"] <- 0.0
+    new.summary["N0_kluyveriYDR418W"] <- summary["N0_kluyveriYDR418W"]
+    new.summary["N0_N1"] <- summary["N0_N1"]
+    new.summary["N1_N2"] <- summary["N1_N2"]
+    new.summary["N1_castelliiYDR418W"] <- summary["N1_castelliiYDR418W"]
+    new.summary["N2_bayanusYDR418W"] <- summary["N2_bayanusYDR418W"]
+    new.summary["N2_N3"] <- summary["N2_N3"]
+    new.summary["N3_N4"] <- summary["N3_N4"]
+    new.summary["N3_kudriavzeviiYDR418W"] <- summary["N3_kudriavzeviiYDR418W"]
+    new.summary["N4_N5"] <- summary["N4_N5"]
+    new.summary["N4_mikataeYDR418W"] <- summary["N4_mikataeYDR418W"]
+    new.summary["N5_paradoxusYDR418W"] <- summary["N5_paradoxusYDR418W"]
+    new.summary["N5_cerevisiaeYDR418W"] <- summary["N5_cerevisiaeYDR418W"]
+    new.summary["N6_N7"] <- summary["N0_N6"]
+    new.summary["N6_castelliiYEL054C"] <- summary["N0_castelliiYEL054C"]
+    new.summary["N7_N8"] <- summary["N6_N7"]
+    new.summary["N7_bayanusYEL054C"] <- summary["N6_bayanusYEL054C"]
+    new.summary["N8_N9"] <- summary["N7_N8"]
+    new.summary["N8_kudriavzeviiYEL054C"] <- summary["N7_kudriavzeviiYEL054C"]
+    new.summary["N9_mikataeYEL054C"] <- summary["N8_mikataeYEL054C"]
+    new.summary["N9_N10"] <- summary["N8_N9"]
+    new.summary["N10_paradoxusYEL054C"] <- summary["N9_paradoxusYEL054C"]
+    new.summary["N10_cerevisiaeYEL054C"] <- summary["N9_cerevisiaeYEL054C"]
     }
   else if (localTree == 3){
-    new.summary <- summary[1:3]
-    new.summary <- c(new.summary, 0.0, summary["N0_kluyveriYDR418W"], 0.0, 
-                     summary["N0_N1"], summary["N0_castelliiYDR418W"], summary["N1_bayanusYDR418W"], summary["N1_N2"], 
-                     summary["N2_N3"], summary["N2_kudriavzeviiYDR418W"], summary["N3_N4"], summary["N3_mikataeYDR418W"],
-                     summary["N4_paradoxusYDR418W"], summary["N4_cerevisiaeYDR418W"], 
-                     summary["N0_N5"], summary["N0_castelliiYEL054C"], summary["N5_N6"], summary["N5_bayanusYEL054C"], 
-                     summary["N6_N7"], summary["N6_kudriavzeviiYEL054C"], summary["N7_mikataeYEL054C"], summary["N7_N8"],
-                     summary["N8_paradoxusYEL054C"], summary["N8_cerevisiaeYEL054C"])
+    new.summary[1:3] <- summary[1:3]
+    new.summary["N0_N6"] <- 0.0
+    new.summary["N0_kluyveriYDR418W"] <- summary["N0_kluyveriYDR418W"]
+    new.summary["N0_N1"] <- 0.0
+    new.summary["N1_N2"] <- summary["N0_N1"]
+    new.summary["N1_castelliiYDR418W"] <- summary["N0_castelliiYDR418W"]
+    new.summary["N2_bayanusYDR418W"] <- summary["N1_bayanusYDR418W"]
+    new.summary["N2_N3"] <- summary["N1_N2"]
+    new.summary["N3_N4"] <- summary["N2_N3"]
+    new.summary["N3_kudriavzeviiYDR418W"] <- summary["N2_kudriavzeviiYDR418W"]
+    new.summary["N4_N5"] <- summary["N3_N4"]
+    new.summary["N4_mikataeYDR418W"] <- summary["N3_mikataeYDR418W"]
+    new.summary["N5_paradoxusYDR418W"] <- summary["N4_paradoxusYDR418W"]
+    new.summary["N5_cerevisiaeYDR418W"] <- summary["N4_cerevisiaeYDR418W"]
+    new.summary["N6_N7"] <- summary["N0_N5"]
+    new.summary["N6_castelliiYEL054C"] <- summary["N0_castelliiYEL054C"]
+    new.summary["N7_N8"] <- summary["N5_N6"]
+    new.summary["N7_bayanusYEL054C"] <- summary["N5_bayanusYEL054C"]
+    new.summary["N8_N9"] <- summary["N6_N7"]
+    new.summary["N8_kudriavzeviiYEL054C"] <- summary["N6_kudriavzeviiYEL054C"]
+    new.summary["N9_mikataeYEL054C"] <- summary["N7_mikataeYEL054C"]
+    new.summary["N9_N10"] <- summary["N7_N8"]
+    new.summary["N10_paradoxusYEL054C"] <- summary["N8_paradoxusYEL054C"]
+    new.summary["N10_cerevisiaeYEL054C"] <- summary["N8_cerevisiaeYEL054C"]
     }
   else if (localTree == 4){
-    new.summary <- summary
+    new.summary[vector.names] <- summary[vector.names]
     }
   return (new.summary)
   }
 
 for (IGC.geo in IGC.geo.list){
   max.lnL.summary <- NULL
+  vector.names = rownames(get(paste("PAML_estimatedTau_", paste(toString(IGC.geo), ".0", sep = ""), "_1stTree_summary", sep = "")))
   for (sim.num in 1:100){
     max.pos <- which.max(c(get(paste("PAML_estimatedTau_", paste(toString(IGC.geo), ".0", sep = ""), "_LocalTree_1_summary", sep = ""))["ll", sim.num],
                            get(paste("PAML_estimatedTau_",paste(toString(IGC.geo), ".0", sep = ""), "_LocalTree_2_summary", sep = ""))["ll", sim.num],
                            get(paste("PAML_estimatedTau_",paste(toString(IGC.geo), ".0", sep = ""), "_LocalTree_3_summary", sep = ""))["ll", sim.num],
                            get(paste("PAML_estimatedTau_", paste(toString(IGC.geo), ".0", sep = ""), "_1stTree_summary", sep = ""))["ll", sim.num]))
     if (max.pos < 4){
-      new.summary <- convert.summary(max.pos, get(paste("PAML_estimatedTau", paste(toString(IGC.geo), ".0", sep = ""), "LocalTree", toString(max.pos), "summary", sep = "_"))[, sim.num])
+      new.summary <- convert.summary(max.pos, get(paste("PAML_estimatedTau", paste(toString(IGC.geo), ".0", sep = ""), "LocalTree", toString(max.pos), "summary", sep = "_"))[, sim.num], vector.names)
       }
     else{
       new.summary <- get(paste("PAML_estimatedTau_", paste(toString(IGC.geo), ".0", sep = ""), "_1stTree_summary", sep = ""))[, sim.num]
