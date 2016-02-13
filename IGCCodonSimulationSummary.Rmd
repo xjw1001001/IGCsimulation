@@ -10,8 +10,8 @@ This script is used for summarizing IGC Simulation result (with tract length)
 Read in data first
 ```{r}
 rm(list=ls())  # clean up workspace
-IGC.path <- "/Users/xji3/FromCluster_IGCCodonSimulation01262016/"
-paml.path <- "/Users/xji3/GitFolders/IGCCodonSimulation/"
+IGC.path <- "/Users/Xiang/FromCluster_IGCCodonSimulation01262016/"
+paml.path <- "/Users/Xiang/GitFolders/IGCCodonSimulation/"
 IGC.geo.list <- c(3.0, 10.0, 50.0, 100.0, 500.0)
 #IGC.geo.list <- c(1.0)
 num.sim = 100

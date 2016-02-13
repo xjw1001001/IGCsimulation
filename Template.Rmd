@@ -1,0 +1,147 @@
+---
+title: "IGCCodonSimPAMLsummary"
+output: html_document
+---
+
+
+Load data from All.RData
+
+```{r}
+rm(list=ls())  # clean up workspace
+load("/Users/Xiang/GitFolders/IGCCodonSimulation/All.RData")
+## try http:// if https:// URLs are not supported
+#source("https://bioconductor.org/biocLite.R")
+#biocLite("ggtree")
+#library("ggtree")
+library("ape")
+
+IGC.geo.list <- c(3.0, 10.0, 50.0, 100.0, 500.0)
+
+PAML.local.tree.1 <- NULL
+PAML.local.tree.2 <- NULL
+PAML.local.tree.3 <- NULL
+for (IGC.geo in IGC.geo.list){
+  tree.local.1 <- read.tree(file = "/Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_3.0/sim_0/unrooted_MG94_geo_3.0_Sim_0_localTree_1_codeml_est.newick")
+  edge.local.1 <- tree.local.1$edge
+  check.1 <- TRUE
+  tree.local.2 <- read.tree(file = "/Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_3.0/sim_0/unrooted_MG94_geo_3.0_Sim_0_localTree_2_codeml_est.newick")
+  edge.local.2 <- tree.local.2$edge
+  check.2 <- TRUE
+  tree.local.3 <- read.tree(file = "/Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_3.0/sim_0/unrooted_MG94_geo_3.0_Sim_0_localTree_3_codeml_est.newick")
+  edge.local.3 <- tree.local.3$edge
+  check.3 <- TRUE
+  
+  for (sim.num in 0:99){
+    newick.tree.file <- paste("/Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_3.0/sim_", toString(sim.num),"/unrooted_MG94_geo_3.0_Sim_", toString(sim.num), "_localTree_1_codeml_est.newick", sep = "") 
+    tree.local.1 <- read.tree(file = newick.tree.file)
+    check.1 <- check.1 & all(edge.local.1 == tree.local.1$edge)
+    PAML.local.tree.1 <- cbind(PAML.local.tree.1, tree.local.1$edge.length)
+    
+    newick.tree.file <- paste("/Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_3.0/sim_", toString(sim.num),"/unrooted_MG94_geo_3.0_Sim_", toString(sim.num), "_localTree_2_codeml_est.newick", sep = "") 
+    tree.local.2 <- read.tree(file = newick.tree.file)
+    check.2 <- check.2 & all(edge.local.2 == tree.local.2$edge)
+    PAML.local.tree.2 <- cbind(PAML.local.tree.2, tree.local.2$edge.length)
+    
+    newick.tree.file <- paste("/Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_3.0/sim_", toString(sim.num),"/unrooted_MG94_geo_3.0_Sim_", toString(sim.num), "_localTree_3_codeml_est.newick", sep = "") 
+    tree.local.3 <- read.tree(file = newick.tree.file)
+    check.3 <- check.3 & all(edge.local.3 == tree.local.3$edge)
+    PAML.local.tree.3 <- cbind(PAML.local.tree.3, tree.local.3$edge.length)
+  }
+  
+  # Now assign rownames
+  node.names.1 <- c("cerevisiaeYDR418W", "paradoxusYDR418W", "mikataeYDR418W", "kudriavzeviiYDR418W",
+                    "bayanusYDR418W", "castelliiYDR418W", "cerevisiaeYEL054C", "paradoxusYEL054C", 
+                    "mikataeYEL054C", "kudriavzeviiYEL054C", "bayanusYEL054C", "castelliiYEL054C",
+                    "kluyveriYDR418W",
+                    "N0", "N1", "N2", "N3", "N4", "N5",
+                    "N6", "N7", "N8", "N9")
+  node.names.2 <- c("cerevisiaeYDR418W", "paradoxusYDR418W", "mikataeYDR418W", "kudriavzeviiYDR418W",
+                    "bayanusYDR418W", "castelliiYDR418W", "cerevisiaeYEL054C", "paradoxusYEL054C", 
+                    "mikataeYEL054C", "kudriavzeviiYEL054C", "bayanusYEL054C", "castelliiYEL054C",
+                    "kluyveriYDR418W",
+                    "N0", "N1", "N2", "N3", "N4", "N5",
+                    "N6", "N7", "N8", "N9")
+  node.names.3 <- c("cerevisiaeYDR418W", "paradoxusYDR418W", "mikataeYDR418W", "kudriavzeviiYDR418W",
+                    "bayanusYDR418W", "castelliiYDR418W", "cerevisiaeYEL054C", "paradoxusYEL054C", 
+                    "mikataeYEL054C", "kudriavzeviiYEL054C", "bayanusYEL054C", "castelliiYEL054C",
+                    "kluyveriYDR418W",
+                    "N0", "N1", "N2", "N3", "N4", "N5", "N6",
+                    "N7", "N8")
+  local.row.names.1 <- NULL
+  for (i in 1:dim(edge.local.1)[1]){
+    local.row.names.1 <- c(local.row.names.1, paste(node.names.1[edge.local.1[i, 1]], node.names.1[edge.local.1[i, 2]], sep = "_"))
+  }
+  local.row.names.2 <- NULL
+  for (i in 1:dim(edge.local.2)[1]){
+    local.row.names.2 <- c(local.row.names.2, paste(node.names.2[edge.local.2[i, 1]], node.names.2[edge.local.2[i, 2]], sep = "_"))
+  }
+  local.row.names.3 <- NULL
+  for (i in 1:dim(edge.local.3)[1]){
+    local.row.names.3 <- c(local.row.names.3, paste(node.names.3[edge.local.3[i, 1]], node.names.3[edge.local.3[i, 2]], sep = "_"))
+  }
+}
+```
+
+Now load in two representations of the correct tree topology
+
+```{r}
+PAML.tree.1 <- NULL
+PAML.tree.2 <- NULL
+
+tree.1 <- read.tree(file = "/Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_3.0/sim_0/unrooted_MG94_geo_3.0_Sim_0_codeml_tree1_est.newick")
+edge.1 <- tree.1$edge
+check.1 <- TRUE
+
+tree.2 <- read.tree(file = "/Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_3.0/sim_0/unrooted_MG94_geo_3.0_Sim_0_codeml_tree2_est.newick")
+edge.2 <- tree.2$edge
+check.2 <- TRUE
+
+for (sim.num in 0:99){
+  newick.tree.file <- paste("/Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_3.0/sim_", toString(sim.num),"/unrooted_MG94_geo_3.0_Sim_", toString(sim.num), "_codeml_tree1_est.newick", sep = "") 
+  tree.1 <- read.tree(file = newick.tree.file)
+  check.1 <- check.1 & all(edge.1 == tree.1$edge)
+  PAML.tree.1 <- cbind(PAML.tree.1, tree.1$edge.length)
+  
+  newick.tree.file <- paste("/Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_3.0/sim_", toString(sim.num),"/unrooted_MG94_geo_3.0_Sim_", toString(sim.num), "_codeml_tree2_est.newick", sep = "") 
+  tree.2 <- read.tree(file = newick.tree.file)
+  check.2 <- check.2 & all(edge.2 == tree.2$edge)
+  PAML.tree.2 <- cbind(PAML.tree.2, tree.2$edge.length)
+}
+# Now assign rownames
+node.names.1 <- c("cerevisiaeYDR418W", "paradoxusYDR418W", "mikataeYDR418W", "kudriavzeviiYDR418W",
+                  "bayanusYDR418W", "castelliiYDR418W", "cerevisiaeYEL054C", "paradoxusYEL054C", 
+                  "mikataeYEL054C", "kudriavzeviiYEL054C", "bayanusYEL054C", "castelliiYEL054C",
+                  "kluyveriYDR418W",
+                  "N0", "N1", "N2", "N3", "N4", "N5",
+                  "N6", "N7", "N8", "N9", "N10")
+node.names.2 <- c("kluyveriYDR418W", "castelliiYEL054C", "bayanusYEL054C", "kudriavzeviiYEL054C",
+                  "mikataeYEL054C","cerevisiaeYEL054C", "paradoxusYEL054C", "castelliiYDR418W",
+                  "bayanusYDR418W", "kudriavzeviiYDR418W", "mikataeYDR418W", "cerevisiaeYDR418W", 
+                  "paradoxusYDR418W",
+                  "N0", 
+                  "N1", "N2", "N3", "N4", "N5",
+                  "N6", "N7", "N8", "N9", "N10")
+
+row.names.1 <- NULL
+for (i in 1:dim(edge.1)[1]){
+  row.names.1 <- c(row.names.1, paste(node.names.1[edge.1[i, 1]], node.names.1[edge.1[i, 2]], sep = "_"))
+}
+row.names.2 <- NULL
+for (i in 1:dim(edge.2)[1]){
+  row.names.2 <- c(row.names.2, paste(node.names.2[edge.2[i, 1]], node.names.2[edge.2[i, 2]], sep = "_"))
+}
+```
+
+Now, check if two parsers give same branch length estimates
+
+```{r}
+# Local trees
+sum(abs(PAML.local.tree.1 - PAML_estimatedTau_3.0_LocalTree_1_summary[local.row.names.1,]))
+sum(abs(PAML.local.tree.2 - PAML_estimatedTau_3.0_LocalTree_2_summary[local.row.names.2,]))
+sum(abs(PAML.local.tree.3 - PAML_estimatedTau_3.0_LocalTree_3_summary[local.row.names.3,]))
+
+# two representations of the correct tree topology
+sum(abs(PAML.tree.1 - PAML_estimatedTau_3.0_1stTree_summary[row.names.1, ]))
+sum(abs(PAML.tree.2 - PAML_estimatedTau_3.0_2ndTree_summary[row.names.2, ]))
+```
+
