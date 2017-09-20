@@ -60,3 +60,11 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
+
+# Rhistory
+.Rhistory
+*.Rhistory
+
+# DS_Store
+.DS_Store
+*.DS_Store

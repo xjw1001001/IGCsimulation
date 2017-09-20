@@ -8,7 +8,7 @@ Load data from All.RData
 
 ```{r}
 rm(list=ls())  # clean up workspace
-load("/Users/Xiang/GitFolders/IGCCodonSimulation/All.RData")
+load("/Users/xji3/GitFolders/IGCCodonSimulation/All.RData")
 ## try http:// if https:// URLs are not supported
 #source("https://bioconductor.org/biocLite.R")
 #biocLite("ggtree")
@@ -20,28 +20,28 @@ for (IGC.geo in IGC.geo.list){
   PAML.local.tree.1 <- NULL
   PAML.local.tree.2 <- NULL
   PAML.local.tree.3 <- NULL
-  tree.local.1 <- read.tree(file = paste( "/Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_", toString(IGC.geo), ".0/sim_0/unrooted_MG94_geo_", toString(IGC.geo), ".0_Sim_0_localTree_1_codeml_est.newick", sep = ""))
+  tree.local.1 <- read.tree(file = paste( "/Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_", toString(IGC.geo), ".0/sim_0/unrooted_MG94_geo_", toString(IGC.geo), ".0_Sim_0_localTree_1_codeml_est.newick", sep = ""))
   edge.local.1 <- tree.local.1$edge
   check.1 <- TRUE
-  tree.local.2 <- read.tree(file = paste( "/Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_", toString(IGC.geo), ".0/sim_0/unrooted_MG94_geo_", toString(IGC.geo), ".0_Sim_0_localTree_2_codeml_est.newick", sep = ""))
+  tree.local.2 <- read.tree(file = paste( "/Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_", toString(IGC.geo), ".0/sim_0/unrooted_MG94_geo_", toString(IGC.geo), ".0_Sim_0_localTree_2_codeml_est.newick", sep = ""))
   edge.local.2 <- tree.local.2$edge
   check.2 <- TRUE
-  tree.local.3 <- read.tree(file = paste( "/Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_", toString(IGC.geo), ".0/sim_0/unrooted_MG94_geo_", toString(IGC.geo), ".0_Sim_0_localTree_3_codeml_est.newick", sep = ""))
+  tree.local.3 <- read.tree(file = paste( "/Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_", toString(IGC.geo), ".0/sim_0/unrooted_MG94_geo_", toString(IGC.geo), ".0_Sim_0_localTree_3_codeml_est.newick", sep = ""))
   edge.local.3 <- tree.local.3$edge
   check.3 <- TRUE
   
   for (sim.num in 0:99){
-    newick.tree.file <- paste("/Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_", toString(IGC.geo), ".0/sim_", toString(sim.num),"/unrooted_MG94_geo_", toString(IGC.geo), ".0_Sim_", toString(sim.num), "_localTree_1_codeml_est.newick", sep = "") 
+    newick.tree.file <- paste("/Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_", toString(IGC.geo), ".0/sim_", toString(sim.num),"/unrooted_MG94_geo_", toString(IGC.geo), ".0_Sim_", toString(sim.num), "_localTree_1_codeml_est.newick", sep = "") 
     tree.local.1 <- read.tree(file = newick.tree.file)
     check.1 <- check.1 & all(edge.local.1 == tree.local.1$edge)
     PAML.local.tree.1 <- cbind(PAML.local.tree.1, tree.local.1$edge.length)
     
-    newick.tree.file <- paste("/Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_", toString(IGC.geo), ".0/sim_", toString(sim.num),"/unrooted_MG94_geo_", toString(IGC.geo), ".0_Sim_", toString(sim.num), "_localTree_2_codeml_est.newick", sep = "") 
+    newick.tree.file <- paste("/Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_", toString(IGC.geo), ".0/sim_", toString(sim.num),"/unrooted_MG94_geo_", toString(IGC.geo), ".0_Sim_", toString(sim.num), "_localTree_2_codeml_est.newick", sep = "") 
     tree.local.2 <- read.tree(file = newick.tree.file)
     check.2 <- check.2 & all(edge.local.2 == tree.local.2$edge)
     PAML.local.tree.2 <- cbind(PAML.local.tree.2, tree.local.2$edge.length)
     
-    newick.tree.file <- paste("/Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_", toString(IGC.geo), ".0/sim_", toString(sim.num),"/unrooted_MG94_geo_", toString(IGC.geo), ".0_Sim_", toString(sim.num), "_localTree_3_codeml_est.newick", sep = "") 
+    newick.tree.file <- paste("/Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_", toString(IGC.geo), ".0/sim_", toString(sim.num),"/unrooted_MG94_geo_", toString(IGC.geo), ".0_Sim_", toString(sim.num), "_localTree_3_codeml_est.newick", sep = "") 
     tree.local.3 <- read.tree(file = newick.tree.file)
     check.3 <- check.3 & all(edge.local.3 == tree.local.3$edge)
     PAML.local.tree.3 <- cbind(PAML.local.tree.3, tree.local.3$edge.length)
@@ -94,21 +94,21 @@ for (IGC.geo in IGC.geo.list){
   PAML.tree.1 <- NULL
   PAML.tree.2 <- NULL
   
-  tree.1 <- read.tree(file = paste("/Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_", toString(IGC.geo), ".0/sim_0/unrooted_MG94_geo_", toString(IGC.geo), ".0_Sim_0_codeml_tree1_est.newick", sep = ""))
+  tree.1 <- read.tree(file = paste("/Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_", toString(IGC.geo), ".0/sim_0/unrooted_MG94_geo_", toString(IGC.geo), ".0_Sim_0_codeml_tree1_est.newick", sep = ""))
   edge.1 <- tree.1$edge
   check.1 <- TRUE
   
-  tree.2 <- read.tree(file = paste("/Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_", toString(IGC.geo), ".0/sim_0/unrooted_MG94_geo_", toString(IGC.geo), ".0_Sim_0_codeml_tree2_est.newick", sep = ""))
+  tree.2 <- read.tree(file = paste("/Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_", toString(IGC.geo), ".0/sim_0/unrooted_MG94_geo_", toString(IGC.geo), ".0_Sim_0_codeml_tree2_est.newick", sep = ""))
   edge.2 <- tree.2$edge
   check.2 <- TRUE
   
   for (sim.num in 0:99){
-    newick.tree.file <- paste("/Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_", toString(IGC.geo), ".0/sim_", toString(sim.num),"/unrooted_MG94_geo_", toString(IGC.geo), ".0_Sim_", toString(sim.num), "_codeml_tree1_est.newick", sep = "") 
+    newick.tree.file <- paste("/Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_", toString(IGC.geo), ".0/sim_", toString(sim.num),"/unrooted_MG94_geo_", toString(IGC.geo), ".0_Sim_", toString(sim.num), "_codeml_tree1_est.newick", sep = "") 
     tree.1 <- read.tree(file = newick.tree.file)
     check.1 <- check.1 & all(edge.1 == tree.1$edge)
     PAML.tree.1 <- cbind(PAML.tree.1, tree.1$edge.length)
     
-    newick.tree.file <- paste("/Users/Xiang/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_", toString(IGC.geo), ".0/sim_", toString(sim.num),"/unrooted_MG94_geo_", toString(IGC.geo), ".0_Sim_", toString(sim.num), "_codeml_tree2_est.newick", sep = "") 
+    newick.tree.file <- paste("/Users/xji3/GitFolders/IGCCodonSimulation/YDR418W_YEL054C_estimatedTau/IGCgeo_", toString(IGC.geo), ".0/sim_", toString(sim.num),"/unrooted_MG94_geo_", toString(IGC.geo), ".0_Sim_", toString(sim.num), "_codeml_tree2_est.newick", sep = "") 
     tree.2 <- read.tree(file = newick.tree.file)
     check.2 <- check.2 & all(edge.2 == tree.2$edge)
     PAML.tree.2 <- cbind(PAML.tree.2, tree.2$edge.length)
@@ -141,7 +141,7 @@ for (IGC.geo in IGC.geo.list){
   assign(paste("ape_paml_Tree_1_geo_", toString(IGC.geo), ".0_blen_summary", sep = ""), PAML.tree.1)
   assign(paste("ape_paml_Tree_2_geo_", toString(IGC.geo), ".0_blen_summary", sep = ""), PAML.tree.2)
 }
-# save.image("/Users/Xiang/GitFolders/IGCCodonSimulation/All.RData")
+# save.image("/Users/xji3/GitFolders/IGCCodonSimulation/All.RData")
 ```
 
 Now, check if two parsers give same branch length estimates
