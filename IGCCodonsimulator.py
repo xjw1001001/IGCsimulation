@@ -352,9 +352,10 @@ class OneBranchIGCCodonSimulator:
             f.write('\t'.join(info) + '\n')
 
 def draw_from_distribution(prob, size, values):
+    prob = np.array(prob) / sum(prob)
     bins = np.add.accumulate(prob)
     if size == 1:
-        return values[np.digitize(np.random.random_sample(size), bins)]
+        return values[np.digitize(np.random.random_sample(size), bins)[0]]
     else:
         return [values[i] for i in np.digitize(np.random.random_sample(size), bins)]
  

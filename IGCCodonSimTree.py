@@ -15,12 +15,13 @@ import cPickle
 
 class TreeIGCCodonSimulator:
     def __init__(self, num_exon, newick_tree, paralog, seq_file, log_file,
-                 x_exon, x_IGC, log_folder, div_folder):
+                 x_exon, x_IGC, log_folder, div_folder, seed_number):
         self.newicktree   = newick_tree
         self.num_exon     = num_exon
         self.pair         = paralog
         self.seq_file     = seq_file
         self.log_file     = log_file
+        self.seed_number  = seed_number 
         self.edge_to_blen = None
         self.node_to_num  = None
         self.num_to_node  = None
@@ -73,15 +74,20 @@ class TreeIGCCodonSimulator:
     def initiate(self):
         self.get_tree()
         self.unpack_x()
-        # If the seed file exists, set numpy's random seed state according to the seed file
-        seed_file = self.log_file.replace('.log', '_seed.log')
-        if os.path.isfile(seed_file):
-            prng = cPickle.load(open(seed_file, 'r'))
-            np.random.set_state(prng.get_state())
-        else:
-            prng = np.random.RandomState()
-            seed_file = self.log_file.replace('.log', '_seed.log')
-            cPickle.dump(prng, open(seed_file, 'w+'))
+        self.set_seed()
+##        # If the seed file exists, set numpy's random seed state according to the seed file
+##        seed_file = self.log_file.replace('.log', '_seed.log')
+##        if os.path.isfile(seed_file):
+##            prng = cPickle.load(open(seed_file, 'r'))
+##            np.random.set_state(prng.get_state())
+##        else:
+##            prng = np.random.RandomState()
+##            seed_file = self.log_file.replace('.log', '_seed.log')
+##            cPickle.dump(prng, open(seed_file, 'w+'))
+
+    def set_seed(self):
+        assert(type(self.seed_number) == int)
+        np.random.seed(self.seed_number)
 
     def unpack_x(self):
         if self.Model == 'MG94':
@@ -229,7 +235,7 @@ class TreeIGCCodonSimulator:
 
     def output_seq(self):
         with open(self.seq_file, 'w+') as f:
-            for node in self.leaves:
+            for node in self.node_to_sequence:
                 if not node in self.outgroup[0]:
                     for paralog_counter in range(self.num_paralog):
                         paralog = self.pair[paralog_counter]
@@ -271,6 +277,7 @@ if __name__ == '__main__':
     num_exon = 163
     log_folder = './sim1/log/'
     div_folder = './sim1/div/'
+    seed_number = 27606
     
 
     tau = 1.409408
@@ -299,7 +306,7 @@ if __name__ == '__main__':
     x_rates = np.exp([-3.925914311698581738, -1.533949335440421891, -1.564219363086546410, -1.762095498829083562, -3.660826292734839171, -3.626559649929371076,
                -3.438639957077882059, -2.460890888502840657, -3.690966112631306473, -2.870638256407853639, -2.844813362532052192, -3.822236386160084542])
 
-    test = TreeIGCCodonSimulator(num_exon, newicktree, paralog, seq_file, log_file, x_exon, x_IGC, log_folder, div_folder)
+    test = TreeIGCCodonSimulator(num_exon, newicktree, paralog, seq_file, log_file, x_exon, x_IGC, log_folder, div_folder, seed_number)
     test.unpack_x_rates(x_rates)
     self = test
 
