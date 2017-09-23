@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-   
+
 # IGC Simulation on a Tree
 # Imports simulation on a branch from my CSC530 project with modification
 # Xiang Ji
@@ -26,7 +28,7 @@ class TreeIGCCodonSimulator:
         self.node_to_num  = None
         self.num_to_node  = None
         self.edge_list    = None
-        self.outgroup     = [('N0', 'kluyveri')]  # I am so lazy
+        self.outgroup     = [('N0', 'kluyveri')]  #TODO: I am so lazy
 
         # Node sequence
         self.node_to_sequence = None

@@ -1,5 +1,11 @@
+# -*- coding: utf-8 -*-   
+
 #This is my final course project of CSC530.
-#It is a simulation study of interlocus gene conversion (IGC) between paralogs together with point mutation process during evolution on a single branch. Simulated shotgun sequencing reads are then simulated using the simulated sequence and then re-assembled. It aims at understanding the influence of IGC in sequencing identifiability of the paralogs. 
+#It is a simulation study of interlocus gene conversion (IGC)
+# between paralogs together with point mutation process during
+# evolution on a single branch. Simulated shotgun sequencing reads are 
+#then simulated using the simulated sequence and then re-assembled. 
+#It aims at understanding the influence of IGC in sequencing identifiability of the paralogs. 
 #Xiang Ji
 #xji3@ncsu.edu
 
@@ -73,8 +79,8 @@ class OneBranchIGCCodonSimulator:
         if self.exon_model == 'MG94':
             # get stationary nucleotide distribution of codon model of exonic region
             pi_codon = self.unpack_x_exon()[0]
-            distn_codon = [ reduce(mul, [pi_codon['ACGT'.index(b)]  for b in codon], 1) for codon in self.codon_nonstop ]
-            distn_codon = np.array(distn_codon) / sum(distn_codon)
+            distn_codon = [ reduce(mul, [pi_codon['ACGT'.index(b)]  for b in codon], 1) for codon in self.codon_nonstop ]#codon 先验
+            distn_codon = np.array(distn_codon) / sum(distn_codon)#codon 先验分布
             self.exon_distn = distn_codon
             self.exon_mut_Q = self.get_MG94()
 
@@ -223,7 +229,7 @@ class OneBranchIGCCodonSimulator:
                 div_info.append(str((self.IGC_change_sites + 0.0) / (self.IGC_change_sites + self.point_mut_count + 0.0)))
                 
             self.add_div(div_info)
-            total_rate = self.mut_total_rate + 2 * self.IGC_total_rate
+            total_rate = self.mut_total_rate + 2 * self.IGC_total_rate#第一项所有位点rate之和，第二项所有位点IGCrate之和
             if total_rate == 0.0:
                 break
             cummulate_time += np.random.exponential(1.0 / total_rate)
@@ -272,6 +278,7 @@ class OneBranchIGCCodonSimulator:
 
         self.point_mut_count += 1
 
+        # Now updaate mutation rate
         self.get_mutation_rate()
         mut_info = ['Point mutation at paralog ' + str(mut_paralog) + ' position ' + str(mut_pos) + ' from', old_seq, 'to', new_seq, str(self.compare_similarity())]
         self.add_log(mut_info)
@@ -310,7 +317,7 @@ class OneBranchIGCCodonSimulator:
             new_paralog_seq = self.convert_seq_to_list(paralog_seq_list)#            [self.convert_seq_to_list(paralog_seq) for paralog_seq in paralog_seq_list]
             self.current_seq = new_paralog_seq
         else:
-            self.IGC_failure_count += 1
+            self.IGC_failure_count += 1#IGC failure due to trying to copy from a bad model
         self.IGC_total_count += 1
         self.IGC_contribution_count += (nuc_stop - nuc_start) * 2
         self.IGC_tract_length = (nuc_stop - nuc_start)
